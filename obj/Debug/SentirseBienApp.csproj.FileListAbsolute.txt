@@ -1,0 +1,16 @@
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\SentirseBienApp.csproj.AssemblyReference.cache
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\SentirseBienApp.Form1.resources
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\SentirseBienApp.Properties.Resources.resources
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\SentirseBienApp.csproj.GenerateResource.cache
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\SentirseBienApp.csproj.CoreCompileInputs.cache
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\bin\Debug\SentirseBienApp.exe.config
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\bin\Debug\SentirseBienApp.exe
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\bin\Debug\SentirseBienApp.pdb
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\SentirseBienApp.exe
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\SentirseBienApp.pdb
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\bin\Debug\es-AR\SentirseBienApp.resources.dll
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\SentirseBienApp.Form1.es-AR.resources
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\es-AR\SentirseBienApp.resources.dll
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\SentirseBienApp.VentanaAdmin.resources
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\SentirseBienApp.VentanaProfesional.resources
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\SentirseBienApp.VentanaSecretario.resources
