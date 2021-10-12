@@ -14,3 +14,33 @@ C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\es-AR\Sentirs
 C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\SentirseBienApp.VentanaAdmin.resources
 C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\SentirseBienApp.VentanaProfesional.resources
 C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\SentirseBienApp.VentanaSecretario.resources
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\bin\Debug\SentirseBienApp.exe.config
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\bin\Debug\SentirseBienApp.exe
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\bin\Debug\SentirseBienApp.pdb
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\bin\Debug\es-AR\SentirseBienApp.resources.dll
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\bin\Debug\MySql.Data.dll
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\bin\Debug\Google.Protobuf.dll
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\bin\Debug\Zstandard.Net.dll
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\bin\Debug\K4os.Compression.LZ4.Streams.dll
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\bin\Debug\BouncyCastle.Crypto.dll
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\bin\Debug\Ubiety.Dns.Core.dll
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\bin\Debug\System.Memory.dll
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\bin\Debug\System.Buffers.dll
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\bin\Debug\K4os.Compression.LZ4.dll
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\bin\Debug\K4os.Hash.xxHash.dll
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\bin\Debug\System.Numerics.Vectors.dll
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\bin\Debug\MySql.Data.xml
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\obj\Debug\SentirseBienApp.csprojAssemblyReference.cache
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\obj\Debug\SentirseBienApp.VentanaAdmin.resources
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\obj\Debug\SentirseBienApp.Form1.resources
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\obj\Debug\SentirseBienApp.Properties.Resources.resources
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\obj\Debug\SentirseBienApp.VentanaProfesional.resources
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\obj\Debug\SentirseBienApp.VentanaSecretario.resources
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\obj\Debug\SentirseBienApp.Form1.es-AR.resources
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\obj\Debug\SentirseBienApp.csproj.GenerateResource.cache
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\obj\Debug\SentirseBienApp.csproj.CoreCompileInputs.cache
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\obj\Debug\es-AR\SentirseBienApp.resources.dll
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\obj\Debug\SentirseBienApp.csproj.CopyComplete
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\obj\Debug\SentirseBienApp.exe
+E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebien\obj\Debug\SentirseBienApp.pdb

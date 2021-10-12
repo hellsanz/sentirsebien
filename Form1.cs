@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace SentirseBienApp
 {
@@ -19,8 +20,32 @@ namespace SentirseBienApp
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {            
-            loggeo(int.Parse(textBox_contador.Text));               
+        {
+            //loggeo(int.Parse(textBox_contador.Text));
+
+            //Conectando Azure MySql
+            ConexDB log = new ConexDB();
+            string query = "SELECT EXISTS(SELECT 1 FROM usuarios WHERE nombre = @nombre and dni = @pass)";
+            using (MySqlCommand cmd = new MySqlCommand(query, log.conectarBD))
+            {
+                log.abrirBD();
+                cmd.Parameters.AddWithValue("@nombre", textBox1_usuario.Text);
+                cmd.Parameters.AddWithValue("@pass", Convert.ToInt32( textBox1_password.Text));
+                int r = Convert.ToInt32( cmd.ExecuteScalar());
+
+                if (r == 1)
+                {
+                    MessageBox.Show("Correcto");
+                }
+                else 
+                {
+                    MessageBox.Show("Usuario y/o pass Incorrecto!");
+                    loggeo(int.Parse(textBox_contador.Text));
+                }
+
+                log.cerrarBD();
+            }
+
         }
         
         private void button2_Click(object sender, EventArgs e)

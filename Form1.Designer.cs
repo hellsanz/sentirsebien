@@ -51,6 +51,7 @@ namespace SentirseBienApp
             resources.ApplyResources(this.textBox1_usuario, "textBox1_usuario");
             this.textBox1_usuario.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.textBox1_usuario.Name = "textBox1_usuario";
+            //this.textBox1_usuario.TextChanged += new System.EventHandler(this.textBox1_usuario_TextChanged);
             // 
             // textBox1_password
             // 
@@ -75,6 +76,7 @@ namespace SentirseBienApp
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.PaleGreen;
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.SystemColors.MenuHighlight;
