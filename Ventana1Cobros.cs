@@ -16,5 +16,20 @@ namespace SentirseBienApp
         {
             InitializeComponent();
         }
+
+        private void button_cerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button_actualizar_Click(object sender, EventArgs e)
+        {
+            //traer todos los turnos cargados en la BD
+        }
+
+        private void button_imprimir_Click(object sender, EventArgs e)
+        {
+            //EJECUTAR IMPRESION
+        }
     }
 }

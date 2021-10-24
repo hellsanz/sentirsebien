@@ -18,20 +18,6 @@ namespace SentirseBienApp
             limpiarCampos();
             habilitarCampos();
             textBox_insert_update.Text = "0";
-        }        
-        private void button1_aceptar_Click(object sender, EventArgs e)//ACEPTAR
-        {            
-            if (controlCargaDatos() == true)
-            {
-                capturarCampos(int.Parse(textBox_insert_update.Text));//0 para INSERT   -   1 para UPDATE                
-                limpiarCampos();
-                deshabilitarCampos();
-            }                       
-        }
-        private void button_cancelar_Click(object sender, EventArgs e)
-        {
-            limpiarCampos();
-            deshabilitarCampos();
         }
         private void button1_modificar_Click(object sender, EventArgs e)
         {
@@ -52,8 +38,70 @@ namespace SentirseBienApp
             textBox_telefono.Text = Convert.ToString(hardTelefono);
 
             textBox_insert_update.Text = "1";
-            habilitarCampos();                      
+            habilitarCampos();
         }
+        private void button1_eliminar_Click(object sender, EventArgs e)
+        {
+            int hardDNI = 10;
+            string hardEmail = "elbarsalacome@elmejor.com";
+            string hardApellido = "Messi";
+            string hardNombre = "Leonel";
+            int hardNRO = 30;
+
+            textBox_apellido.Text = hardApellido;
+            textBox_nombre.Text = hardNombre;
+            textBox_dni.Text = Convert.ToString(hardDNI);
+            textBox_email.Text = hardEmail;
+            textBox_nro.Text = Convert.ToString(hardNRO);
+
+            MessageBox.Show("el Usuario: " + hardNombre + " " + hardApellido + "\nHa sido eliminado de la BBDD");
+            int dni = int.Parse(textBox_dni.Text);
+            eliminarCliente(dni);
+        }
+        private void button1_actualizar_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(textBox_buscar.Text))
+            {
+                MessageBox.Show("¡Error! debe cargar el DNI");
+            }
+            else
+            {
+                //CAMBIAR CONECCION de SQLServer a MYSQL
+
+                int dni = Convert.ToInt32(textBox_buscar.Text);
+                ConexDB clientes = new ConexDB();
+                string query = "SELECT * from Personas where DNI = @dni";
+                using (MySqlCommand cmd = new MySqlCommand(query, clientes.conectarBD))
+                {
+                    clientes.abrirBD();
+                    cmd.Parameters.AddWithValue("@dni", dni);
+                    MySqlDataAdapter mysqlDataAdap = new MySqlDataAdapter(cmd);
+                    DataTable dtRecord = new DataTable();
+                    mysqlDataAdap.Fill(dtRecord);
+                    dataGridView1.DataSource = dtRecord;
+                    dataGridView1.AllowUserToAddRows = false;
+                    if (dataGridView1.RowCount == 0)
+                    {
+                        MessageBox.Show("Sin datos para mostrar");
+                    }
+                }
+            }
+        }
+        private void button1_aceptar_Click(object sender, EventArgs e)//ACEPTAR
+        {            
+            if (controlCargaDatos() == true)
+            {
+                capturarCampos(int.Parse(textBox_insert_update.Text));//0 para INSERT   -   1 para UPDATE                
+                limpiarCampos();
+                deshabilitarCampos();
+            }                       
+        }       
+        private void button_cancelar_Click(object sender, EventArgs e)
+        {
+            limpiarCampos();
+            deshabilitarCampos();
+        }
+        
         private void button_seguridad_Click(object sender, EventArgs e)
         {
             Ventana1Seguridad ventanaSeguridad = new Ventana1Seguridad();
@@ -74,6 +122,7 @@ namespace SentirseBienApp
         }
 
 
+        //METODOS
         public Boolean controlCargaDatos()
         {
             Boolean control = true;
@@ -154,10 +203,50 @@ namespace SentirseBienApp
             if (insUpd == 0)//INSERT
             {
                 MessageBox.Show("HACIENDO INSERT");
+                ConexDB log = new ConexDB();
+                string query = "INSERT INTO Personas (dni, apellido, nombre, email, telefono) VALUES ('" + dni+"','"+apellido+"','"+nombre+"','"+email+"','"+telefono+"')";
+                using (MySqlCommand cmd = new MySqlCommand(query, log.conectarBD))
+                {
+                    try
+                    {
+                        log.abrirBD();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Cliente Agregado!");
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show("Error!\nNo se ha podido concretar la accion\nException: " + e.Message);  
+                    }
+                    finally
+                    {
+                        log.cerrarBD();
+                    }
+                }
             }
             if (insUpd == 1)//UPDATE
             {
                 MessageBox.Show("HACIENDO UPDATE");
+                ConexDB log = new ConexDB();
+                string query = "UPDATE Personas SET dni='" + dni + "', apellido='" + apellido + "', nombre='" + nombre + "', email='" + email + "', telefono='" + telefono +
+                               "'WHERE dni='"+Convert.ToInt32(textBox_dni.Text)+"'";
+                using (MySqlCommand cmd = new MySqlCommand(query, log.conectarBD))
+                {
+                    try
+                    {
+                        log.abrirBD();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Cliente Agregado!");
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show("Error!\nNo se ha podido concretar la accion\nException: " + e.Message);
+                    }
+                    finally
+                    {
+                        log.cerrarBD();
+                    }
+                }
+
             }
             if ((insUpd != 0) && (insUpd != 1))
             {
@@ -166,55 +255,25 @@ namespace SentirseBienApp
         }
         public void eliminarCliente(int dni)
         {
-            //eliminar cliente por DNI
-        }
-        private void button1_eliminar_Click(object sender, EventArgs e)
-        {
-            int hardDNI = 10;
-            string hardEmail = "elbarsalacome@elmejor.com";
-            string hardApellido = "Messi";
-            string hardNombre = "Leonel";
-            int hardNRO = 30;
-
-            textBox_apellido.Text = hardApellido;
-            textBox_nombre.Text = hardNombre;
-            textBox_dni.Text = Convert.ToString(hardDNI);
-            textBox_email.Text = hardEmail;
-            textBox_nro.Text = Convert.ToString(hardNRO);
-
-            MessageBox.Show("el Usuario: "+hardNombre+" "+hardApellido+"\nHa sido eliminado de la BBDD");
-            int dni = int.Parse(textBox_dni.Text);
-            eliminarCliente(dni);
-        }
-
-        private void button1_actualizar_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(textBox_buscar.Text))
-            {
-                MessageBox.Show("¡Error! debe cargar el DNI");
+            ConexDB log = new ConexDB();
+            string query = "DELETE FROM Personas WHERE dni = @dni";
+            using (MySqlCommand cmd = new MySqlCommand(query, log.conectarBD))
+            {                
+                try
+                {
+                    log.abrirBD();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Cliente Eliminado!");
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Error!\nNo se ha podido concretar la accion\nException: "+e.Message);
+                }
+                finally
+                {
+                    log.cerrarBD();
+                }
             }
-            else
-            {
-                //CAMBIAR CONECCION de SQLServer a MYSQL
-
-                //int dni = Convert.ToInt32(textBox_buscar.Text);
-                //ConexDB clientes = new ConexDB();                
-                //string query = "SELECT * from Personas where DNI = @dni";
-                //using (MySqlCommand cmd = new MySqlCommand(query, clientes.conectarBD))
-                //{
-                //    clientes.abrirBD();
-                //    cmd.Parameters.AddWithValue("@dni", dni);
-                //    MySqlDataAdapter mysqlDataAdap = new MySqlDataAdapter(cmd);
-                //    DataTable dtRecord = new DataTable();
-                //    mysqlDataAdap.Fill(dtRecord);
-                //    dataGridView1.DataSource = dtRecord;
-                //    dataGridView1.AllowUserToAddRows = false;
-                //    if (dataGridView1.RowCount == 0)
-                //    {
-                //        MessageBox.Show("Sin datos para mostrar");
-                //    }
-                //}
-            }
-        }
+        }   
     }
 }

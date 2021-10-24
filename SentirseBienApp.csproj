@@ -92,6 +92,12 @@
     <Compile Include="Ventana1Turnos.Designer.cs">
       <DependentUpon>Ventana1Turnos.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Ventana1Cobros.resx">
+      <DependentUpon>Ventana1Cobros.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ventana1Turnos.resx">
+      <DependentUpon>Ventana1Turnos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VentanaAdmin.resx">
       <DependentUpon>VentanaAdmin.cs</DependentUpon>
     </EmbeddedResource>

@@ -57,3 +57,5 @@ C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\bin\Debug\K4os.Hash.xxH
 C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\bin\Debug\System.Numerics.Vectors.dll
 C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\bin\Debug\MySql.Data.xml
 C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\SentirseBienApp.csproj.CopyComplete
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\SentirseBienApp.Ventana1Cobros.resources
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\SentirseBienApp.Ventana1Turnos.resources

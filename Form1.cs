@@ -46,16 +46,16 @@ namespace SentirseBienApp
             {
                 String usuario = textBox1_usuario.Text;  
                 if (existeUsuario() == true)
-                {            
-                    textBox1_usuario.Text = "";
-                    textBox1_password.Text = "";
+                {    
                     if (consultaAcceso() == 0)
                     {
                         MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Administrador");
                         VentanaAdmin ventanaAdmin = new VentanaAdmin();
                         AddOwnedForm(ventanaAdmin);
-                        usuario = "";                        
+                        usuario = "";
                         //this.Visible = false;
+                        textBox1_usuario.Text = "";
+                        textBox1_password.Text = "";
                         ventanaAdmin.ShowDialog();
                     }
                     if (consultaAcceso() == 1)
@@ -63,8 +63,10 @@ namespace SentirseBienApp
                         MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Profesional");
                         VentanaProfesional ventanaUsuario = new VentanaProfesional();
                         AddOwnedForm(ventanaUsuario);
-                        usuario = "";                        
-                        this.Visible = false;
+                        usuario = "";
+                        //this.Visible = false;
+                        textBox1_usuario.Text = "";
+                        textBox1_password.Text = "";
                         ventanaUsuario.ShowDialog();
                     }
                     if (consultaAcceso() == 2)
@@ -72,15 +74,19 @@ namespace SentirseBienApp
                         MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Secretaría");
                         VentanaSecretario ventanaSecretario = new VentanaSecretario();
                         AddOwnedForm(ventanaSecretario);
-                        usuario = "";                       
-                        this.Visible = false;
+                        usuario = "";
+                        //this.Visible = false;
+                        textBox1_usuario.Text = "";
+                        textBox1_password.Text = "";
                         ventanaSecretario.ShowDialog();
                     }
                     if ((consultaAcceso() > 2) || (consultaAcceso() < 0))
                     {
+                        textBox1_usuario.Text = "";
+                        textBox1_password.Text = "";
                         MessageBox.Show("¡ERROR DE ACCESO!\n Consulte con el Administrador");
                         usuario = "";                        
-                    }
+                    }                    
                 }
                 else
                 {
@@ -114,7 +120,7 @@ namespace SentirseBienApp
             string acc = "";
             //Conectando Azure MySql
             ConexDB log = new ConexDB();
-            string query = "SELECT EXISTS(SELECT 1 FROM usuarios WHERE nombre = @nombre and dni = @pass)";
+            string query = "SELECT EXISTS(SELECT 1 FROM empleado WHERE usuario = @nombre and password = @pass)";
             using (MySqlCommand cmd = new MySqlCommand(query, log.conectarBD))
             {
                 log.abrirBD();
@@ -137,8 +143,7 @@ namespace SentirseBienApp
                         intentos--;
                         textBox_contador.Text = Convert.ToString(intentos);
                         return false;                        
-                    }
-                    
+                    }                    
                 }
                 catch (Exception)
                 {
@@ -153,8 +158,28 @@ namespace SentirseBienApp
             //necesito que me traigas el acceso del usuario de BD
             //SI o SI haceme esto
             //si necesitas algun parametro hace una variable hardcodeada y te la conecto despues
-            int acc = 0;            
-            return acc;
-        }             
+            //0 ADMIN - 1 SECRETARIO - 2 USUARIO
+            int acc;
+            //Conectando Azure MySql
+            ConexDB log = new ConexDB();
+            string query = "SELECT permiso from empleado where usuario = @nombre";
+            using (MySqlCommand cmd = new MySqlCommand(query, log.conectarBD))
+            {
+                cmd.Parameters.AddWithValue("@nombre", textBox1_usuario.Text);
+                try
+                {
+                    log.abrirBD();
+                    acc = Convert.ToInt32(cmd.ExecuteScalar());
+                    log.cerrarBD();
+                    return acc;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error de Conexion con la BBDD");
+                    log.cerrarBD();
+                    return -1;  
+                }                
+            }
+        }
     }
 }
