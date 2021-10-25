@@ -9,7 +9,7 @@ namespace SentirseBienApp
         public VentanaAdmin()
         {
             InitializeComponent();
-        }       
+        }
 
         private void button1_Agregar_Click(object sender, EventArgs e)
         {
@@ -57,53 +57,53 @@ namespace SentirseBienApp
             eliminarCliente(dni);
         }
         private void button1_actualizar_Click(object sender, EventArgs e)
-        {            
-            if (string.IsNullOrEmpty(textBox_buscar.Text))
-            {
-                MessageBox.Show("¡Error! debe cargar el DNI");
-            }
-            else
-            {
-                //CAMBIAR CONECCION de SQLServer a MYSQL
+        {
 
-                int dni = Convert.ToInt32(textBox_buscar.Text);
-                ConexDB clientes = new ConexDB();
-                string query = "SELECT * from Personas where DNI = @dni";
-                using (MySqlCommand cmd = new MySqlCommand(query, clientes.conectarBD))
+            //CAMBIAR CONECCION de SQLServer a MYSQL
+            //Traer todos clientes de la  db al datagrid
+
+
+            ConexDB buscarClientes = new ConexDB();
+            string query = "SELECT * from cliente";
+            using (MySqlCommand cmd = new MySqlCommand(query, buscarClientes.conectarBD))
+            {
+                buscarClientes.abrirBD();
+                MySqlDataAdapter mysqlDataAdap = new MySqlDataAdapter(cmd);
+                DataTable dtRecord = new DataTable();
+                mysqlDataAdap.Fill(dtRecord);
+                dataGridView1.DataSource = dtRecord;
+                dataGridView1.AllowUserToAddRows = false;
+                dataGridView1.Columns[0].HeaderText = "DNI";
+                dataGridView1.Columns[1].HeaderText = "APELLIDO";
+                dataGridView1.Columns[2].HeaderText = "NOMBRE";
+                dataGridView1.Columns[3].HeaderText = "EMAIL";
+                dataGridView1.Columns[4].HeaderText = "TELEFONO";
+                if (dataGridView1.RowCount == 0)
                 {
-                    clientes.abrirBD();
-                    cmd.Parameters.AddWithValue("@dni", dni);
-                    MySqlDataAdapter mysqlDataAdap = new MySqlDataAdapter(cmd);
-                    DataTable dtRecord = new DataTable();
-                    mysqlDataAdap.Fill(dtRecord);
-                    dataGridView1.DataSource = dtRecord;
-                    dataGridView1.AllowUserToAddRows = false;
-                    if (dataGridView1.RowCount == 0)
-                    {
-                        MessageBox.Show("Sin datos para mostrar");
-                    }
+                    MessageBox.Show("Sin datos para mostrar");
                 }
             }
+
         }
         private void button1_buscar_Click(object sender, EventArgs e)
         {
-
+            //Traer todos clientes por DNI al datagrid
         }
         private void button1_aceptar_Click(object sender, EventArgs e)//ACEPTAR
-        {            
+        {
             if (controlCargaDatos() == true)
             {
                 capturarCampos(int.Parse(textBox_insert_update.Text));//0 para INSERT   -   1 para UPDATE                
                 limpiarCampos();
                 deshabilitarCampos();
-            }                       
-        }       
+            }
+        }
         private void button_cancelar_Click(object sender, EventArgs e)
         {
             limpiarCampos();
             deshabilitarCampos();
         }
-        
+
         private void button_seguridad_Click(object sender, EventArgs e)
         {
             Ventana1Seguridad ventanaSeguridad = new Ventana1Seguridad();
@@ -117,7 +117,7 @@ namespace SentirseBienApp
             ventanaTurno.ShowDialog();
         }
         private void button_cobros_Click(object sender, EventArgs e)
-        {            
+        {
             Ventana1Cobros ventanaCobro = new Ventana1Cobros();
             AddOwnedForm(ventanaCobro);
             ventanaCobro.ShowDialog();
@@ -153,7 +153,7 @@ namespace SentirseBienApp
             {
                 MessageBox.Show("¡Error en Email! - Campo Vacio");
                 control = false;
-            }            
+            }
             return control;
         }
         public void limpiarCampos()
@@ -164,25 +164,25 @@ namespace SentirseBienApp
             textBox_email.Text = "";
             textBox_nro.Text = "";
             textBox_telefono.Text = "";
-        }      
+        }
         public void capturarCampos(int InsertUpdate)
         {
             string bd_nombre = textBox_nombre.Text;
             string bd_apellido = textBox_apellido.Text;
             int bd_dni = int.Parse(textBox_dni.Text);
-            string bd_email = textBox_email.Text;            
-            int bd_telefono = int.Parse(textBox_telefono.Text);
-            MessageBox.Show("El Cliente "+bd_nombre+" "+bd_apellido+" con DNI: "+bd_dni+" Ha sido Correctamente cargado");
-            TablaCliente(bd_nombre,bd_apellido,bd_dni,bd_email,bd_telefono, InsertUpdate);            
+            string bd_email = textBox_email.Text;
+            Int64 bd_telefono = Convert.ToInt64(textBox_telefono.Text);
+            MessageBox.Show("El Cliente " + bd_nombre + " " + bd_apellido + " con DNI: " + bd_dni + " Ha sido Correctamente cargado");
+            TablaCliente(bd_nombre, bd_apellido, bd_dni, bd_email, bd_telefono, InsertUpdate);
         }
         public void habilitarCampos()
         {
             textBox_nombre.Enabled = true;
             textBox_apellido.Enabled = true;
             textBox_dni.Enabled = true;
-            textBox_email.Enabled = true;            
+            textBox_email.Enabled = true;
             textBox_telefono.Enabled = true;
-            button_aceptar.Enabled = true;            
+            button_aceptar.Enabled = true;
             button_cancelar.Enabled = true;
         }
         public void deshabilitarCampos()
@@ -194,34 +194,39 @@ namespace SentirseBienApp
             textBox_nro.Enabled = false;
             textBox_telefono.Enabled = false;
             button_aceptar.Enabled = false;
-            button_cancelar.Enabled = false;            
+            button_cancelar.Enabled = false;
             button_aceptar.Visible = true;
         }
-        public void TablaCliente(string nombre, string apellido, int dni, string email, int telefono, int insUpd)
+        public void TablaCliente(string nombre, string apellido, int dni, string email, Int64 telefono, int insUpd)
         {
             //AGREGAR CLIENTE A LA BASE DE DATOS - TABLA CLIENTE
             //datos de los campos guardados
             //tanto para agregar como para modificar            
             if (insUpd == 0)//INSERT
             {
-                MessageBox.Show("HACIENDO INSERT");
-                ConexDB log = new ConexDB();
-                string query = "INSERT INTO Personas (dni, apellido, nombre, email, telefono) VALUES ('" + dni+"','"+apellido+"','"+nombre+"','"+email+"','"+telefono+"')";
-                using (MySqlCommand cmd = new MySqlCommand(query, log.conectarBD))
+                //MessageBox.Show("HACIENDO INSERT");
+                ConexDB insCli = new ConexDB();
+                string query = "INSERT INTO cliente (dni, apellido, nombre, email, telefono) VALUES (@dni, @apellido, @nombre, @email, @telefono)";
+                using (MySqlCommand cmd = new MySqlCommand(query, insCli.conectarBD))
                 {
                     try
                     {
-                        log.abrirBD();
+                        cmd.Parameters.AddWithValue("@dni", Convert.ToInt32(textBox_dni.Text));
+                        cmd.Parameters.AddWithValue("@apellido", textBox_apellido.Text);
+                        cmd.Parameters.AddWithValue("@nombre", textBox_nombre.Text);
+                        cmd.Parameters.AddWithValue("@email", textBox_email.Text);
+                        cmd.Parameters.AddWithValue("@telefono", Convert.ToInt64(textBox_telefono.Text));
+                        insCli.abrirBD();
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Cliente Agregado!");
                     }
                     catch (Exception e)
                     {
-                        MessageBox.Show("Error!\nNo se ha podido concretar la accion\nException: " + e.Message);  
+                        MessageBox.Show("Error!\nNo se ha podido concretar la accion\nException: " + e.Message);
                     }
                     finally
                     {
-                        log.cerrarBD();
+                        insCli.cerrarBD();
                     }
                 }
             }
@@ -230,7 +235,7 @@ namespace SentirseBienApp
                 MessageBox.Show("HACIENDO UPDATE");
                 ConexDB log = new ConexDB();
                 string query = "UPDATE Personas SET dni='" + dni + "', apellido='" + apellido + "', nombre='" + nombre + "', email='" + email + "', telefono='" + telefono +
-                               "'WHERE dni='"+Convert.ToInt32(textBox_dni.Text)+"'";
+                               "'WHERE dni='" + Convert.ToInt32(textBox_dni.Text) + "'";
                 using (MySqlCommand cmd = new MySqlCommand(query, log.conectarBD))
                 {
                     try
@@ -260,7 +265,7 @@ namespace SentirseBienApp
             ConexDB log = new ConexDB();
             string query = "DELETE FROM Personas WHERE dni = @dni";
             using (MySqlCommand cmd = new MySqlCommand(query, log.conectarBD))
-            {                
+            {
                 try
                 {
                     log.abrirBD();
@@ -269,7 +274,7 @@ namespace SentirseBienApp
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Error!\nNo se ha podido concretar la accion\nException: "+e.Message);
+                    MessageBox.Show("Error!\nNo se ha podido concretar la accion\nException: " + e.Message);
                 }
                 finally
                 {
@@ -278,6 +283,18 @@ namespace SentirseBienApp
             }
         }
 
-        
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.SelectedCells.Count > 0)
+            {
+                dataGridView1.Rows[e.RowIndex].Selected = true;
+                textBox_dni.Text = dataGridView1.SelectedCells[0].Value.ToString();
+                textBox_apellido.Text = dataGridView1.SelectedCells[1].Value.ToString();
+                textBox_nombre.Text = dataGridView1.SelectedCells[2].Value.ToString();
+                textBox_email.Text = dataGridView1.SelectedCells[3].Value.ToString();
+                textBox_telefono.Text = dataGridView1.SelectedCells[4].Value.ToString();
+
+            }
+        }
     }
 }

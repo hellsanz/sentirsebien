@@ -56,11 +56,6 @@ namespace SentirseBienApp
             this.button_cobros = new System.Windows.Forms.Button();
             this.button_seguridad = new System.Windows.Forms.Button();
             this.textBox_insert_update = new System.Windows.Forms.TextBox();
-            this.C1_dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.C2_apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.C3_nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.C4_email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.C5_telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -265,16 +260,12 @@ namespace SentirseBienApp
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.C1_dni,
-            this.C2_apellido,
-            this.C3_nombre,
-            this.C4_email,
-            this.C5_telefono});
             this.dataGridView1.Location = new System.Drawing.Point(12, 90);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(545, 215);
             this.dataGridView1.TabIndex = 22;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // label6
             // 
@@ -349,36 +340,6 @@ namespace SentirseBienApp
             this.textBox_insert_update.Size = new System.Drawing.Size(43, 20);
             this.textBox_insert_update.TabIndex = 51;
             // 
-            // C1_dni
-            // 
-            this.C1_dni.HeaderText = "DNI";
-            this.C1_dni.Name = "C1_dni";
-            this.C1_dni.ReadOnly = true;
-            // 
-            // C2_apellido
-            // 
-            this.C2_apellido.HeaderText = "Apellido";
-            this.C2_apellido.Name = "C2_apellido";
-            this.C2_apellido.ReadOnly = true;
-            // 
-            // C3_nombre
-            // 
-            this.C3_nombre.HeaderText = "Nombre";
-            this.C3_nombre.Name = "C3_nombre";
-            this.C3_nombre.ReadOnly = true;
-            // 
-            // C4_email
-            // 
-            this.C4_email.HeaderText = "Email";
-            this.C4_email.Name = "C4_email";
-            this.C4_email.ReadOnly = true;
-            // 
-            // C5_telefono
-            // 
-            this.C5_telefono.HeaderText = "Telefono";
-            this.C5_telefono.Name = "C5_telefono";
-            this.C5_telefono.ReadOnly = true;
-            // 
             // VentanaAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -452,10 +413,5 @@ namespace SentirseBienApp
         private System.Windows.Forms.Button button_cobros;
         private System.Windows.Forms.Button button_seguridad;
         private System.Windows.Forms.TextBox textBox_insert_update;
-        private System.Windows.Forms.DataGridViewTextBoxColumn C1_dni;
-        private System.Windows.Forms.DataGridViewTextBoxColumn C2_apellido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn C3_nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn C4_email;
-        private System.Windows.Forms.DataGridViewTextBoxColumn C5_telefono;
     }
 }
