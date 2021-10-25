@@ -2,8 +2,6 @@
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Data;
-using System.Data.SqlClient;
-
 namespace SentirseBienApp
 {
     public partial class VentanaAdmin : Form
@@ -59,7 +57,7 @@ namespace SentirseBienApp
             eliminarCliente(dni);
         }
         private void button1_actualizar_Click(object sender, EventArgs e)
-        {
+        {            
             if (string.IsNullOrEmpty(textBox_buscar.Text))
             {
                 MessageBox.Show("¡Error! debe cargar el DNI");
@@ -86,6 +84,10 @@ namespace SentirseBienApp
                     }
                 }
             }
+        }
+        private void button1_buscar_Click(object sender, EventArgs e)
+        {
+
         }
         private void button1_aceptar_Click(object sender, EventArgs e)//ACEPTAR
         {            
@@ -274,6 +276,8 @@ namespace SentirseBienApp
                     log.cerrarBD();
                 }
             }
-        }   
+        }
+
+        
     }
 }

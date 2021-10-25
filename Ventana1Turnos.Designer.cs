@@ -36,7 +36,9 @@ namespace SentirseBienApp
             this.button_cerrar = new System.Windows.Forms.Button();
             this.button_actualizar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -106,6 +108,16 @@ namespace SentirseBienApp
             this.dataGridView1.Size = new System.Drawing.Size(469, 215);
             this.dataGridView1.TabIndex = 51;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::SentirseBienApp.Properties.Resources._1fondoa;
+            this.pictureBox1.Location = new System.Drawing.Point(-321, -145);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(976, 544);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 58;
+            this.pictureBox1.TabStop = false;
+            // 
             // Ventana1Turnos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -119,11 +131,13 @@ namespace SentirseBienApp
             this.Controls.Add(this.button_cerrar);
             this.Controls.Add(this.button_actualizar);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Ventana1Turnos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Historial de Turnos";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -137,5 +151,6 @@ namespace SentirseBienApp
         private System.Windows.Forms.Button button_cerrar;
         private System.Windows.Forms.Button button_actualizar;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

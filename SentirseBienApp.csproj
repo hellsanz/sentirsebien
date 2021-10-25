@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConexDB.cs" />
+    <Compile Include="Transferencias.cs" />
     <Compile Include="Ventana1Seguridad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +142,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\medico-se-coloca-un-par-de-guantes-foto-frepik.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1fondoa.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

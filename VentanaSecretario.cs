@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace SentirseBienApp
 {
@@ -21,12 +22,7 @@ namespace SentirseBienApp
         //Eventos de Boton
         private void button_buscar_Click(object sender, EventArgs e)
         {
-            Boolean control = true;
-            if (string.IsNullOrEmpty(textBox_busqueda.Text))
-            {
-                MessageBox.Show("Error! - ¡Campo Vacio!");
-                control = false;
-            }
+            Boolean control = true;            
             int temp = 0;
             if (!int.TryParse(textBox_busqueda.Text, out temp))
             {
@@ -46,11 +42,28 @@ namespace SentirseBienApp
 
         //Metodos
         public void buscarTurnosAtendidos(int dni)//sin cobro
-        {            
+        {
             //buscar TODOS los turnos atendidos
             //y cargarlos en el DataGridView
             //donde seleciono uno
-            //y capturo el ID para luego
+            //y capturo el ID para luego            
+            ConexDB clientes = new ConexDB();
+            string query = "SELECT * from Turno WHERE dni = @dni";
+            using (MySqlCommand cmd = new MySqlCommand(query, clientes.conectarBD))
+            {
+                clientes.abrirBD();
+                cmd.Parameters.AddWithValue("@dni", dni);
+                MySqlDataAdapter mysqlDataAdap = new MySqlDataAdapter(cmd);
+                DataTable dtRecord = new DataTable();
+                mysqlDataAdap.Fill(dtRecord);
+                dataGridView_serviciosList.DataSource = dtRecord;
+                dataGridView_serviciosList.AllowUserToAddRows = false;
+                if (dataGridView_serviciosList.RowCount == 0)
+                {
+                    MessageBox.Show("Sin datos para mostrar");
+                }
+                clientes.cerrarBD();
+            }
         }
         public void buscarProfesional(string Nombreservicio)
         {

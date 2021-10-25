@@ -56,6 +56,11 @@ namespace SentirseBienApp
             this.button_cobros = new System.Windows.Forms.Button();
             this.button_seguridad = new System.Windows.Forms.Button();
             this.textBox_insert_update = new System.Windows.Forms.TextBox();
+            this.C1_dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C2_apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C3_nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C4_email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.C5_telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -66,7 +71,7 @@ namespace SentirseBienApp
             this.button_cancelar.Enabled = false;
             this.button_cancelar.FlatAppearance.BorderSize = 0;
             this.button_cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_cancelar.Location = new System.Drawing.Point(276, 310);
+            this.button_cancelar.Location = new System.Drawing.Point(574, 310);
             this.button_cancelar.Name = "button_cancelar";
             this.button_cancelar.Size = new System.Drawing.Size(75, 23);
             this.button_cancelar.TabIndex = 43;
@@ -77,7 +82,7 @@ namespace SentirseBienApp
             // button_aceptar
             // 
             this.button_aceptar.Enabled = false;
-            this.button_aceptar.Location = new System.Drawing.Point(417, 311);
+            this.button_aceptar.Location = new System.Drawing.Point(715, 311);
             this.button_aceptar.Name = "button_aceptar";
             this.button_aceptar.Size = new System.Drawing.Size(75, 23);
             this.button_aceptar.TabIndex = 42;
@@ -88,7 +93,7 @@ namespace SentirseBienApp
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(273, 140);
+            this.label5.Location = new System.Drawing.Point(571, 140);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(18, 13);
             this.label5.TabIndex = 41;
@@ -97,7 +102,7 @@ namespace SentirseBienApp
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(388, 226);
+            this.label4.Location = new System.Drawing.Point(686, 226);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(44, 13);
             this.label4.TabIndex = 40;
@@ -106,7 +111,7 @@ namespace SentirseBienApp
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(273, 226);
+            this.label3.Location = new System.Drawing.Point(571, 226);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(44, 13);
             this.label3.TabIndex = 39;
@@ -115,7 +120,7 @@ namespace SentirseBienApp
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(273, 269);
+            this.label2.Location = new System.Drawing.Point(571, 269);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 38;
@@ -124,7 +129,7 @@ namespace SentirseBienApp
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(273, 179);
+            this.label1.Location = new System.Drawing.Point(571, 179);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(26, 13);
             this.label1.TabIndex = 37;
@@ -133,7 +138,7 @@ namespace SentirseBienApp
             // textBox_nro
             // 
             this.textBox_nro.Enabled = false;
-            this.textBox_nro.Location = new System.Drawing.Point(276, 156);
+            this.textBox_nro.Location = new System.Drawing.Point(574, 156);
             this.textBox_nro.Name = "textBox_nro";
             this.textBox_nro.Size = new System.Drawing.Size(215, 20);
             this.textBox_nro.TabIndex = 36;
@@ -141,7 +146,7 @@ namespace SentirseBienApp
             // textBox_nombre
             // 
             this.textBox_nombre.Enabled = false;
-            this.textBox_nombre.Location = new System.Drawing.Point(391, 242);
+            this.textBox_nombre.Location = new System.Drawing.Point(689, 242);
             this.textBox_nombre.Name = "textBox_nombre";
             this.textBox_nombre.Size = new System.Drawing.Size(100, 20);
             this.textBox_nombre.TabIndex = 35;
@@ -149,7 +154,7 @@ namespace SentirseBienApp
             // textBox_apellido
             // 
             this.textBox_apellido.Enabled = false;
-            this.textBox_apellido.Location = new System.Drawing.Point(276, 242);
+            this.textBox_apellido.Location = new System.Drawing.Point(574, 242);
             this.textBox_apellido.Name = "textBox_apellido";
             this.textBox_apellido.Size = new System.Drawing.Size(100, 20);
             this.textBox_apellido.TabIndex = 34;
@@ -157,7 +162,7 @@ namespace SentirseBienApp
             // textBox_email
             // 
             this.textBox_email.Enabled = false;
-            this.textBox_email.Location = new System.Drawing.Point(276, 285);
+            this.textBox_email.Location = new System.Drawing.Point(574, 285);
             this.textBox_email.Name = "textBox_email";
             this.textBox_email.Size = new System.Drawing.Size(213, 20);
             this.textBox_email.TabIndex = 33;
@@ -165,7 +170,7 @@ namespace SentirseBienApp
             // textBox_dni
             // 
             this.textBox_dni.Enabled = false;
-            this.textBox_dni.Location = new System.Drawing.Point(276, 195);
+            this.textBox_dni.Location = new System.Drawing.Point(574, 195);
             this.textBox_dni.Name = "textBox_dni";
             this.textBox_dni.Size = new System.Drawing.Size(100, 20);
             this.textBox_dni.TabIndex = 32;
@@ -175,7 +180,7 @@ namespace SentirseBienApp
             this.button1_turnos.BackColor = System.Drawing.Color.White;
             this.button1_turnos.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button1_turnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1_turnos.Location = new System.Drawing.Point(417, 90);
+            this.button1_turnos.Location = new System.Drawing.Point(715, 90);
             this.button1_turnos.Name = "button1_turnos";
             this.button1_turnos.Size = new System.Drawing.Size(75, 23);
             this.button1_turnos.TabIndex = 31;
@@ -254,14 +259,21 @@ namespace SentirseBienApp
             this.button1_buscar.TabIndex = 23;
             this.button1_buscar.Text = "Buscar";
             this.button1_buscar.UseVisualStyleBackColor = false;
+            this.button1_buscar.Click += new System.EventHandler(this.button1_buscar_Click);
             // 
             // dataGridView1
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.C1_dni,
+            this.C2_apellido,
+            this.C3_nombre,
+            this.C4_email,
+            this.C5_telefono});
             this.dataGridView1.Location = new System.Drawing.Point(12, 90);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(237, 215);
+            this.dataGridView1.Size = new System.Drawing.Size(545, 215);
             this.dataGridView1.TabIndex = 22;
             // 
             // label6
@@ -278,7 +290,7 @@ namespace SentirseBienApp
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(388, 179);
+            this.label7.Location = new System.Drawing.Point(686, 179);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(49, 13);
             this.label7.TabIndex = 46;
@@ -287,7 +299,7 @@ namespace SentirseBienApp
             // textBox_telefono
             // 
             this.textBox_telefono.Enabled = false;
-            this.textBox_telefono.Location = new System.Drawing.Point(391, 195);
+            this.textBox_telefono.Location = new System.Drawing.Point(689, 195);
             this.textBox_telefono.Name = "textBox_telefono";
             this.textBox_telefono.Size = new System.Drawing.Size(100, 20);
             this.textBox_telefono.TabIndex = 47;
@@ -297,9 +309,9 @@ namespace SentirseBienApp
             this.pictureBox1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.ErrorImage")));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(-189, -51);
+            this.pictureBox1.Location = new System.Drawing.Point(-32, -47);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(836, 448);
+            this.pictureBox1.Size = new System.Drawing.Size(895, 478);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 48;
             this.pictureBox1.TabStop = false;
@@ -309,7 +321,7 @@ namespace SentirseBienApp
             this.button_cobros.BackColor = System.Drawing.Color.White;
             this.button_cobros.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button_cobros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_cobros.Location = new System.Drawing.Point(276, 90);
+            this.button_cobros.Location = new System.Drawing.Point(574, 90);
             this.button_cobros.Name = "button_cobros";
             this.button_cobros.Size = new System.Drawing.Size(75, 23);
             this.button_cobros.TabIndex = 49;
@@ -322,7 +334,7 @@ namespace SentirseBienApp
             this.button_seguridad.BackColor = System.Drawing.Color.White;
             this.button_seguridad.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.button_seguridad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_seguridad.Location = new System.Drawing.Point(417, 23);
+            this.button_seguridad.Location = new System.Drawing.Point(715, 23);
             this.button_seguridad.Name = "button_seguridad";
             this.button_seguridad.Size = new System.Drawing.Size(75, 23);
             this.button_seguridad.TabIndex = 50;
@@ -337,12 +349,42 @@ namespace SentirseBienApp
             this.textBox_insert_update.Size = new System.Drawing.Size(43, 20);
             this.textBox_insert_update.TabIndex = 51;
             // 
+            // C1_dni
+            // 
+            this.C1_dni.HeaderText = "DNI";
+            this.C1_dni.Name = "C1_dni";
+            this.C1_dni.ReadOnly = true;
+            // 
+            // C2_apellido
+            // 
+            this.C2_apellido.HeaderText = "Apellido";
+            this.C2_apellido.Name = "C2_apellido";
+            this.C2_apellido.ReadOnly = true;
+            // 
+            // C3_nombre
+            // 
+            this.C3_nombre.HeaderText = "Nombre";
+            this.C3_nombre.Name = "C3_nombre";
+            this.C3_nombre.ReadOnly = true;
+            // 
+            // C4_email
+            // 
+            this.C4_email.HeaderText = "Email";
+            this.C4_email.Name = "C4_email";
+            this.C4_email.ReadOnly = true;
+            // 
+            // C5_telefono
+            // 
+            this.C5_telefono.HeaderText = "Telefono";
+            this.C5_telefono.Name = "C5_telefono";
+            this.C5_telefono.ReadOnly = true;
+            // 
             // VentanaAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(212)))), ((int)(((byte)(231)))));
-            this.ClientSize = new System.Drawing.Size(545, 368);
+            this.ClientSize = new System.Drawing.Size(804, 343);
             this.Controls.Add(this.textBox_insert_update);
             this.Controls.Add(this.button_seguridad);
             this.Controls.Add(this.button_cobros);
@@ -410,5 +452,10 @@ namespace SentirseBienApp
         private System.Windows.Forms.Button button_cobros;
         private System.Windows.Forms.Button button_seguridad;
         private System.Windows.Forms.TextBox textBox_insert_update;
+        private System.Windows.Forms.DataGridViewTextBoxColumn C1_dni;
+        private System.Windows.Forms.DataGridViewTextBoxColumn C2_apellido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn C3_nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn C4_email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn C5_telefono;
     }
 }

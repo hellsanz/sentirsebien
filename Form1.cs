@@ -12,11 +12,11 @@ using MySql.Data.MySqlClient;
 namespace SentirseBienApp
 {
     public partial class Form1 : Form
-    {
+    {             
         public Form1()
         {            
             InitializeComponent();
-            textBox_contador.Text = "2";
+            textBox_contador.Text = "2";            
         }
 
         private void button1_Click(object sender, EventArgs e)
