@@ -88,6 +88,28 @@ namespace SentirseBienApp
         private void button1_buscar_Click(object sender, EventArgs e)
         {
             //Traer todos clientes por DNI al datagrid
+            dataGridView1.DataSource = null;
+            ConexDB buscarClientes = new ConexDB();
+            string query = "SELECT * from cliente WHERE dni = @dni";
+            using (MySqlCommand cmd = new MySqlCommand(query, buscarClientes.conectarBD))
+            {
+                cmd.Parameters.AddWithValue("@dni",Convert.ToInt32(textBox_buscar.Text));
+                buscarClientes.abrirBD();
+                MySqlDataAdapter mysqlDataAdap = new MySqlDataAdapter(cmd);
+                DataTable dtRecord = new DataTable();
+                mysqlDataAdap.Fill(dtRecord);
+                dataGridView1.DataSource = dtRecord;
+                dataGridView1.AllowUserToAddRows = false;
+                dataGridView1.Columns[0].HeaderText = "DNI";
+                dataGridView1.Columns[1].HeaderText = "APELLIDO";
+                dataGridView1.Columns[2].HeaderText = "NOMBRE";
+                dataGridView1.Columns[3].HeaderText = "EMAIL";
+                dataGridView1.Columns[4].HeaderText = "TELEFONO";
+                if (dataGridView1.RowCount == 0)
+                {
+                    MessageBox.Show("Sin datos para mostrar");
+                }
+            }
         }
         private void button1_aceptar_Click(object sender, EventArgs e)//ACEPTAR
         {
