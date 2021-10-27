@@ -15,46 +15,39 @@ namespace SentirseBienApp
         {
             limpiarCampos();
             habilitarCampos();
+            button1_modificar.Enabled = false;
             textBox_insert_update.Text = "0";
         }
         private void button1_modificar_Click(object sender, EventArgs e)
         {
             //Traer info de la dataGridView
             //variables hardcodeadas
-            int hardDNI = 10;
-            string hardEmail = "elbarsalacome@elmejor.com";
-            string hardApellido = "Messi";
-            string hardNombre = "Leonel";
-            int hardNRO = 30;
-            int hardTelefono = 545782;
-
-            textBox_apellido.Text = hardApellido;
-            textBox_nombre.Text = hardNombre;
-            textBox_dni.Text = Convert.ToString(hardDNI);
-            textBox_email.Text = hardEmail;
-            textBox_nro.Text = Convert.ToString(hardNRO);
-            textBox_telefono.Text = Convert.ToString(hardTelefono);
-
-            textBox_insert_update.Text = "1";
-            habilitarCampos();
+            if (dataGridView1.SelectedCells.Count > 0)
+            {                
+                textBox_insert_update.Text = "1";
+                habilitarCampos();                
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un Cliente para Modificar!");
+            }            
         }
         private void button1_eliminar_Click(object sender, EventArgs e)
         {
-            int hardDNI = 10;
-            string hardEmail = "elbarsalacome@elmejor.com";
-            string hardApellido = "Messi";
-            string hardNombre = "Leonel";
-            int hardNRO = 30;
-
-            textBox_apellido.Text = hardApellido;
-            textBox_nombre.Text = hardNombre;
-            textBox_dni.Text = Convert.ToString(hardDNI);
-            textBox_email.Text = hardEmail;
-            textBox_nro.Text = Convert.ToString(hardNRO);
-
-            MessageBox.Show("el Usuario: " + hardNombre + " " + hardApellido + "\nHa sido eliminado de la BBDD");
-            int dni = int.Parse(textBox_dni.Text);
-            eliminarCliente(dni);
+            button1_modificar.Enabled = false;
+            if (dataGridView1.SelectedCells.Count > 0)
+            {                
+                textBox_dni.Text = dataGridView1.SelectedCells[0].Value.ToString();
+                textBox_apellido.Text = dataGridView1.SelectedCells[1].Value.ToString();
+                textBox_nombre.Text = dataGridView1.SelectedCells[2].Value.ToString();
+                textBox_email.Text = dataGridView1.SelectedCells[3].Value.ToString();
+                textBox_telefono.Text = dataGridView1.SelectedCells[4].Value.ToString();                
+                eliminarCliente(int.Parse(textBox_dni.Text));
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un Cliente para Eliminar!");
+            }            
         }
         private void button1_actualizar_Click(object sender, EventArgs e)
         {
@@ -111,8 +104,9 @@ namespace SentirseBienApp
                 }
             }
         }
-        private void button1_aceptar_Click(object sender, EventArgs e)//ACEPTAR
+        private void button1_aceptar_Click(object sender, EventArgs e)
         {
+            button1_modificar.Enabled = false;
             if (controlCargaDatos() == true)
             {
                 capturarCampos(int.Parse(textBox_insert_update.Text));//0 para INSERT   -   1 para UPDATE                
@@ -122,6 +116,7 @@ namespace SentirseBienApp
         }
         private void button_cancelar_Click(object sender, EventArgs e)
         {
+            button1_modificar.Enabled = false;
             limpiarCampos();
             deshabilitarCampos();
         }
@@ -273,9 +268,9 @@ namespace SentirseBienApp
                     finally
                     {
                         log.cerrarBD();
+                        button1_modificar.Enabled = false;
                     }
                 }
-
             }
             if ((insUpd != 0) && (insUpd != 1))
             {
@@ -290,9 +285,20 @@ namespace SentirseBienApp
             {
                 try
                 {
-                    log.abrirBD();
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Cliente Eliminado!");
+                    string message = "Esta seguro que se desea Eliminar al Cliente?";
+                    string title = "Alerta!";
+                    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                    DialogResult result = MessageBox.Show(message, title, buttons);
+                    if (result == DialogResult.Yes)
+                    {
+                        this.Close();
+                    }
+                    else
+                    {
+                        log.abrirBD();
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Cliente Eliminado!");
+                    }                    
                 }
                 catch (Exception e)
                 {
@@ -304,7 +310,6 @@ namespace SentirseBienApp
                 }
             }
         }
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.SelectedCells.Count > 0)
@@ -315,7 +320,7 @@ namespace SentirseBienApp
                 textBox_nombre.Text = dataGridView1.SelectedCells[2].Value.ToString();
                 textBox_email.Text = dataGridView1.SelectedCells[3].Value.ToString();
                 textBox_telefono.Text = dataGridView1.SelectedCells[4].Value.ToString();
-
+                button1_modificar.Enabled = true;
             }
         }
     }

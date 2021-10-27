@@ -22,6 +22,9 @@ namespace SentirseBienApp
         //Eventos de Boton
         private void button_buscar_Click(object sender, EventArgs e)
         {
+            //traer todos los turnos de clientes que tengan un profesional asignado
+            //consulta interseccion
+            //SELECT * from turno WHERE dni = @dni and profesional isnot null
             Boolean control = true;            
             int temp = 0;
             if (!int.TryParse(textBox_busqueda.Text, out temp))

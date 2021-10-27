@@ -66,10 +66,10 @@ namespace SentirseBienApp
             this.button_cancelar.Enabled = false;
             this.button_cancelar.FlatAppearance.BorderSize = 0;
             this.button_cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_cancelar.Location = new System.Drawing.Point(574, 310);
+            this.button_cancelar.Location = new System.Drawing.Point(712, 311);
             this.button_cancelar.Name = "button_cancelar";
             this.button_cancelar.Size = new System.Drawing.Size(75, 23);
-            this.button_cancelar.TabIndex = 43;
+            this.button_cancelar.TabIndex = 8;
             this.button_cancelar.Text = "Cancelar";
             this.button_cancelar.UseVisualStyleBackColor = false;
             this.button_cancelar.Click += new System.EventHandler(this.button_cancelar_Click);
@@ -77,10 +77,10 @@ namespace SentirseBienApp
             // button_aceptar
             // 
             this.button_aceptar.Enabled = false;
-            this.button_aceptar.Location = new System.Drawing.Point(715, 311);
+            this.button_aceptar.Location = new System.Drawing.Point(574, 310);
             this.button_aceptar.Name = "button_aceptar";
             this.button_aceptar.Size = new System.Drawing.Size(75, 23);
-            this.button_aceptar.TabIndex = 42;
+            this.button_aceptar.TabIndex = 7;
             this.button_aceptar.Text = "Aceptar";
             this.button_aceptar.UseVisualStyleBackColor = true;
             this.button_aceptar.Click += new System.EventHandler(this.button1_aceptar_Click);
@@ -136,7 +136,7 @@ namespace SentirseBienApp
             this.textBox_nro.Location = new System.Drawing.Point(574, 156);
             this.textBox_nro.Name = "textBox_nro";
             this.textBox_nro.Size = new System.Drawing.Size(215, 20);
-            this.textBox_nro.TabIndex = 36;
+            this.textBox_nro.TabIndex = 1;
             // 
             // textBox_nombre
             // 
@@ -144,7 +144,7 @@ namespace SentirseBienApp
             this.textBox_nombre.Location = new System.Drawing.Point(689, 242);
             this.textBox_nombre.Name = "textBox_nombre";
             this.textBox_nombre.Size = new System.Drawing.Size(100, 20);
-            this.textBox_nombre.TabIndex = 35;
+            this.textBox_nombre.TabIndex = 5;
             // 
             // textBox_apellido
             // 
@@ -152,7 +152,7 @@ namespace SentirseBienApp
             this.textBox_apellido.Location = new System.Drawing.Point(574, 242);
             this.textBox_apellido.Name = "textBox_apellido";
             this.textBox_apellido.Size = new System.Drawing.Size(100, 20);
-            this.textBox_apellido.TabIndex = 34;
+            this.textBox_apellido.TabIndex = 4;
             // 
             // textBox_email
             // 
@@ -160,7 +160,7 @@ namespace SentirseBienApp
             this.textBox_email.Location = new System.Drawing.Point(574, 285);
             this.textBox_email.Name = "textBox_email";
             this.textBox_email.Size = new System.Drawing.Size(213, 20);
-            this.textBox_email.TabIndex = 33;
+            this.textBox_email.TabIndex = 6;
             // 
             // textBox_dni
             // 
@@ -168,7 +168,7 @@ namespace SentirseBienApp
             this.textBox_dni.Location = new System.Drawing.Point(574, 195);
             this.textBox_dni.Name = "textBox_dni";
             this.textBox_dni.Size = new System.Drawing.Size(100, 20);
-            this.textBox_dni.TabIndex = 32;
+            this.textBox_dni.TabIndex = 2;
             // 
             // button1_turnos
             // 
@@ -293,7 +293,7 @@ namespace SentirseBienApp
             this.textBox_telefono.Location = new System.Drawing.Point(689, 195);
             this.textBox_telefono.Name = "textBox_telefono";
             this.textBox_telefono.Size = new System.Drawing.Size(100, 20);
-            this.textBox_telefono.TabIndex = 47;
+            this.textBox_telefono.TabIndex = 3;
             // 
             // pictureBox1
             // 
