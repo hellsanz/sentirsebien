@@ -56,6 +56,7 @@ namespace SentirseBienApp
             this.button_cobros = new System.Windows.Forms.Button();
             this.button_seguridad = new System.Windows.Forms.Button();
             this.textBox_insert_update = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -188,7 +189,7 @@ namespace SentirseBienApp
             this.button1_actualizar.BackColor = System.Drawing.Color.White;
             this.button1_actualizar.FlatAppearance.BorderSize = 0;
             this.button1_actualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1_actualizar.Location = new System.Drawing.Point(150, 64);
+            this.button1_actualizar.Location = new System.Drawing.Point(12, 61);
             this.button1_actualizar.Name = "button1_actualizar";
             this.button1_actualizar.Size = new System.Drawing.Size(99, 23);
             this.button1_actualizar.TabIndex = 30;
@@ -199,7 +200,7 @@ namespace SentirseBienApp
             // textBox_buscar
             // 
             this.textBox_buscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_buscar.Location = new System.Drawing.Point(12, 23);
+            this.textBox_buscar.Location = new System.Drawing.Point(320, 61);
             this.textBox_buscar.Name = "textBox_buscar";
             this.textBox_buscar.Size = new System.Drawing.Size(156, 23);
             this.textBox_buscar.TabIndex = 27;
@@ -248,7 +249,7 @@ namespace SentirseBienApp
             this.button1_buscar.BackColor = System.Drawing.Color.White;
             this.button1_buscar.FlatAppearance.BorderSize = 0;
             this.button1_buscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1_buscar.Location = new System.Drawing.Point(174, 23);
+            this.button1_buscar.Location = new System.Drawing.Point(482, 61);
             this.button1_buscar.Name = "button1_buscar";
             this.button1_buscar.Size = new System.Drawing.Size(75, 23);
             this.button1_buscar.TabIndex = 23;
@@ -272,7 +273,7 @@ namespace SentirseBienApp
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.White;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(9, 74);
+            this.label6.Location = new System.Drawing.Point(12, 45);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(115, 13);
             this.label6.TabIndex = 44;
@@ -340,12 +341,24 @@ namespace SentirseBienApp
             this.textBox_insert_update.Size = new System.Drawing.Size(43, 20);
             this.textBox_insert_update.TabIndex = 51;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.White;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(317, 45);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(29, 13);
+            this.label8.TabIndex = 52;
+            this.label8.Text = "DNI";
+            // 
             // VentanaAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(212)))), ((int)(((byte)(231)))));
             this.ClientSize = new System.Drawing.Size(804, 343);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.textBox_insert_update);
             this.Controls.Add(this.button_seguridad);
             this.Controls.Add(this.button_cobros);
@@ -413,5 +426,6 @@ namespace SentirseBienApp
         private System.Windows.Forms.Button button_cobros;
         private System.Windows.Forms.Button button_seguridad;
         private System.Windows.Forms.TextBox textBox_insert_update;
+        private System.Windows.Forms.Label label8;
     }
 }

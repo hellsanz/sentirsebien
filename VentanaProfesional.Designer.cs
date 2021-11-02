@@ -34,29 +34,27 @@ namespace SentirseBienApp
             this.button_Actualizar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label_nombreProfesional = new System.Windows.Forms.Label();
             this.radioButton1_realizado = new System.Windows.Forms.RadioButton();
             this.radioButton1_cancelado = new System.Windows.Forms.RadioButton();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.label_nombre = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
+            this.label_apellido = new System.Windows.Forms.Label();
+            this.label_servicio = new System.Windows.Forms.Label();
+            this.label_fecha = new System.Windows.Forms.Label();
+            this.label_hora = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox_cliente_dni = new System.Windows.Forms.TextBox();
+            this.dataGridView_tempApeNom = new System.Windows.Forms.DataGridView();
+            this.button_Cancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_serviciosList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tempApeNom)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -83,7 +81,7 @@ namespace SentirseBienApp
             // 
             // button_Actualizar
             // 
-            this.button_Actualizar.Location = new System.Drawing.Point(345, 385);
+            this.button_Actualizar.Location = new System.Drawing.Point(345, 350);
             this.button_Actualizar.Margin = new System.Windows.Forms.Padding(4);
             this.button_Actualizar.Name = "button_Actualizar";
             this.button_Actualizar.Size = new System.Drawing.Size(163, 28);
@@ -95,7 +93,7 @@ namespace SentirseBienApp
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(342, 259);
+            this.label2.Location = new System.Drawing.Point(342, 207);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 17);
@@ -105,32 +103,12 @@ namespace SentirseBienApp
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(342, 294);
+            this.label3.Location = new System.Drawing.Point(342, 235);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 17);
             this.label3.TabIndex = 70;
             this.label3.Text = "Hora:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(342, 188);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 17);
-            this.label4.TabIndex = 71;
-            this.label4.Text = "Nombre:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(342, 225);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 17);
-            this.label5.TabIndex = 72;
-            this.label5.Text = "Servicio:";
             // 
             // label6
             // 
@@ -158,7 +136,8 @@ namespace SentirseBienApp
             // 
             this.radioButton1_realizado.Appearance = System.Windows.Forms.Appearance.Button;
             this.radioButton1_realizado.AutoSize = true;
-            this.radioButton1_realizado.Location = new System.Drawing.Point(345, 350);
+            this.radioButton1_realizado.Enabled = false;
+            this.radioButton1_realizado.Location = new System.Drawing.Point(345, 315);
             this.radioButton1_realizado.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton1_realizado.Name = "radioButton1_realizado";
             this.radioButton1_realizado.Size = new System.Drawing.Size(81, 27);
@@ -166,13 +145,15 @@ namespace SentirseBienApp
             this.radioButton1_realizado.TabStop = true;
             this.radioButton1_realizado.Text = "Realizado";
             this.radioButton1_realizado.UseVisualStyleBackColor = true;
+            this.radioButton1_realizado.CheckedChanged += new System.EventHandler(this.radioButton1_realizado_CheckedChanged);
             // 
             // radioButton1_cancelado
             // 
             this.radioButton1_cancelado.Appearance = System.Windows.Forms.Appearance.Button;
             this.radioButton1_cancelado.AutoSize = true;
             this.radioButton1_cancelado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.radioButton1_cancelado.Location = new System.Drawing.Point(423, 350);
+            this.radioButton1_cancelado.Enabled = false;
+            this.radioButton1_cancelado.Location = new System.Drawing.Point(423, 315);
             this.radioButton1_cancelado.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton1_cancelado.Name = "radioButton1_cancelado";
             this.radioButton1_cancelado.Size = new System.Drawing.Size(85, 27);
@@ -180,39 +161,12 @@ namespace SentirseBienApp
             this.radioButton1_cancelado.TabStop = true;
             this.radioButton1_cancelado.Text = "Cancelado";
             this.radioButton1_cancelado.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(402, 188);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(64, 17);
-            this.label7.TabIndex = 78;
-            this.label7.Text = "$nombre";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(342, 151);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(62, 17);
-            this.label8.TabIndex = 79;
-            this.label8.Text = "Apellido:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(342, 117);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(35, 17);
-            this.label9.TabIndex = 80;
-            this.label9.Text = "DNI:";
+            this.radioButton1_cancelado.CheckedChanged += new System.EventHandler(this.radioButton1_cancelado_CheckedChanged);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(342, 188);
+            this.label10.Location = new System.Drawing.Point(341, 144);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(62, 17);
@@ -222,27 +176,27 @@ namespace SentirseBienApp
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(342, 225);
+            this.label11.Location = new System.Drawing.Point(341, 178);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(62, 17);
             this.label11.TabIndex = 72;
             this.label11.Text = "Servicio:";
             // 
-            // label12
+            // label_nombre
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(402, 188);
-            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(64, 17);
-            this.label12.TabIndex = 78;
-            this.label12.Text = "$nombre";
+            this.label_nombre.AutoSize = true;
+            this.label_nombre.Location = new System.Drawing.Point(401, 144);
+            this.label_nombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_nombre.Name = "label_nombre";
+            this.label_nombre.Size = new System.Drawing.Size(64, 17);
+            this.label_nombre.TabIndex = 78;
+            this.label_nombre.Text = "$nombre";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(342, 151);
+            this.label13.Location = new System.Drawing.Point(341, 115);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(62, 17);
             this.label13.TabIndex = 79;
@@ -251,51 +205,51 @@ namespace SentirseBienApp
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(342, 117);
+            this.label14.Location = new System.Drawing.Point(342, 95);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(35, 17);
             this.label14.TabIndex = 80;
             this.label14.Text = "DNI:";
             // 
-            // label15
+            // label_apellido
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(402, 151);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(65, 17);
-            this.label15.TabIndex = 81;
-            this.label15.Text = "$apellido";
+            this.label_apellido.AutoSize = true;
+            this.label_apellido.Location = new System.Drawing.Point(401, 115);
+            this.label_apellido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_apellido.Name = "label_apellido";
+            this.label_apellido.Size = new System.Drawing.Size(65, 17);
+            this.label_apellido.TabIndex = 81;
+            this.label_apellido.Text = "$apellido";
             // 
-            // label17
+            // label_servicio
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(402, 225);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(64, 17);
-            this.label17.TabIndex = 83;
-            this.label17.Text = "$servicio";
+            this.label_servicio.AutoSize = true;
+            this.label_servicio.Location = new System.Drawing.Point(401, 178);
+            this.label_servicio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_servicio.Name = "label_servicio";
+            this.label_servicio.Size = new System.Drawing.Size(64, 17);
+            this.label_servicio.TabIndex = 83;
+            this.label_servicio.Text = "$servicio";
             // 
-            // label18
+            // label_fecha
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(402, 259);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(51, 17);
-            this.label18.TabIndex = 84;
-            this.label18.Text = "$fecha";
+            this.label_fecha.AutoSize = true;
+            this.label_fecha.Location = new System.Drawing.Point(402, 207);
+            this.label_fecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_fecha.Name = "label_fecha";
+            this.label_fecha.Size = new System.Drawing.Size(51, 17);
+            this.label_fecha.TabIndex = 84;
+            this.label_fecha.Text = "$fecha";
             // 
-            // label19
+            // label_hora
             // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(402, 294);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(45, 17);
-            this.label19.TabIndex = 85;
-            this.label19.Text = "$hora";
+            this.label_hora.AutoSize = true;
+            this.label_hora.Location = new System.Drawing.Point(402, 235);
+            this.label_hora.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_hora.Name = "label_hora";
+            this.label_hora.Size = new System.Drawing.Size(45, 17);
+            this.label_hora.TabIndex = 85;
+            this.label_hora.Text = "$hora";
             // 
             // label20
             // 
@@ -320,37 +274,55 @@ namespace SentirseBienApp
             // 
             // textBox_cliente_dni
             // 
-            this.textBox_cliente_dni.Location = new System.Drawing.Point(383, 111);
+            this.textBox_cliente_dni.Location = new System.Drawing.Point(383, 89);
             this.textBox_cliente_dni.Name = "textBox_cliente_dni";
             this.textBox_cliente_dni.Size = new System.Drawing.Size(125, 23);
             this.textBox_cliente_dni.TabIndex = 88;
+            // 
+            // dataGridView_tempApeNom
+            // 
+            this.dataGridView_tempApeNom.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridView_tempApeNom.Enabled = false;
+            this.dataGridView_tempApeNom.Location = new System.Drawing.Point(671, 68);
+            this.dataGridView_tempApeNom.Name = "dataGridView_tempApeNom";
+            this.dataGridView_tempApeNom.ReadOnly = true;
+            this.dataGridView_tempApeNom.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView_tempApeNom.TabIndex = 89;
+            this.dataGridView_tempApeNom.Visible = false;
+            // 
+            // button_Cancelar
+            // 
+            this.button_Cancelar.Location = new System.Drawing.Point(345, 385);
+            this.button_Cancelar.Margin = new System.Windows.Forms.Padding(4);
+            this.button_Cancelar.Name = "button_Cancelar";
+            this.button_Cancelar.Size = new System.Drawing.Size(163, 28);
+            this.button_Cancelar.TabIndex = 90;
+            this.button_Cancelar.Text = "Resetear";
+            this.button_Cancelar.UseVisualStyleBackColor = true;
             // 
             // VentanaProfesional
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(536, 440);
+            this.ClientSize = new System.Drawing.Size(534, 440);
+            this.Controls.Add(this.button_Cancelar);
+            this.Controls.Add(this.dataGridView_tempApeNom);
             this.Controls.Add(this.textBox_cliente_dni);
             this.Controls.Add(this.label20);
-            this.Controls.Add(this.label19);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.label17);
-            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label_hora);
+            this.Controls.Add(this.label_fecha);
+            this.Controls.Add(this.label_servicio);
+            this.Controls.Add(this.label_apellido);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label_nombre);
             this.Controls.Add(this.radioButton1_cancelado);
             this.Controls.Add(this.radioButton1_realizado);
             this.Controls.Add(this.label_nombreProfesional);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button_Actualizar);
@@ -365,6 +337,7 @@ namespace SentirseBienApp
             this.Text = "Profesional";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_serviciosList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tempApeNom)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -377,26 +350,23 @@ namespace SentirseBienApp
         private System.Windows.Forms.Button button_Actualizar;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label_nombreProfesional;
         private System.Windows.Forms.RadioButton radioButton1_realizado;
         private System.Windows.Forms.RadioButton radioButton1_cancelado;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label_nombre;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label_apellido;
+        private System.Windows.Forms.Label label_servicio;
+        private System.Windows.Forms.Label label_fecha;
+        private System.Windows.Forms.Label label_hora;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBox_cliente_dni;
+        private System.Windows.Forms.DataGridView dataGridView_tempApeNom;
+        private System.Windows.Forms.Button button_Cancelar;
     }
 }

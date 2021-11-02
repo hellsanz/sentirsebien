@@ -51,11 +51,7 @@ namespace SentirseBienApp
         }
         private void button1_actualizar_Click(object sender, EventArgs e)
         {
-
-            //CAMBIAR CONECCION de SQLServer a MYSQL
             //Traer todos clientes de la  db al datagrid
-
-
             ConexDB buscarClientes = new ConexDB();
             string query = "SELECT * from cliente";
             using (MySqlCommand cmd = new MySqlCommand(query, buscarClientes.conectarBD))
@@ -107,6 +103,8 @@ namespace SentirseBienApp
         private void button1_aceptar_Click(object sender, EventArgs e)
         {
             button1_modificar.Enabled = false;
+            button1_eliminar.Enabled = false;
+            button1_Agregar.Enabled = true;
             if (controlCargaDatos() == true)
             {
                 capturarCampos(int.Parse(textBox_insert_update.Text));//0 para INSERT   -   1 para UPDATE                
@@ -117,6 +115,8 @@ namespace SentirseBienApp
         private void button_cancelar_Click(object sender, EventArgs e)
         {
             button1_modificar.Enabled = false;
+            button1_eliminar.Enabled = false;
+            button1_Agregar.Enabled = true;
             limpiarCampos();
             deshabilitarCampos();
         }
@@ -251,8 +251,7 @@ namespace SentirseBienApp
             {
                 MessageBox.Show("HACIENDO UPDATE");
                 ConexDB log = new ConexDB();
-                string query = "UPDATE Personas SET dni='" + dni + "', apellido='" + apellido + "', nombre='" + nombre + "', email='" + email + "', telefono='" + telefono +
-                               "'WHERE dni='" + Convert.ToInt32(textBox_dni.Text) + "'";
+                string query = "UPDATE Personas SET (dni, apellido, nombre, email, telefono) VALUES (@dni, @apellido, @nombre, @email, @telefono)";
                 using (MySqlCommand cmd = new MySqlCommand(query, log.conectarBD))
                 {
                     try
@@ -321,6 +320,8 @@ namespace SentirseBienApp
                 textBox_email.Text = dataGridView1.SelectedCells[3].Value.ToString();
                 textBox_telefono.Text = dataGridView1.SelectedCells[4].Value.ToString();
                 button1_modificar.Enabled = true;
+                button1_eliminar.Enabled = true;
+                button1_Agregar.Enabled = false;
             }
         }
     }

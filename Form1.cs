@@ -12,7 +12,7 @@ using MySql.Data.MySqlClient;
 namespace SentirseBienApp
 {
     public partial class Form1 : Form
-    {             
+    {        
         public Form1()
         {            
             InitializeComponent();
@@ -52,6 +52,7 @@ namespace SentirseBienApp
                         MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Administrador");
                         VentanaAdmin ventanaAdmin = new VentanaAdmin();
                         AddOwnedForm(ventanaAdmin);
+                        Transferencias.globalProfesionalNombre = usuario;
                         usuario = "";
                         //this.Visible = false;
                         textBox1_usuario.Text = "";
@@ -63,6 +64,7 @@ namespace SentirseBienApp
                         MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Profesional");
                         VentanaProfesional ventanaUsuario = new VentanaProfesional();
                         AddOwnedForm(ventanaUsuario);
+                        Transferencias.globalProfesionalNombre = usuario;
                         usuario = "";
                         //this.Visible = false;
                         textBox1_usuario.Text = "";
@@ -74,6 +76,7 @@ namespace SentirseBienApp
                         MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Secretaría");
                         VentanaSecretario ventanaSecretario = new VentanaSecretario();
                         AddOwnedForm(ventanaSecretario);
+                        Transferencias.globalProfesionalNombre = usuario;
                         usuario = "";
                         //this.Visible = false;
                         textBox1_usuario.Text = "";

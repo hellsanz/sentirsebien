@@ -14,6 +14,17 @@ namespace SentirseBienApp
         private static string nombre;
         private static string email;
         private static int telefono;
+        public static string globalNombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
+        }
+
+        public static int globalDNI
+        {
+            get { return dni; }
+            set { dni = value; }
+        }
 
         //USUARIOS
 
@@ -29,16 +40,12 @@ namespace SentirseBienApp
         private static string SecretarioClienteAtendio;
         private static double SecretarioClienteCobro;
 
-        public static string globalNombre
+        //PROFESIONAL
+        private static string nombreProfesional;
+        public static string globalProfesionalNombre
         {
-            get { return nombre; }
-            set { nombre = value; }
-        }
-
-        public static int globalDNI
-        {
-            get { return dni; }
-            set { dni = value; }
+            get { return nombreProfesional; }
+            set { nombreProfesional = value; }
         }
     }
 }

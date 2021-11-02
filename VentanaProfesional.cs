@@ -1,26 +1,85 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using MySql.Data.MySqlClient;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
+
 
 namespace SentirseBienApp
 {
     public partial class VentanaProfesional : Form
     {
+        static string atendido = "";        
         public VentanaProfesional()
-        {
+        {            
+            radioButton1_realizado.Enabled = false;
+            radioButton1_cancelado.Enabled = false;
             InitializeComponent();
         }
 
+        public Boolean controlCargaDatos()
+        {
+            Boolean control = true;
+            if (string.IsNullOrEmpty(textBox_cliente_dni.Text))
+            {
+                MessageBox.Show("¡Error en DNI! - Campo Vacio");
+                control = false;
+            }
+            int temp = 0;
+            if (!int.TryParse(textBox_cliente_dni.Text, out temp))
+            {
+                MessageBox.Show("¡Error en DNI! - Debe cargar un Numero");
+                control = false;
+            }            
+            return control;
+        }
+        public void hacerUpdate(string profesional, int dni)
+        {
+            // (id, dni, servicio, fecha, hora, profesional, checkpago) VALUES (@dni, @apellido, @nombre, @email, @telefono)
+            ConexDB log = new ConexDB();
+            string query = "UPDATE turno SET (profesional) VALUES (@profesional) WHERE dni = @dni";
+            using (MySqlCommand cmd = new MySqlCommand(query, log.conectarBD))
+            {
+                try
+                {
+                    log.abrirBD();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Error!\nNo se ha podido concretar la accion\nException: " + e.Message);
+                }
+                finally
+                {
+                    log.cerrarBD();                    
+                }
+            }
+        }
         private void button_Actualizar_Click(object sender, EventArgs e)
         {
-            buscarTurnosCliente();
+            if (controlCargaDatos() == true)
+            {                
+                if ((dataGridView_serviciosList.SelectedCells.Count > 0) && (atendido != ""))
+                {
+                    //hacer el update si selecion tupla y realizado o cancelado
+                    
+                    hacerUpdate(atendido, Convert.ToInt32(dataGridView_serviciosList.SelectedCells[1].Value.ToString()));
+                    atendido = "";//resetear la static
+                }
+                else
+                {
+                    buscarTurnosCliente();
+                }                              
+            }
+            else
+            {
+                MessageBox.Show("Debe ingresar un DNI de cliente");
+            }            
         }
         public void buscarTurnosCliente()
         {            
@@ -45,9 +104,69 @@ namespace SentirseBienApp
                 dataGridView_serviciosList.Columns[6].HeaderText = "PAGO";                
                 if (dataGridView_serviciosList.RowCount == 0)
                 {
-                    MessageBox.Show("Sin datos para mostrar");
+                    MessageBox.Show("Sin datos para mostrar");//no encuentra turnos de ese DNI
+                    radioButton1_realizado.Enabled = false;
+                    radioButton1_cancelado.Enabled = false;
+                }
+                else
+                {
+                    textBox_cliente_dni.Enabled = false;
+                    button_Actualizar.Enabled = false;
                 }
             }
+        }
+
+        public void buscarApeNomCliente(int dni)
+        {
+            //buscar cliente por DNI
+            ConexDB buscarClientes = new ConexDB();
+            string query = "SELECT * from cliente WHERE dni = @dni";
+            using (MySqlCommand cmd = new MySqlCommand(query, buscarClientes.conectarBD))
+            {
+                cmd.Parameters.AddWithValue("@dni", dni);
+                buscarClientes.abrirBD();
+                MySqlDataAdapter mysqlDataAdap = new MySqlDataAdapter(cmd);
+                DataTable dtRecord = new DataTable();
+                mysqlDataAdap.Fill(dtRecord);
+                dataGridView_tempApeNom.DataSource = dtRecord;
+                dataGridView_tempApeNom.AllowUserToAddRows = false;
+                label_apellido.Text = dataGridView_serviciosList.SelectedCells[1].Value.ToString();
+                label_nombre.Text = dataGridView_serviciosList.SelectedCells[2].Value.ToString();                              
+                if (dataGridView_tempApeNom.RowCount == 0)
+                {
+                    label_apellido.Text = "Anonimo";
+                    label_nombre.Text = "Anonimo";
+                    MessageBox.Show("Cliente No Registrado");
+                }
+                buscarClientes.cerrarBD();
+            }
+        }
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView_serviciosList.SelectedCells.Count > 0)
+            {
+                dataGridView_serviciosList.Rows[e.RowIndex].Selected = true;                 
+                textBox_cliente_dni.Text = dataGridView_serviciosList.SelectedCells[1].Value.ToString();
+                label_servicio.Text = dataGridView_serviciosList.SelectedCells[2].Value.ToString();
+                label_fecha.Text = dataGridView_serviciosList.SelectedCells[3].Value.ToString();
+                label_hora.Text = dataGridView_serviciosList.SelectedCells[4].Value.ToString();
+                buscarApeNomCliente(Convert.ToInt32(dataGridView_serviciosList.SelectedCells[1].Value.ToString()));                
+                radioButton1_realizado.Enabled = true;
+                radioButton1_cancelado.Enabled = true;
+                dataGridView_serviciosList.Enabled = false;
+            }
+        }
+
+        private void radioButton1_realizado_CheckedChanged(object sender, EventArgs e)
+        {
+            button_Actualizar.Enabled = true;
+            atendido = Transferencias.globalProfesionalNombre;//nombre del profesional
+        }
+
+        private void radioButton1_cancelado_CheckedChanged(object sender, EventArgs e)
+        {
+            button_Actualizar.Enabled = true;
+            atendido = "no";
         }
     }
 }
