@@ -16,9 +16,7 @@ namespace SentirseBienApp
     {
         static string atendido = "";        
         public VentanaProfesional()
-        {            
-            radioButton1_realizado.Enabled = false;
-            radioButton1_cancelado.Enabled = false;
+        {           
             InitializeComponent();
         }
 
@@ -38,15 +36,18 @@ namespace SentirseBienApp
             }            
             return control;
         }
-        public void hacerUpdate(string profesional, int dni)
+        public void hacerUpdate(string profesional, int dni, int id)
         {
             // (id, dni, servicio, fecha, hora, profesional, checkpago) VALUES (@dni, @apellido, @nombre, @email, @telefono)
             ConexDB log = new ConexDB();
-            string query = "UPDATE turno SET (profesional) VALUES (@profesional) WHERE dni = @dni";
+            string query = "UPDATE turno SET profesional = @profesional WHERE dni = @dni and id = @id";
             using (MySqlCommand cmd = new MySqlCommand(query, log.conectarBD))
             {
                 try
                 {
+                    cmd.Parameters.AddWithValue("@dni", Convert.ToInt32(textBox_cliente_dni.Text));
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@profesional", profesional);
                     log.abrirBD();
                     cmd.ExecuteNonQuery();
                 }
@@ -68,7 +69,8 @@ namespace SentirseBienApp
                 {
                     //hacer el update si selecion tupla y realizado o cancelado
                     
-                    hacerUpdate(atendido, Convert.ToInt32(dataGridView_serviciosList.SelectedCells[1].Value.ToString()));
+                    hacerUpdate(atendido, Convert.ToInt32(dataGridView_serviciosList.SelectedCells[1].Value.ToString()),
+                        Convert.ToInt32(dataGridView_serviciosList.SelectedCells[0].Value.ToString()));
                     atendido = "";//resetear la static
                 }
                 else
@@ -120,7 +122,7 @@ namespace SentirseBienApp
         {
             //buscar cliente por DNI
             ConexDB buscarClientes = new ConexDB();
-            string query = "SELECT * from cliente WHERE dni = @dni";
+            string query = "SELECT nombre, apellido FROM cliente WHERE dni = @dni";
             using (MySqlCommand cmd = new MySqlCommand(query, buscarClientes.conectarBD))
             {
                 cmd.Parameters.AddWithValue("@dni", dni);
@@ -128,10 +130,9 @@ namespace SentirseBienApp
                 MySqlDataAdapter mysqlDataAdap = new MySqlDataAdapter(cmd);
                 DataTable dtRecord = new DataTable();
                 mysqlDataAdap.Fill(dtRecord);
-                dataGridView_tempApeNom.DataSource = dtRecord;
-                dataGridView_tempApeNom.AllowUserToAddRows = false;
-                label_apellido.Text = dataGridView_serviciosList.SelectedCells[1].Value.ToString();
-                label_nombre.Text = dataGridView_serviciosList.SelectedCells[2].Value.ToString();                              
+                dataGridView_tempApeNom.DataSource = dtRecord;                            
+                label_apellido.Text = dataGridView_tempApeNom.Rows[0].Cells[0].Value.ToString();
+                label_nombre.Text = dataGridView_tempApeNom.Rows[0].Cells[1].Value.ToString();
                 if (dataGridView_tempApeNom.RowCount == 0)
                 {
                     label_apellido.Text = "Anonimo";
@@ -148,7 +149,8 @@ namespace SentirseBienApp
                 dataGridView_serviciosList.Rows[e.RowIndex].Selected = true;                 
                 textBox_cliente_dni.Text = dataGridView_serviciosList.SelectedCells[1].Value.ToString();
                 label_servicio.Text = dataGridView_serviciosList.SelectedCells[2].Value.ToString();
-                label_fecha.Text = dataGridView_serviciosList.SelectedCells[3].Value.ToString();
+                DateTime fecha = Convert.ToDateTime(dataGridView_serviciosList.SelectedCells[3].Value.ToString());
+                label_fecha.Text = fecha.ToShortDateString();                
                 label_hora.Text = dataGridView_serviciosList.SelectedCells[4].Value.ToString();
                 buscarApeNomCliente(Convert.ToInt32(dataGridView_serviciosList.SelectedCells[1].Value.ToString()));                
                 radioButton1_realizado.Enabled = true;
@@ -167,6 +169,20 @@ namespace SentirseBienApp
         {
             button_Actualizar.Enabled = true;
             atendido = "no";
+        }
+
+        private void button_Cancelar_Click(object sender, EventArgs e)
+        {
+            dataGridView_serviciosList.DataSource = null;
+            dataGridView_serviciosList.Enabled = true;
+            textBox_cliente_dni.Text = "";
+            textBox_cliente_dni.Enabled = true;
+            button_Actualizar.Enabled = true;
+            label_apellido.Text = "-";
+            label_nombre.Text = "-";
+            label_servicio.Text = "-";
+            label_fecha.Text = "-";
+            label_hora.Text = "-";
         }
     }
 }

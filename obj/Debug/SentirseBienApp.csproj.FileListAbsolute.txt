@@ -91,3 +91,4 @@ E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebienlocal\obj\Debug\es-AR
 E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebienlocal\obj\Debug\SentirseBienApp.csproj.CopyComplete
 E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebienlocal\obj\Debug\SentirseBienApp.exe
 E:\Carpetas\Documentos\UTN TUP\Met de Sistemas\sentirsebienlocal\obj\Debug\SentirseBienApp.pdb
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\SentirseBienApp.Ventana1Seguridad.resources

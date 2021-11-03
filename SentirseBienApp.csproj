@@ -96,6 +96,9 @@
     <EmbeddedResource Include="Ventana1Cobros.resx">
       <DependentUpon>Ventana1Cobros.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ventana1Seguridad.resx">
+      <DependentUpon>Ventana1Seguridad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ventana1Turnos.resx">
       <DependentUpon>Ventana1Turnos.cs</DependentUpon>
     </EmbeddedResource>

@@ -6,15 +6,20 @@ namespace SentirseBienApp
 {
     public partial class VentanaAdmin : Form
     {
+        private Timer tiempo;
         public VentanaAdmin()
         {
+            tiempo = new Timer();
+            tiempo.Tick += new EventHandler(timer_fechahora_Tick);
             InitializeComponent();
+            tiempo.Enabled = true;
         }
 
         private void button1_Agregar_Click(object sender, EventArgs e)
         {
             limpiarCampos();
             habilitarCampos();
+            textBox_dni.Enabled = true;
             button1_modificar.Enabled = false;
             textBox_insert_update.Text = "0";
         }
@@ -22,6 +27,7 @@ namespace SentirseBienApp
         {
             //Traer info de la dataGridView
             //variables hardcodeadas
+            button_cancelar.Enabled = true;
             if (dataGridView1.SelectedCells.Count > 0)
             {                
                 textBox_insert_update.Text = "1";
@@ -35,6 +41,7 @@ namespace SentirseBienApp
         private void button1_eliminar_Click(object sender, EventArgs e)
         {
             button1_modificar.Enabled = false;
+            button_cancelar.Enabled = true;
             if (dataGridView1.SelectedCells.Count > 0)
             {                
                 textBox_dni.Text = dataGridView1.SelectedCells[0].Value.ToString();
@@ -173,13 +180,45 @@ namespace SentirseBienApp
             }
             return control;
         }
+        public Boolean existenciaCliente(int dni)
+        {
+            ConexDB log = new ConexDB();
+            string query = "SELECT EXISTS(SELECT 1 FROM cliente WHERE dni = @dni)";
+            using (MySqlCommand cmd = new MySqlCommand(query, log.conectarBD))
+            {
+                log.abrirBD();
+                cmd.Parameters.AddWithValue("@dni", textBox_dni.Text);
+                int r;
+                try
+                {
+                    r = Convert.ToInt32(cmd.ExecuteScalar());
+                    if (r == 1)
+                    {                        
+                        return false;
+                    }
+                    else
+                    {                        
+                        return true;
+                    }
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Error de Coneccion con la BBDD");
+                    return false;
+                    throw;
+                }
+                finally
+                {
+                    log.cerrarBD();
+                }
+            }
+        }
         public void limpiarCampos()
         {
             textBox_nombre.Text = "";
             textBox_apellido.Text = "";
             textBox_dni.Text = "";
-            textBox_email.Text = "";
-            textBox_nro.Text = "";
+            textBox_email.Text = "";            
             textBox_telefono.Text = "";
         }
         public void capturarCampos(int InsertUpdate)
@@ -188,15 +227,13 @@ namespace SentirseBienApp
             string bd_apellido = textBox_apellido.Text;
             int bd_dni = int.Parse(textBox_dni.Text);
             string bd_email = textBox_email.Text;
-            Int64 bd_telefono = Convert.ToInt64(textBox_telefono.Text);
-            MessageBox.Show("El Cliente " + bd_nombre + " " + bd_apellido + " con DNI: " + bd_dni + " Ha sido Correctamente cargado");
+            Int64 bd_telefono = Convert.ToInt64(textBox_telefono.Text);            
             TablaCliente(bd_nombre, bd_apellido, bd_dni, bd_email, bd_telefono, InsertUpdate);
         }
         public void habilitarCampos()
         {
             textBox_nombre.Enabled = true;
-            textBox_apellido.Enabled = true;
-            textBox_dni.Enabled = true;
+            textBox_apellido.Enabled = true;            
             textBox_email.Enabled = true;
             textBox_telefono.Enabled = true;
             button_aceptar.Enabled = true;
@@ -207,12 +244,10 @@ namespace SentirseBienApp
             textBox_nombre.Enabled = false;
             textBox_apellido.Enabled = false;
             textBox_dni.Enabled = false;
-            textBox_email.Enabled = false;
-            textBox_nro.Enabled = false;
+            textBox_email.Enabled = false;            
             textBox_telefono.Enabled = false;
             button_aceptar.Enabled = false;
-            button_cancelar.Enabled = false;
-            button_aceptar.Visible = true;
+            button_cancelar.Enabled = false;            
         }
         public void TablaCliente(string nombre, string apellido, int dni, string email, Int64 telefono, int insUpd)
         {
@@ -220,45 +255,56 @@ namespace SentirseBienApp
             //datos de los campos guardados
             //tanto para agregar como para modificar            
             if (insUpd == 0)//INSERT
-            {
-                //MessageBox.Show("HACIENDO INSERT");
-                ConexDB insCli = new ConexDB();
-                string query = "INSERT INTO cliente (dni, apellido, nombre, email, telefono) VALUES (@dni, @apellido, @nombre, @email, @telefono)";
-                using (MySqlCommand cmd = new MySqlCommand(query, insCli.conectarBD))
+            {               
+                if (existenciaCliente(dni) == true)
                 {
-                    try
+                    ConexDB insCli = new ConexDB();
+                    string query = "INSERT INTO cliente (dni, apellido, nombre, email, telefono) VALUES (@dni, @apellido, @nombre, @email, @telefono)";
+                    using (MySqlCommand cmd = new MySqlCommand(query, insCli.conectarBD))
                     {
-                        cmd.Parameters.AddWithValue("@dni", Convert.ToInt32(textBox_dni.Text));
-                        cmd.Parameters.AddWithValue("@apellido", textBox_apellido.Text);
-                        cmd.Parameters.AddWithValue("@nombre", textBox_nombre.Text);
-                        cmd.Parameters.AddWithValue("@email", textBox_email.Text);
-                        cmd.Parameters.AddWithValue("@telefono", Convert.ToInt64(textBox_telefono.Text));
-                        insCli.abrirBD();
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Cliente Agregado!");
+                        try
+                        {
+                            cmd.Parameters.AddWithValue("@dni", Convert.ToInt32(textBox_dni.Text));
+                            cmd.Parameters.AddWithValue("@apellido", textBox_apellido.Text);
+                            cmd.Parameters.AddWithValue("@nombre", textBox_nombre.Text);
+                            cmd.Parameters.AddWithValue("@email", textBox_email.Text);
+                            cmd.Parameters.AddWithValue("@telefono", Convert.ToInt64(textBox_telefono.Text));
+                            insCli.abrirBD();
+                            cmd.ExecuteNonQuery();
+                            MessageBox.Show("Cliente Agregado!");
+                        }
+                        catch (Exception e)
+                        {
+                            MessageBox.Show("Error!\nNo se ha podido concretar la accion\nException: " + e.Message);
+                        }
+                        finally
+                        {
+                            insCli.cerrarBD();
+                        }
                     }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show("Error!\nNo se ha podido concretar la accion\nException: " + e.Message);
-                    }
-                    finally
-                    {
-                        insCli.cerrarBD();
-                    }
+                }
+                else
+                {
+                    MessageBox.Show("¡ERROR!\n¡El DNI ya Existe!");
+                    textBox_dni.Text = "";                    
                 }
             }
             if (insUpd == 1)//UPDATE
-            {
-                MessageBox.Show("HACIENDO UPDATE");
-                ConexDB log = new ConexDB();
-                string query = "UPDATE Personas SET (dni, apellido, nombre, email, telefono) VALUES (@dni, @apellido, @nombre, @email, @telefono)";
+            {                
+                ConexDB log = new ConexDB();               
+                string query = "UPDATE cliente SET apellido = @apellido, nombre = @nombre, email = @email, telefono = @telefono WHERE dni = @dni";
                 using (MySqlCommand cmd = new MySqlCommand(query, log.conectarBD))
                 {
                     try
                     {
+                        cmd.Parameters.AddWithValue("@dni", dni);
+                        cmd.Parameters.AddWithValue("@apellido", apellido);
+                        cmd.Parameters.AddWithValue("@nombre", nombre);
+                        cmd.Parameters.AddWithValue("@email", email);
+                        cmd.Parameters.AddWithValue("@telefono", telefono);
                         log.abrirBD();
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("Cliente Agregado!");
+                        MessageBox.Show("Cliente Modificado!");
                     }
                     catch (Exception e)
                     {
@@ -279,7 +325,7 @@ namespace SentirseBienApp
         public void eliminarCliente(int dni)
         {
             ConexDB log = new ConexDB();
-            string query = "DELETE FROM Personas WHERE dni = @dni";
+            string query = "DELETE FROM cliente WHERE dni = @dni";
             using (MySqlCommand cmd = new MySqlCommand(query, log.conectarBD))
             {
                 try
@@ -290,14 +336,11 @@ namespace SentirseBienApp
                     DialogResult result = MessageBox.Show(message, title, buttons);
                     if (result == DialogResult.Yes)
                     {
-                        this.Close();
-                    }
-                    else
-                    {
+                        cmd.Parameters.AddWithValue("@dni",dni);
                         log.abrirBD();
                         cmd.ExecuteNonQuery();
                         MessageBox.Show("Cliente Eliminado!");
-                    }                    
+                    }                                       
                 }
                 catch (Exception e)
                 {
@@ -323,6 +366,18 @@ namespace SentirseBienApp
                 button1_eliminar.Enabled = true;
                 button1_Agregar.Enabled = false;
             }
+        }
+
+        private void button_cerrarVentana_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void timer_fechahora_Tick(object sender, EventArgs e)
+        {
+            DateTime dia = DateTime.Now;
+            label_fecha.Text = dia.ToShortDateString();
+            label_hora.Text = dia.ToLongTimeString();
         }
     }
 }

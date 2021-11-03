@@ -88,7 +88,7 @@ namespace SentirseBienApp
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
-            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(212)))), ((int)(((byte)(231)))));
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label1.Name = "label1";
@@ -157,7 +157,7 @@ namespace SentirseBienApp
             this.Controls.Add(this.textBox_passwordS);
             this.Controls.Add(this.textBox_usuarioS);
             this.Controls.Add(this.textBox_contador);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";

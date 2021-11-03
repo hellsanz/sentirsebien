@@ -51,7 +51,7 @@ namespace SentirseBienApp
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.textBox_cliente_dni = new System.Windows.Forms.TextBox();
             this.dataGridView_tempApeNom = new System.Windows.Forms.DataGridView();
-            this.button_Cancelar = new System.Windows.Forms.Button();
+            this.button_resetear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_serviciosList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tempApeNom)).BeginInit();
@@ -76,12 +76,13 @@ namespace SentirseBienApp
             this.dataGridView_serviciosList.Location = new System.Drawing.Point(16, 68);
             this.dataGridView_serviciosList.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView_serviciosList.Name = "dataGridView_serviciosList";
-            this.dataGridView_serviciosList.Size = new System.Drawing.Size(316, 345);
+            this.dataGridView_serviciosList.Size = new System.Drawing.Size(689, 345);
             this.dataGridView_serviciosList.TabIndex = 66;
+            this.dataGridView_serviciosList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // button_Actualizar
             // 
-            this.button_Actualizar.Location = new System.Drawing.Point(345, 350);
+            this.button_Actualizar.Location = new System.Drawing.Point(717, 350);
             this.button_Actualizar.Margin = new System.Windows.Forms.Padding(4);
             this.button_Actualizar.Name = "button_Actualizar";
             this.button_Actualizar.Size = new System.Drawing.Size(163, 28);
@@ -93,7 +94,7 @@ namespace SentirseBienApp
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(342, 207);
+            this.label2.Location = new System.Drawing.Point(714, 207);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(51, 17);
@@ -103,7 +104,7 @@ namespace SentirseBienApp
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(342, 235);
+            this.label3.Location = new System.Drawing.Point(714, 235);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 17);
@@ -137,7 +138,7 @@ namespace SentirseBienApp
             this.radioButton1_realizado.Appearance = System.Windows.Forms.Appearance.Button;
             this.radioButton1_realizado.AutoSize = true;
             this.radioButton1_realizado.Enabled = false;
-            this.radioButton1_realizado.Location = new System.Drawing.Point(345, 315);
+            this.radioButton1_realizado.Location = new System.Drawing.Point(717, 315);
             this.radioButton1_realizado.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton1_realizado.Name = "radioButton1_realizado";
             this.radioButton1_realizado.Size = new System.Drawing.Size(81, 27);
@@ -153,7 +154,7 @@ namespace SentirseBienApp
             this.radioButton1_cancelado.AutoSize = true;
             this.radioButton1_cancelado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.radioButton1_cancelado.Enabled = false;
-            this.radioButton1_cancelado.Location = new System.Drawing.Point(423, 315);
+            this.radioButton1_cancelado.Location = new System.Drawing.Point(795, 315);
             this.radioButton1_cancelado.Margin = new System.Windows.Forms.Padding(4);
             this.radioButton1_cancelado.Name = "radioButton1_cancelado";
             this.radioButton1_cancelado.Size = new System.Drawing.Size(85, 27);
@@ -166,7 +167,7 @@ namespace SentirseBienApp
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(341, 144);
+            this.label10.Location = new System.Drawing.Point(713, 144);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(62, 17);
@@ -176,7 +177,7 @@ namespace SentirseBienApp
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(341, 178);
+            this.label11.Location = new System.Drawing.Point(713, 178);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(62, 17);
@@ -186,7 +187,7 @@ namespace SentirseBienApp
             // label_nombre
             // 
             this.label_nombre.AutoSize = true;
-            this.label_nombre.Location = new System.Drawing.Point(401, 144);
+            this.label_nombre.Location = new System.Drawing.Point(773, 144);
             this.label_nombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_nombre.Name = "label_nombre";
             this.label_nombre.Size = new System.Drawing.Size(64, 17);
@@ -196,7 +197,7 @@ namespace SentirseBienApp
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(341, 115);
+            this.label13.Location = new System.Drawing.Point(713, 115);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(62, 17);
             this.label13.TabIndex = 79;
@@ -205,7 +206,7 @@ namespace SentirseBienApp
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(342, 95);
+            this.label14.Location = new System.Drawing.Point(714, 95);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(35, 17);
             this.label14.TabIndex = 80;
@@ -214,7 +215,7 @@ namespace SentirseBienApp
             // label_apellido
             // 
             this.label_apellido.AutoSize = true;
-            this.label_apellido.Location = new System.Drawing.Point(401, 115);
+            this.label_apellido.Location = new System.Drawing.Point(773, 115);
             this.label_apellido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_apellido.Name = "label_apellido";
             this.label_apellido.Size = new System.Drawing.Size(65, 17);
@@ -224,7 +225,7 @@ namespace SentirseBienApp
             // label_servicio
             // 
             this.label_servicio.AutoSize = true;
-            this.label_servicio.Location = new System.Drawing.Point(401, 178);
+            this.label_servicio.Location = new System.Drawing.Point(773, 178);
             this.label_servicio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_servicio.Name = "label_servicio";
             this.label_servicio.Size = new System.Drawing.Size(64, 17);
@@ -234,7 +235,7 @@ namespace SentirseBienApp
             // label_fecha
             // 
             this.label_fecha.AutoSize = true;
-            this.label_fecha.Location = new System.Drawing.Point(402, 207);
+            this.label_fecha.Location = new System.Drawing.Point(774, 207);
             this.label_fecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_fecha.Name = "label_fecha";
             this.label_fecha.Size = new System.Drawing.Size(51, 17);
@@ -244,7 +245,7 @@ namespace SentirseBienApp
             // label_hora
             // 
             this.label_hora.AutoSize = true;
-            this.label_hora.Location = new System.Drawing.Point(402, 235);
+            this.label_hora.Location = new System.Drawing.Point(774, 235);
             this.label_hora.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_hora.Name = "label_hora";
             this.label_hora.Size = new System.Drawing.Size(45, 17);
@@ -255,7 +256,7 @@ namespace SentirseBienApp
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(342, 68);
+            this.label20.Location = new System.Drawing.Point(714, 68);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(77, 18);
@@ -265,16 +266,16 @@ namespace SentirseBienApp
             // pictureBox1
             // 
             this.pictureBox1.Image = global::SentirseBienApp.Properties.Resources.medico_se_coloca_un_par_de_guantes_foto_frepik;
-            this.pictureBox1.Location = new System.Drawing.Point(-6, -2);
+            this.pictureBox1.Location = new System.Drawing.Point(-6, -1);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(957, 448);
+            this.pictureBox1.Size = new System.Drawing.Size(907, 448);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 87;
             this.pictureBox1.TabStop = false;
             // 
             // textBox_cliente_dni
             // 
-            this.textBox_cliente_dni.Location = new System.Drawing.Point(383, 89);
+            this.textBox_cliente_dni.Location = new System.Drawing.Point(755, 89);
             this.textBox_cliente_dni.Name = "textBox_cliente_dni";
             this.textBox_cliente_dni.Size = new System.Drawing.Size(125, 23);
             this.textBox_cliente_dni.TabIndex = 88;
@@ -283,30 +284,31 @@ namespace SentirseBienApp
             // 
             this.dataGridView_tempApeNom.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridView_tempApeNom.Enabled = false;
-            this.dataGridView_tempApeNom.Location = new System.Drawing.Point(671, 68);
+            this.dataGridView_tempApeNom.Location = new System.Drawing.Point(907, 9);
             this.dataGridView_tempApeNom.Name = "dataGridView_tempApeNom";
             this.dataGridView_tempApeNom.ReadOnly = true;
             this.dataGridView_tempApeNom.Size = new System.Drawing.Size(240, 150);
             this.dataGridView_tempApeNom.TabIndex = 89;
             this.dataGridView_tempApeNom.Visible = false;
             // 
-            // button_Cancelar
+            // button_resetear
             // 
-            this.button_Cancelar.Location = new System.Drawing.Point(345, 385);
-            this.button_Cancelar.Margin = new System.Windows.Forms.Padding(4);
-            this.button_Cancelar.Name = "button_Cancelar";
-            this.button_Cancelar.Size = new System.Drawing.Size(163, 28);
-            this.button_Cancelar.TabIndex = 90;
-            this.button_Cancelar.Text = "Resetear";
-            this.button_Cancelar.UseVisualStyleBackColor = true;
+            this.button_resetear.Location = new System.Drawing.Point(717, 385);
+            this.button_resetear.Margin = new System.Windows.Forms.Padding(4);
+            this.button_resetear.Name = "button_resetear";
+            this.button_resetear.Size = new System.Drawing.Size(163, 28);
+            this.button_resetear.TabIndex = 90;
+            this.button_resetear.Text = "Resetear";
+            this.button_resetear.UseVisualStyleBackColor = true;
+            this.button_resetear.Click += new System.EventHandler(this.button_Cancelar_Click);
             // 
             // VentanaProfesional
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(534, 440);
-            this.Controls.Add(this.button_Cancelar);
+            this.ClientSize = new System.Drawing.Size(1156, 440);
+            this.Controls.Add(this.button_resetear);
             this.Controls.Add(this.dataGridView_tempApeNom);
             this.Controls.Add(this.textBox_cliente_dni);
             this.Controls.Add(this.label20);
@@ -367,6 +369,6 @@ namespace SentirseBienApp
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox textBox_cliente_dni;
         private System.Windows.Forms.DataGridView dataGridView_tempApeNom;
-        private System.Windows.Forms.Button button_Cancelar;
+        private System.Windows.Forms.Button button_resetear;
     }
 }

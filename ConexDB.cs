@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.IO;
 using MySql.Data.MySqlClient;
 
 
 namespace SentirseBienApp
 {
     class ConexDB
-    {
-        public string conexion = "server=spasentirsebien.mysql.database.azure.com;uid=adminspa@spasentirsebien;pwd=Mdsutn2021;database=spasentirsebien";
+    {        
+        public string conexion = File.ReadAllText(@"C:\conexBD.txt");
         public  MySqlConnection conectarBD = new MySqlConnection();
         public ConexDB() { conectarBD.ConnectionString = conexion; }
 

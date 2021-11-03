@@ -134,26 +134,27 @@ namespace SentirseBienApp
                 {
                     r = Convert.ToInt32(cmd.ExecuteScalar());
                     if (r == 1)
-                    {
-                        log.cerrarBD();
+                    {                        
                         textBox_accesoS.Text = acc;
                         return true;                        
                     }
                     else
-                    {
-                        log.cerrarBD();
+                    {                        
                         MessageBox.Show("¡Datos incorrectos!\nIntentos Restantes: " + intentos);
                         intentos--;
                         textBox_contador.Text = Convert.ToString(intentos);
                         return false;                        
                     }                    
                 }
-                catch (Exception)
+                catch (Exception e)
+                {                    
+                    MessageBox.Show("Error de Coneccion con la BBDD");                    
+                    throw;                    
+                }
+                finally
                 {
                     log.cerrarBD();
-                    MessageBox.Show("Error de Coneccion con la BBDD");
-                    throw;                    
-                }                   
+                }
             }
         }
         public int consultaAcceso()
@@ -165,7 +166,7 @@ namespace SentirseBienApp
             int acc;
             //Conectando Azure MySql
             ConexDB log = new ConexDB();
-            string query = "SELECT permiso from empleado where usuario = @nombre";
+            string query = "SELECT permisos from empleado where usuario = @nombre";
             using (MySqlCommand cmd = new MySqlCommand(query, log.conectarBD))
             {
                 cmd.Parameters.AddWithValue("@nombre", textBox1_usuario.Text);
