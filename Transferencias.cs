@@ -41,11 +41,11 @@ namespace SentirseBienApp
         private static double SecretarioClienteCobro;
 
         //PROFESIONAL
-        private static string nombreProfesional;
-        public static string globalProfesionalNombre
+        private static string nombreUsuario;
+        public static string globalnombreUsuario
         {
-            get { return nombreProfesional; }
-            set { nombreProfesional = value; }
+            get { return nombreUsuario; }
+            set { nombreUsuario = value; }
         }
     }
 }

@@ -52,7 +52,7 @@ namespace SentirseBienApp
                         MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Administrador");
                         VentanaAdmin ventanaAdmin = new VentanaAdmin();
                         AddOwnedForm(ventanaAdmin);
-                        Transferencias.globalProfesionalNombre = usuario;
+                        Transferencias.globalnombreUsuario = usuario;
                         usuario = "";
                         registroDeIngreso(0);                        
                         textBox1_usuario.Text = "";
@@ -64,7 +64,7 @@ namespace SentirseBienApp
                         MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Profesional");
                         VentanaProfesional ventanaUsuario = new VentanaProfesional();
                         AddOwnedForm(ventanaUsuario);
-                        Transferencias.globalProfesionalNombre = usuario;
+                        Transferencias.globalnombreUsuario = usuario;
                         usuario = "";
                         registroDeIngreso(1);
                         textBox1_usuario.Text = "";
@@ -76,7 +76,7 @@ namespace SentirseBienApp
                         MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Secretaría");
                         VentanaSecretario ventanaSecretario = new VentanaSecretario();
                         AddOwnedForm(ventanaSecretario);
-                        Transferencias.globalProfesionalNombre = usuario;
+                        Transferencias.globalnombreUsuario = usuario;
                         usuario = "";
                         registroDeIngreso(2);
                         textBox1_usuario.Text = "";

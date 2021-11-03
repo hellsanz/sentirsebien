@@ -179,23 +179,24 @@ namespace SentirseBienApp
             // 
             this.button1_actualizar.BackColor = System.Drawing.Color.White;
             this.button1_actualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1_actualizar.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1_actualizar.Location = new System.Drawing.Point(12, 59);
+            this.button1_actualizar.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1_actualizar.Location = new System.Drawing.Point(12, 64);
             this.button1_actualizar.Name = "button1_actualizar";
-            this.button1_actualizar.Size = new System.Drawing.Size(99, 23);
+            this.button1_actualizar.Size = new System.Drawing.Size(86, 23);
             this.button1_actualizar.TabIndex = 30;
-            this.button1_actualizar.Text = "Actualizar Lista";
+            this.button1_actualizar.Text = "Actualizar";
             this.button1_actualizar.UseVisualStyleBackColor = false;
             this.button1_actualizar.Click += new System.EventHandler(this.button1_actualizar_Click);
             // 
             // textBox_buscar
             // 
             this.textBox_buscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_buscar.Location = new System.Drawing.Point(320, 59);
+            this.textBox_buscar.Location = new System.Drawing.Point(320, 64);
             this.textBox_buscar.MaxLength = 100000000;
             this.textBox_buscar.Name = "textBox_buscar";
             this.textBox_buscar.Size = new System.Drawing.Size(156, 23);
             this.textBox_buscar.TabIndex = 27;
+            this.textBox_buscar.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // button1_eliminar
             // 
@@ -241,7 +242,7 @@ namespace SentirseBienApp
             this.button1_buscar.BackColor = System.Drawing.Color.White;
             this.button1_buscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1_buscar.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1_buscar.Location = new System.Drawing.Point(482, 59);
+            this.button1_buscar.Location = new System.Drawing.Point(482, 64);
             this.button1_buscar.Name = "button1_buscar";
             this.button1_buscar.Size = new System.Drawing.Size(75, 23);
             this.button1_buscar.TabIndex = 23;
@@ -253,6 +254,7 @@ namespace SentirseBienApp
             // 
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dataGridView1.Location = new System.Drawing.Point(12, 88);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -318,7 +320,7 @@ namespace SentirseBienApp
             this.label8.BackColor = System.Drawing.Color.White;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(438, 64);
+            this.label8.Location = new System.Drawing.Point(324, 68);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(29, 13);
             this.label8.TabIndex = 52;
@@ -327,12 +329,13 @@ namespace SentirseBienApp
             // button_cerrarVentana
             // 
             this.button_cerrarVentana.BackColor = System.Drawing.Color.White;
+            this.button_cerrarVentana.Cursor = System.Windows.Forms.Cursors.Default;
             this.button_cerrarVentana.FlatAppearance.BorderColor = System.Drawing.SystemColors.WindowText;
             this.button_cerrarVentana.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_cerrarVentana.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_cerrarVentana.Location = new System.Drawing.Point(566, 288);
+            this.button_cerrarVentana.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_cerrarVentana.Location = new System.Drawing.Point(598, 283);
             this.button_cerrarVentana.Name = "button_cerrarVentana";
-            this.button_cerrarVentana.Size = new System.Drawing.Size(216, 23);
+            this.button_cerrarVentana.Size = new System.Drawing.Size(155, 54);
             this.button_cerrarVentana.TabIndex = 53;
             this.button_cerrarVentana.Text = "Salir";
             this.button_cerrarVentana.UseVisualStyleBackColor = false;
@@ -379,12 +382,12 @@ namespace SentirseBienApp
             // 
             this.btPDF.BackColor = System.Drawing.Color.White;
             this.btPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btPDF.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPDF.Location = new System.Drawing.Point(12, 322);
+            this.btPDF.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPDF.Location = new System.Drawing.Point(104, 64);
             this.btPDF.Name = "btPDF";
-            this.btPDF.Size = new System.Drawing.Size(75, 23);
+            this.btPDF.Size = new System.Drawing.Size(86, 23);
             this.btPDF.TabIndex = 56;
-            this.btPDF.Text = "PDF";
+            this.btPDF.Text = "Imprimir";
             this.btPDF.UseVisualStyleBackColor = false;
             this.btPDF.Click += new System.EventHandler(this.btPDF_Click);
             // 

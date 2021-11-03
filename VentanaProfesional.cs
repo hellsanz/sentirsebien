@@ -162,7 +162,7 @@ namespace SentirseBienApp
         private void radioButton1_realizado_CheckedChanged(object sender, EventArgs e)
         {
             button_Actualizar.Enabled = true;
-            atendido = Transferencias.globalProfesionalNombre;//nombre del profesional
+            atendido = Transferencias.globalnombreUsuario;//nombre del profesional
         }
 
         private void radioButton1_cancelado_CheckedChanged(object sender, EventArgs e)
