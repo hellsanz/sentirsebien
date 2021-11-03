@@ -2,6 +2,15 @@
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Data;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using iText.Kernel.Pdf.Canvas.Draw;
+using System.Diagnostics;
+using iText.Kernel.Colors;
+
+
 namespace SentirseBienApp
 {
     public partial class VentanaAdmin : Form
@@ -378,6 +387,128 @@ namespace SentirseBienApp
             DateTime dia = DateTime.Now;
             label_fecha.Text = dia.ToShortDateString();
             label_hora.Text = dia.ToLongTimeString();
+        }
+
+        private void btPDF_Click(object sender, EventArgs e)
+        {
+            try
+
+            {
+
+                //CREAR PDF
+
+                SaveFileDialog svfd = new SaveFileDialog();
+                svfd.Filter = "PDF document (*.pdf)|*.pdf";
+                svfd.ShowDialog();
+
+
+                if (svfd.FileName != "")
+                {
+
+                    PdfWriter writer = new PdfWriter(svfd.FileName);
+                    PdfDocument pdf = new PdfDocument(writer);
+                    Document document = new Document(pdf);
+
+                    //ENCABEZADO
+                    Paragraph header = new Paragraph("LISTADO DE CLIENTES")
+                       .SetTextAlignment(TextAlignment.CENTER)
+                       .SetFontSize(20);
+
+                    //ESPACIO DE SEPARACION
+                    Paragraph newline = new Paragraph(new Text("\n"));
+
+                    document.Add(newline);
+                    document.Add(header);
+
+                    //SUB ENCABEZADO
+                    Paragraph subheader = new Paragraph("SPA SENTIRSE BIEN")
+                    .SetTextAlignment(TextAlignment.CENTER)
+                    .SetFontSize(15);
+                    document.Add(subheader);
+
+                    //LINEA DE SEPARACION
+                    LineSeparator ls = new LineSeparator(new SolidLine());
+                    document.Add(ls);
+
+                    //PARRAFO 1
+                    Paragraph paragraph1 = new Paragraph("Listado de Clientes del Spa");
+                    document.Add(paragraph1);
+
+                    //IMAGEN DEL SPA
+                    //Image img = new Image(ImageDataFactory
+                    //.Create(@"..\..\image.jpg"))
+                    //.SetTextAlignment(TextAlignment.CENTER);
+                    //document.Add(img);
+
+                    //NUMERO DE PAGINAS 
+                    int n = pdf.GetNumberOfPages();
+                    for (int i = 1; i <= n; i++)
+                    {
+                        document.ShowTextAligned(new Paragraph(String
+                           .Format("Pag." + i + " of " + n)),
+                            559, 806, i, TextAlignment.RIGHT,
+                            VerticalAlignment.TOP, 0);
+                    }
+
+                    //TABLA DE DATOS
+                    Table table = new Table(5, false);
+
+                    Cell cdni = new Cell(1, 1)
+                        .SetBackgroundColor(ColorConstants.GREEN)
+                        .Add(new Paragraph("DNI"));
+                    Cell cnom = new Cell(1, 1)
+                        .SetBackgroundColor(ColorConstants.GREEN)
+                        .Add(new Paragraph("NOMBRE"));
+                    Cell cape = new Cell(1, 1)
+                        .SetBackgroundColor(ColorConstants.GREEN)
+                        .Add(new Paragraph("APELLIDO"));
+                    Cell cema = new Cell(1, 1)
+                        .SetBackgroundColor(ColorConstants.GREEN)
+                        .Add(new Paragraph("EMAIL"));
+                    Cell ctel = new Cell(1, 1)
+                        .SetBackgroundColor(ColorConstants.GREEN)
+                        .Add(new Paragraph("TELEFONO"));
+
+
+
+                    table.AddCell(cdni);
+                    table.AddCell(cnom);
+                    table.AddCell(cape);
+                    table.AddCell(cema);
+                    table.AddCell(ctel);
+
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            table.AddCell(cell.Value.ToString());
+                        }
+                    }
+
+                    document.Add(table);
+
+
+                    document.Close();
+
+                    DialogResult dialogResult = MessageBox.Show("Guardado en " + svfd.FileName + " \nDesea abrirlo?", "PDF Generado Exitosamente!", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        //MessageBox.Show("Metodo abrir pdf!");
+                        Process.Start(svfd.FileName);
+                    }
+
+                }
+
+
+
+
+
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
         }
     }
 }

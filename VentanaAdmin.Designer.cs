@@ -59,6 +59,7 @@ namespace SentirseBienApp
             this.label_fecha = new System.Windows.Forms.Label();
             this.label_hora = new System.Windows.Forms.Label();
             this.timer_fechahora = new System.Windows.Forms.Timer(this.components);
+            this.btPDF = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -374,12 +375,26 @@ namespace SentirseBienApp
             this.timer_fechahora.Enabled = true;
             this.timer_fechahora.Tick += new System.EventHandler(this.timer_fechahora_Tick);
             // 
+            // btPDF
+            // 
+            this.btPDF.BackColor = System.Drawing.Color.White;
+            this.btPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btPDF.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btPDF.Location = new System.Drawing.Point(12, 322);
+            this.btPDF.Name = "btPDF";
+            this.btPDF.Size = new System.Drawing.Size(75, 23);
+            this.btPDF.TabIndex = 56;
+            this.btPDF.Text = "PDF";
+            this.btPDF.UseVisualStyleBackColor = false;
+            this.btPDF.Click += new System.EventHandler(this.btPDF_Click);
+            // 
             // VentanaAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(212)))), ((int)(((byte)(231)))));
             this.ClientSize = new System.Drawing.Size(794, 356);
+            this.Controls.Add(this.btPDF);
             this.Controls.Add(this.label_fecha);
             this.Controls.Add(this.label_hora);
             this.Controls.Add(this.button_cerrarVentana);
@@ -450,5 +465,6 @@ namespace SentirseBienApp
         private System.Windows.Forms.Label label_fecha;
         private System.Windows.Forms.Label label_hora;
         private System.Windows.Forms.Timer timer_fechahora;
+        private System.Windows.Forms.Button btPDF;
     }
 }
