@@ -37,7 +37,7 @@ namespace SentirseBienApp
                 textBox1_usuario.Enabled = false;
                 textBox1_password.Enabled = false;
                 button1.Enabled = false;
-                registroDeIngreso(3);
+                registroDeIngreso("Anonimo", "Ingreso Fallido!");
                 MessageBox.Show("¡Sistema Bloqueado!\nNumero de Intentos: 0");
             }
             Boolean control = true;
@@ -54,7 +54,7 @@ namespace SentirseBienApp
                         AddOwnedForm(ventanaAdmin);
                         Transferencias.globalnombreUsuario = usuario;
                         usuario = "";
-                        registroDeIngreso(0);                        
+                        registroDeIngreso("Admin", "Ingresó");                        
                         textBox1_usuario.Text = "";
                         textBox1_password.Text = "";
                         ventanaAdmin.ShowDialog();
@@ -66,7 +66,7 @@ namespace SentirseBienApp
                         AddOwnedForm(ventanaUsuario);
                         Transferencias.globalnombreUsuario = usuario;
                         usuario = "";
-                        registroDeIngreso(1);
+                        registroDeIngreso("Profesional", "Ingresó");
                         textBox1_usuario.Text = "";
                         textBox1_password.Text = "";
                         ventanaUsuario.ShowDialog();
@@ -78,7 +78,7 @@ namespace SentirseBienApp
                         AddOwnedForm(ventanaSecretario);
                         Transferencias.globalnombreUsuario = usuario;
                         usuario = "";
-                        registroDeIngreso(2);
+                        registroDeIngreso("Secretario", "Ingresó");
                         textBox1_usuario.Text = "";
                         textBox1_password.Text = "";
                         ventanaSecretario.ShowDialog();
@@ -187,39 +187,25 @@ namespace SentirseBienApp
             }
         }
         //metodos control
-        public void registroDeIngreso(int tipo)
+        public void registroDeIngreso(string tipo, string actividad)
         {
-            string tipoUsusario = "";
-            switch (tipo)
-            {
-                case 0: tipoUsusario = "Admin";
-                    break;
-                case 1: tipoUsusario = "Profesional";
-                    break;
-                case 2: tipoUsusario = "Secretario";
-                    break;
-                case 3: tipoUsusario = "Intento Fallido";
-                    break;
-                default:
-                    Console.WriteLine("¡Error de tipo!");
-                    break;
-            }
             ConexDB insCli = new ConexDB();
-            string query = "INSERT INTO seguridad (usuario, nombre, fecha, hora) VALUES (@usuario, @nombre, @fecha, @hora)";
+            string query = "INSERT INTO seguridad (usuario, fecha, hora, tipo, msg ) VALUES (@usuario, @fecha, @hora, @tipo, @msg)";
             using (MySqlCommand cmd = new MySqlCommand(query, insCli.conectarBD))
             {
                 try
                 {                    //aaaa/mm/dd
-                    cmd.Parameters.AddWithValue("@usuario", textBox1_usuario.Text);
-                    cmd.Parameters.AddWithValue("@nombre", tipoUsusario);
+                    cmd.Parameters.AddWithValue("@usuario", Transferencias.globalnombreUsuario);
                     cmd.Parameters.AddWithValue("@fecha", DateTime.Now.ToShortDateString());
                     cmd.Parameters.AddWithValue("@hora", DateTime.Now.ToShortTimeString());
+                    cmd.Parameters.AddWithValue("@tipo", tipo);
+                    cmd.Parameters.AddWithValue("@msg", actividad);
                     insCli.abrirBD();
                     cmd.ExecuteNonQuery();                    
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Error!\nNo se ha podido concretar la accion\nException: " + e.Message);
+                    MessageBox.Show("Error! Login\nNo se ha podido concretar la accion\nException: " + e.Message + "\n" + e.StackTrace);
                 }
                 finally
                 {

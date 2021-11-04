@@ -67,7 +67,7 @@ namespace SentirseBienApp
         }
         private void button1_actualizar_Click(object sender, EventArgs e)
         {
-            //Traer todos clientes de la  db al datagrid
+            //Traer todos clientes de la  db al datagrid            
             ConexDB buscarClientes = new ConexDB();
             string query = "SELECT * from cliente";
             using (MySqlCommand cmd = new MySqlCommand(query, buscarClientes.conectarBD))
@@ -88,7 +88,8 @@ namespace SentirseBienApp
                     MessageBox.Show("Sin datos para mostrar");
                 }
             }
-
+            string actividad = "Actualizo Lista Cliente";
+            registroDeActividad(actividad);
         }
         private void button1_buscar_Click(object sender, EventArgs e)
         {
@@ -115,6 +116,8 @@ namespace SentirseBienApp
                     MessageBox.Show("Sin datos para mostrar");
                 }
             }
+            string actividad = "Busco un Cliente DNI:"+textBox_dni.Text;
+            registroDeActividad(actividad);
         }
         private void button1_aceptar_Click(object sender, EventArgs e)
         {
@@ -381,6 +384,8 @@ namespace SentirseBienApp
                             cmd.Parameters.AddWithValue("@telefono", Convert.ToInt64(textBox_telefono.Text));
                             insCli.abrirBD();
                             cmd.ExecuteNonQuery();
+                            string actividad = "agrego Cliente:" + apellido + " " + nombre + " DNI:" + dni;
+                            registroDeActividad(actividad);
                             MessageBox.Show("Cliente Agregado!");
                         }
                         catch (Exception e)
@@ -391,9 +396,7 @@ namespace SentirseBienApp
                         {
                             insCli.cerrarBD();
                         }
-                    }
-                    string actividad = "agrego Cliente:"+ dni;
-                    registroDeActividad(actividad);
+                    }                    
                 }
                 else
                 {
@@ -428,7 +431,7 @@ namespace SentirseBienApp
                         button1_modificar.Enabled = false;
                     }
                 }
-                string actividad = "Modifico Cliente: "+dni;
+                string actividad = "Modifico Cliente:" + apellido + " " + nombre + " DNI:" + dni;
                 registroDeActividad(actividad);
             }
             if ((insUpd != 0) && (insUpd != 1))
@@ -500,27 +503,33 @@ namespace SentirseBienApp
         public void registroDeActividad(string actividad)
         {            
             ConexDB insCli = new ConexDB();
-            string query = "INSERT INTO seguridad (usuario, nombre, fecha, hora) VALUES (@usuario, @nombre, @fecha, @hora)";
+            string query = "INSERT INTO seguridad (usuario, fecha, hora, tipo, msg) VALUES (@usuario, @fecha, @hora, @tipo, @msg)";
             using (MySqlCommand cmd = new MySqlCommand(query, insCli.conectarBD))
             {
                 try
                 {                    //aaaa/mm/dd
-                    cmd.Parameters.AddWithValue("@usuario", Transferencias.globalnombreUsuario);
-                    cmd.Parameters.AddWithValue("@nombre", actividad);//corregir
+                    cmd.Parameters.AddWithValue("@usuario", Transferencias.globalnombreUsuario);                    
                     cmd.Parameters.AddWithValue("@fecha", DateTime.Now.ToShortDateString());
                     cmd.Parameters.AddWithValue("@hora", DateTime.Now.ToShortTimeString());
+                    cmd.Parameters.AddWithValue("@tipo", "Admin");
+                    cmd.Parameters.AddWithValue("@msg", actividad);
                     insCli.abrirBD();
                     cmd.ExecuteNonQuery();
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Error!\nNo se ha podido concretar la accion\nException: " + e.Message);
+                    MessageBox.Show("Error! Admin\nNo se ha podido concretar la accion\nException: " + e.Message +"\n"+e.StackTrace);
                 }
                 finally
                 {
                     insCli.cerrarBD();
                 }
             }
+        }
+
+        private void VentanaAdmin_Load(object sender, EventArgs e)
+        {
+            dataGridView1.RowHeadersVisible = false;
         }
     }
 }
