@@ -183,3 +183,4 @@ C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\bin\Debug\System.Numeri
 C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\bin\Debug\System.ValueTuple.xml
+C:\Users\HZ\source\repos\SentirseBienApp\SentirseBienApp\obj\Debug\SentirseBienApp.Ventana1ListadoCliente.resources

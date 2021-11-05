@@ -157,7 +157,6 @@ namespace SentirseBienApp
             this.Controls.Add(this.textBox_passwordS);
             this.Controls.Add(this.textBox_usuarioS);
             this.Controls.Add(this.textBox_contador);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";

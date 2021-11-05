@@ -167,7 +167,7 @@ namespace SentirseBienApp
             this.button1_turnos.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button1_turnos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1_turnos.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1_turnos.Location = new System.Drawing.Point(104, 12);
+            this.button1_turnos.Location = new System.Drawing.Point(631, 274);
             this.button1_turnos.Name = "button1_turnos";
             this.button1_turnos.Size = new System.Drawing.Size(86, 23);
             this.button1_turnos.TabIndex = 31;
@@ -180,7 +180,7 @@ namespace SentirseBienApp
             this.button1_actualizar.BackColor = System.Drawing.Color.White;
             this.button1_actualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1_actualizar.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1_actualizar.Location = new System.Drawing.Point(12, 64);
+            this.button1_actualizar.Location = new System.Drawing.Point(12, 14);
             this.button1_actualizar.Name = "button1_actualizar";
             this.button1_actualizar.Size = new System.Drawing.Size(86, 23);
             this.button1_actualizar.TabIndex = 30;
@@ -191,7 +191,7 @@ namespace SentirseBienApp
             // textBox_buscar
             // 
             this.textBox_buscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_buscar.Location = new System.Drawing.Point(320, 64);
+            this.textBox_buscar.Location = new System.Drawing.Point(320, 14);
             this.textBox_buscar.MaxLength = 100000000;
             this.textBox_buscar.Name = "textBox_buscar";
             this.textBox_buscar.Size = new System.Drawing.Size(156, 23);
@@ -203,7 +203,7 @@ namespace SentirseBienApp
             this.button1_eliminar.BackColor = System.Drawing.Color.White;
             this.button1_eliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1_eliminar.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1_eliminar.Location = new System.Drawing.Point(321, 322);
+            this.button1_eliminar.Location = new System.Drawing.Point(330, 433);
             this.button1_eliminar.Name = "button1_eliminar";
             this.button1_eliminar.Size = new System.Drawing.Size(75, 23);
             this.button1_eliminar.TabIndex = 26;
@@ -216,9 +216,9 @@ namespace SentirseBienApp
             this.button1_modificar.BackColor = System.Drawing.Color.White;
             this.button1_modificar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1_modificar.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1_modificar.Location = new System.Drawing.Point(240, 322);
+            this.button1_modificar.Location = new System.Drawing.Point(244, 433);
             this.button1_modificar.Name = "button1_modificar";
-            this.button1_modificar.Size = new System.Drawing.Size(75, 23);
+            this.button1_modificar.Size = new System.Drawing.Size(80, 23);
             this.button1_modificar.TabIndex = 25;
             this.button1_modificar.Text = "Modificar";
             this.button1_modificar.UseVisualStyleBackColor = false;
@@ -229,7 +229,7 @@ namespace SentirseBienApp
             this.button1_Agregar.BackColor = System.Drawing.Color.White;
             this.button1_Agregar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1_Agregar.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1_Agregar.Location = new System.Drawing.Point(159, 322);
+            this.button1_Agregar.Location = new System.Drawing.Point(163, 433);
             this.button1_Agregar.Name = "button1_Agregar";
             this.button1_Agregar.Size = new System.Drawing.Size(75, 23);
             this.button1_Agregar.TabIndex = 24;
@@ -242,7 +242,7 @@ namespace SentirseBienApp
             this.button1_buscar.BackColor = System.Drawing.Color.White;
             this.button1_buscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1_buscar.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1_buscar.Location = new System.Drawing.Point(482, 64);
+            this.button1_buscar.Location = new System.Drawing.Point(482, 14);
             this.button1_buscar.Name = "button1_buscar";
             this.button1_buscar.Size = new System.Drawing.Size(75, 23);
             this.button1_buscar.TabIndex = 23;
@@ -260,10 +260,10 @@ namespace SentirseBienApp
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 88);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 38);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(545, 223);
+            this.dataGridView1.Size = new System.Drawing.Size(545, 387);
             this.dataGridView1.TabIndex = 22;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -290,7 +290,7 @@ namespace SentirseBienApp
             this.button_cobros.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button_cobros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_cobros.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_cobros.Location = new System.Drawing.Point(196, 12);
+            this.button_cobros.Location = new System.Drawing.Point(631, 303);
             this.button_cobros.Name = "button_cobros";
             this.button_cobros.Size = new System.Drawing.Size(86, 23);
             this.button_cobros.TabIndex = 49;
@@ -304,7 +304,7 @@ namespace SentirseBienApp
             this.button_seguridad.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.button_seguridad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_seguridad.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_seguridad.Location = new System.Drawing.Point(12, 12);
+            this.button_seguridad.Location = new System.Drawing.Point(631, 332);
             this.button_seguridad.Name = "button_seguridad";
             this.button_seguridad.Size = new System.Drawing.Size(86, 23);
             this.button_seguridad.TabIndex = 50;
@@ -325,7 +325,7 @@ namespace SentirseBienApp
             this.label8.BackColor = System.Drawing.Color.White;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(324, 68);
+            this.label8.Location = new System.Drawing.Point(324, 18);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(29, 13);
             this.label8.TabIndex = 52;
@@ -338,7 +338,7 @@ namespace SentirseBienApp
             this.button_cerrarVentana.FlatAppearance.BorderColor = System.Drawing.SystemColors.WindowText;
             this.button_cerrarVentana.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_cerrarVentana.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_cerrarVentana.Location = new System.Drawing.Point(598, 283);
+            this.button_cerrarVentana.Location = new System.Drawing.Point(598, 371);
             this.button_cerrarVentana.Name = "button_cerrarVentana";
             this.button_cerrarVentana.Size = new System.Drawing.Size(155, 54);
             this.button_cerrarVentana.TabIndex = 53;
@@ -353,7 +353,7 @@ namespace SentirseBienApp
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
             this.pictureBox1.Location = new System.Drawing.Point(-2, -41);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(802, 435);
+            this.pictureBox1.Size = new System.Drawing.Size(802, 513);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 48;
             this.pictureBox1.TabStop = false;
@@ -388,7 +388,7 @@ namespace SentirseBienApp
             this.btPDF.BackColor = System.Drawing.Color.White;
             this.btPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btPDF.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btPDF.Location = new System.Drawing.Point(104, 64);
+            this.btPDF.Location = new System.Drawing.Point(104, 14);
             this.btPDF.Name = "btPDF";
             this.btPDF.Size = new System.Drawing.Size(86, 23);
             this.btPDF.TabIndex = 56;
@@ -401,7 +401,7 @@ namespace SentirseBienApp
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(212)))), ((int)(((byte)(231)))));
-            this.ClientSize = new System.Drawing.Size(794, 356);
+            this.ClientSize = new System.Drawing.Size(794, 466);
             this.Controls.Add(this.btPDF);
             this.Controls.Add(this.label_fecha);
             this.Controls.Add(this.label_hora);
@@ -431,7 +431,7 @@ namespace SentirseBienApp
             this.Controls.Add(this.button1_buscar);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.pictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "VentanaAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Admin";

@@ -9,7 +9,7 @@ using iText.Layout.Properties;
 using iText.Kernel.Pdf.Canvas.Draw;
 using System.Diagnostics;
 using iText.Kernel.Colors;
-
+using System.Drawing;
 
 namespace SentirseBienApp
 {
@@ -17,7 +17,11 @@ namespace SentirseBienApp
     {
         private Timer tiempo;
         public VentanaAdmin()
-        {
+        {            
+            //ICONO DE LA APLICACION
+            Icon ic = global::SentirseBienApp.Properties.Resources.este;
+            this.Icon = ic;
+            //TIMER RELOJ
             tiempo = new Timer();
             tiempo.Tick += new EventHandler(timer_fechahora_Tick);
             InitializeComponent();
@@ -33,9 +37,7 @@ namespace SentirseBienApp
             textBox_insert_update.Text = "0";
         }
         private void button1_modificar_Click(object sender, EventArgs e)
-        {
-            //Traer info de la dataGridView
-            //variables hardcodeadas
+        {           
             button_cancelar.Enabled = true;
             if (dataGridView1.SelectedCells.Count > 0)
             {                
@@ -87,9 +89,8 @@ namespace SentirseBienApp
                 {
                     MessageBox.Show("Sin datos para mostrar");
                 }
-            }
-            string actividad = "Actualizo Lista Cliente";
-            registroDeActividad(actividad);
+            }            
+            registroDeActividad("Actualizo Lista Cliente");
         }
         private void button1_buscar_Click(object sender, EventArgs e)
         {
@@ -115,9 +116,8 @@ namespace SentirseBienApp
                 {
                     MessageBox.Show("Sin datos para mostrar");
                 }
-            }
-            string actividad = "Busco un Cliente DNI:"+textBox_dni.Text;
-            registroDeActividad(actividad);
+            }            
+            registroDeActividad("Buscó un Cliente DNI:" + textBox_dni.Text);
         }
         private void button1_aceptar_Click(object sender, EventArgs e)
         {
@@ -235,9 +235,8 @@ namespace SentirseBienApp
             catch (Exception err)
             {
                 MessageBox.Show(err.Message);
-            }
-            string actividad = "Imprimir PDF";
-            registroDeActividad(actividad);
+            }            
+            registroDeActividad("Imprimir PDF");
         }
 
 
@@ -383,9 +382,8 @@ namespace SentirseBienApp
                             cmd.Parameters.AddWithValue("@email", textBox_email.Text);
                             cmd.Parameters.AddWithValue("@telefono", Convert.ToInt64(textBox_telefono.Text));
                             insCli.abrirBD();
-                            cmd.ExecuteNonQuery();
-                            string actividad = "agrego Cliente:" + apellido + " " + nombre + " DNI:" + dni;
-                            registroDeActividad(actividad);
+                            cmd.ExecuteNonQuery();                            
+                            registroDeActividad("agrego Cliente:" + apellido + " " + nombre + " DNI:" + dni);
                             MessageBox.Show("Cliente Agregado!");
                         }
                         catch (Exception e)
@@ -430,9 +428,8 @@ namespace SentirseBienApp
                         log.cerrarBD();
                         button1_modificar.Enabled = false;
                     }
-                }
-                string actividad = "Modifico Cliente:" + apellido + " " + nombre + " DNI:" + dni;
-                registroDeActividad(actividad);
+                }                
+                registroDeActividad("Modifico Cliente:" + apellido + " " + nombre + " DNI:" + dni);
             }
             if ((insUpd != 0) && (insUpd != 1))
             {
@@ -467,14 +464,14 @@ namespace SentirseBienApp
                 {
                     log.cerrarBD();
                 }
-            }
-            string actividad = "Elimino Cliente: "+dni;
-            registroDeActividad(actividad);
+            }            
+            registroDeActividad("Elimino Cliente: " + dni);
         }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.SelectedCells.Count > 0)
             {
+                button_cancelar.Enabled = true;
                 dataGridView1.Rows[e.RowIndex].Selected = true;
                 textBox_dni.Text = dataGridView1.SelectedCells[0].Value.ToString();
                 textBox_apellido.Text = dataGridView1.SelectedCells[1].Value.ToString();
@@ -488,12 +485,10 @@ namespace SentirseBienApp
         }
 
         private void button_cerrarVentana_Click(object sender, EventArgs e)
-        {
-            string actividad = "Salio";
-            registroDeActividad(actividad);
+        {            
+            registroDeActividad("Salio");           
             this.Close();
         }
-
         private void timer_fechahora_Tick(object sender, EventArgs e)
         {
             DateTime dia = DateTime.Now;

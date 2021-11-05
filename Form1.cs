@@ -14,7 +14,9 @@ namespace SentirseBienApp
     public partial class Form1 : Form
     {        
         public Form1()
-        {            
+        {
+            Icon ic = global::SentirseBienApp.Properties.Resources.este;
+            this.Icon = ic;
             InitializeComponent();
             textBox_contador.Text = "2";            
         }
@@ -49,39 +51,39 @@ namespace SentirseBienApp
                 {    
                     if (consultaAcceso() == 0)
                     {
-                        MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Administrador");
-                        VentanaAdmin ventanaAdmin = new VentanaAdmin();
-                        AddOwnedForm(ventanaAdmin);
-                        Transferencias.globalnombreUsuario = usuario;
-                        usuario = "";
-                        registroDeIngreso("Admin", "Ingresó");                        
                         textBox1_usuario.Text = "";
                         textBox1_password.Text = "";
-                        ventanaAdmin.ShowDialog();
+                        MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Administrador");                        
+                        Transferencias.globalnombreUsuario = usuario;
+                        usuario = "";                        
+                        registroDeIngreso("Admin", "Ingresó");   
+                        this.Visible = false;
+                        llamarVentanaAdmin();
+                        this.Visible = true;
                     }
                     if (consultaAcceso() == 1)
                     {
-                        MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Profesional");
-                        VentanaProfesional ventanaUsuario = new VentanaProfesional();
-                        AddOwnedForm(ventanaUsuario);
+                        textBox1_usuario.Text = "";
+                        textBox1_password.Text = "";
+                        MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Profesional");                        
                         Transferencias.globalnombreUsuario = usuario;
                         usuario = "";
                         registroDeIngreso("Profesional", "Ingresó");
-                        textBox1_usuario.Text = "";
-                        textBox1_password.Text = "";
-                        ventanaUsuario.ShowDialog();
+                        this.Visible = false;
+                        llamarVentanaProfesional();
+                        this.Visible = true;
                     }
                     if (consultaAcceso() == 2)
                     {
-                        MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Secretaría");
-                        VentanaSecretario ventanaSecretario = new VentanaSecretario();
-                        AddOwnedForm(ventanaSecretario);
+                        textBox1_usuario.Text = "";
+                        textBox1_password.Text = "";
+                        MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Secretaría");                        
                         Transferencias.globalnombreUsuario = usuario;
                         usuario = "";
                         registroDeIngreso("Secretario", "Ingresó");
-                        textBox1_usuario.Text = "";
-                        textBox1_password.Text = "";
-                        ventanaSecretario.ShowDialog();
+                        this.Visible = false;
+                        llamarVentanaSecretario();
+                        this.Visible = true;                        
                     }
                     if ((consultaAcceso() > 2) || (consultaAcceso() < 0))
                     {
@@ -99,9 +101,30 @@ namespace SentirseBienApp
                 }
             }
         }
-
-
-        //METODOS       
+        //Llamadas a Ventanas de Usuario
+        public void llamarVentanaAdmin()
+        {
+            VentanaAdmin ventanaAdmin = new VentanaAdmin();
+            AddOwnedForm(ventanaAdmin);
+            ventanaAdmin.MdiParent = this.MdiParent;
+            ventanaAdmin.ShowDialog(this);
+        }
+        public void llamarVentanaProfesional()
+        {
+            VentanaProfesional ventanaProfesional = new VentanaProfesional();
+            AddOwnedForm(ventanaProfesional);
+            ventanaProfesional.MdiParent = this.MdiParent;
+            ventanaProfesional.ShowDialog(this);
+        }
+        public void llamarVentanaSecretario()
+        {
+            VentanaSecretario ventanaSecretario = new VentanaSecretario();
+            AddOwnedForm(ventanaSecretario);
+            ventanaSecretario.MdiParent = this.MdiParent;
+            ventanaSecretario.ShowDialog(this);
+        }
+        
+        //METODOS de Control y de registro       
         public Boolean controlDatos()
         {
             Boolean control = true;
@@ -186,7 +209,6 @@ namespace SentirseBienApp
                 }                
             }
         }
-        //metodos control
         public void registroDeIngreso(string tipo, string actividad)
         {
             ConexDB insCli = new ConexDB();
@@ -205,7 +227,7 @@ namespace SentirseBienApp
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Error! Login\nNo se ha podido concretar la accion\nException: " + e.Message + "\n" + e.StackTrace);
+                    MessageBox.Show("Error Login!\nNo se ha podido concretar la accion\n\nException:\n" + e.Message + "\n\nLugar:\n" + e.StackTrace);
                 }
                 finally
                 {
