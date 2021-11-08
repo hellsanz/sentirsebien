@@ -122,7 +122,7 @@
     <value>Microsoft Sans Serif, 15pt</value>
   </data>
   <data name="textBox1_usuario.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 164</value>
+    <value>141, 157</value>
   </data>
   <data name="textBox1_usuario.Size" type="System.Drawing.Size, System.Drawing">
     <value>215, 30</value>
@@ -141,13 +141,13 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;textBox1_usuario.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="textBox1_password.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 15pt</value>
   </data>
   <data name="textBox1_password.Location" type="System.Drawing.Point, System.Drawing">
-    <value>147, 245</value>
+    <value>141, 223</value>
   </data>
   <data name="textBox1_password.PasswordChar" type="System.Char, mscorlib" xml:space="preserve">
     <value>*</value>
@@ -168,17 +168,20 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;textBox1_password.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="button1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+    <value>Popup</value>
   </data>
   <data name="button1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt, style=Bold</value>
   </data>
+  <data name="button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>145, 303</value>
+    <value>139, 297</value>
   </data>
   <data name="button1.Size" type="System.Drawing.Size, System.Drawing">
     <value>215, 30</value>
@@ -199,16 +202,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="button2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+    <value>Popup</value>
   </data>
   <data name="button2.Font" type="System.Drawing.Font, System.Drawing">
     <value>Microsoft Sans Serif, 12pt, style=Bold</value>
   </data>
+  <data name="button2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="button2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>145, 339</value>
+    <value>139, 341</value>
   </data>
   <data name="button2.Size" type="System.Drawing.Size, System.Drawing">
     <value>215, 30</value>
@@ -229,7 +235,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;button2.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -238,7 +244,7 @@
     <value>Leelawadee UI Semilight, 16pt, style=Bold</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>207, 131</value>
+    <value>201, 124</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>92, 30</value>
@@ -259,7 +265,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -271,7 +277,7 @@
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>188, 212</value>
+    <value>182, 190</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>130, 30</value>
@@ -292,7 +298,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2148,7 +2154,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3994,7 +4000,7 @@
     <value>NoControl</value>
   </data>
   <data name="pictureBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>212, 39</value>
+    <value>206, 23</value>
   </data>
   <data name="pictureBox2.Size" type="System.Drawing.Size, System.Drawing">
     <value>81, 77</value>
@@ -4015,7 +4021,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureBox2.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="textBox_usuarioS.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -4045,7 +4051,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;textBox_usuarioS.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="textBox_passwordS.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -4075,7 +4081,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;textBox_passwordS.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="textBox_accesoS.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -4105,7 +4111,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;textBox_accesoS.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="textBox_contador.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -4135,7 +4141,37 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;textBox_contador.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
+  </data>
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="dtgw.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="dtgw.Location" type="System.Drawing.Point, System.Drawing">
+    <value>465, 44</value>
+  </data>
+  <data name="dtgw.Size" type="System.Drawing.Size, System.Drawing">
+    <value>240, 150</value>
+  </data>
+  <data name="dtgw.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="dtgw.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;dtgw.Name" xml:space="preserve">
+    <value>dtgw</value>
+  </data>
+  <data name="&gt;&gt;dtgw.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtgw.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dtgw.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -4151,6 +4187,12 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Sentirse Bien APP</value>
+  </data>
+  <data name="&gt;&gt;timer1.Name" xml:space="preserve">
+    <value>timer1</value>
+  </data>
+  <data name="&gt;&gt;timer1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Form1</value>

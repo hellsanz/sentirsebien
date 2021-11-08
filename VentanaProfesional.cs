@@ -237,6 +237,13 @@ namespace SentirseBienApp
         {
             dataGridView_serviciosList.RowHeadersVisible = false;
         }
+
+        private void button1_c_sinAtender_Click(object sender, EventArgs e)
+        {
+            Ventana1ListadoCliente ventana = new Ventana1ListadoCliente();
+            AddOwnedForm(ventana);
+            ventana.Show();
+        }
     }
 }
 //Profesionales: Acceso a los servicios que deben prestar por día.

@@ -29,6 +29,7 @@ namespace SentirseBienApp
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.textBox1_usuario = new System.Windows.Forms.TextBox();
             this.textBox1_password = new System.Windows.Forms.TextBox();
@@ -42,8 +43,11 @@ namespace SentirseBienApp
             this.textBox_passwordS = new System.Windows.Forms.TextBox();
             this.textBox_accesoS = new System.Windows.Forms.TextBox();
             this.textBox_contador = new System.Windows.Forms.TextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.dtgw = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgw)).BeginInit();
             this.SuspendLayout();
             // 
             // textBox1_usuario
@@ -61,7 +65,7 @@ namespace SentirseBienApp
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.ActiveCaption;
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.PaleGreen;
@@ -74,7 +78,7 @@ namespace SentirseBienApp
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.PaleGreen;
@@ -88,7 +92,7 @@ namespace SentirseBienApp
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(212)))), ((int)(((byte)(231)))));
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(220)))), ((int)(((byte)(250)))));
             this.label1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label1.Name = "label1";
@@ -96,7 +100,7 @@ namespace SentirseBienApp
             // label2
             // 
             resources.ApplyResources(this.label2, "label2");
-            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(220)))), ((int)(((byte)(250)))));
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label2.Name = "label2";
@@ -109,7 +113,7 @@ namespace SentirseBienApp
             // 
             // pictureBox2
             // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(220)))), ((int)(((byte)(250)))));
             resources.ApplyResources(this.pictureBox2, "pictureBox2");
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.TabStop = false;
@@ -138,6 +142,23 @@ namespace SentirseBienApp
             this.textBox_contador.Name = "textBox_contador";
             this.textBox_contador.TabStop = false;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 300000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // dtgw
+            // 
+            this.dtgw.AllowUserToAddRows = false;
+            this.dtgw.AllowUserToDeleteRows = false;
+            this.dtgw.AllowUserToResizeColumns = false;
+            this.dtgw.AllowUserToResizeRows = false;
+            this.dtgw.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            resources.ApplyResources(this.dtgw, "dtgw");
+            this.dtgw.Name = "dtgw";
+            this.dtgw.TabStop = false;
+            // 
             // Form1
             // 
             this.AcceptButton = this.button1;
@@ -145,6 +166,7 @@ namespace SentirseBienApp
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(212)))), ((int)(((byte)(231)))));
             this.CancelButton = this.button2;
+            this.Controls.Add(this.dtgw);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -157,12 +179,14 @@ namespace SentirseBienApp
             this.Controls.Add(this.textBox_passwordS);
             this.Controls.Add(this.textBox_usuarioS);
             this.Controls.Add(this.textBox_contador);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.Opacity = 0.98D;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgw)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -181,6 +205,8 @@ namespace SentirseBienApp
         private System.Windows.Forms.TextBox textBox_passwordS;
         private System.Windows.Forms.TextBox textBox_accesoS;
         private System.Windows.Forms.TextBox textBox_contador;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.DataGridView dtgw;
     }
 }
 

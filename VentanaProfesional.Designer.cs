@@ -57,6 +57,7 @@ namespace SentirseBienApp
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label_timer_fecha = new System.Windows.Forms.Label();
             this.label_timer_hora = new System.Windows.Forms.Label();
+            this.button1_c_sinAtender = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_serviciosList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_tempApeNom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -69,10 +70,10 @@ namespace SentirseBienApp
             this.dataGridView_serviciosList.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView_serviciosList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridView_serviciosList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_serviciosList.Location = new System.Drawing.Point(13, 87);
+            this.dataGridView_serviciosList.Location = new System.Drawing.Point(6, 87);
             this.dataGridView_serviciosList.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView_serviciosList.Name = "dataGridView_serviciosList";
-            this.dataGridView_serviciosList.Size = new System.Drawing.Size(689, 345);
+            this.dataGridView_serviciosList.Size = new System.Drawing.Size(696, 345);
             this.dataGridView_serviciosList.TabIndex = 66;
             this.dataGridView_serviciosList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -90,22 +91,22 @@ namespace SentirseBienApp
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(745, 227);
+            this.label2.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(729, 228);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 16);
+            this.label2.Size = new System.Drawing.Size(44, 16);
             this.label2.TabIndex = 69;
             this.label2.Text = "Fecha:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(753, 255);
+            this.label3.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(729, 255);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 16);
+            this.label3.Size = new System.Drawing.Size(40, 16);
             this.label3.TabIndex = 70;
             this.label3.Text = "Hora:";
             // 
@@ -125,7 +126,7 @@ namespace SentirseBienApp
             // 
             this.label_nombreProfesional.AutoSize = true;
             this.label_nombreProfesional.BackColor = System.Drawing.Color.Transparent;
-            this.label_nombreProfesional.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_nombreProfesional.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_nombreProfesional.Location = new System.Drawing.Point(108, 5);
             this.label_nombreProfesional.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_nombreProfesional.Name = "label_nombreProfesional";
@@ -167,22 +168,22 @@ namespace SentirseBienApp
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(734, 172);
+            this.label10.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(729, 172);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(62, 16);
+            this.label10.Size = new System.Drawing.Size(60, 16);
             this.label10.TabIndex = 71;
             this.label10.Text = "Nombre:";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(734, 199);
+            this.label11.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(729, 200);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(60, 16);
+            this.label11.Size = new System.Drawing.Size(56, 16);
             this.label11.TabIndex = 72;
             this.label11.Text = "Servicio:";
             // 
@@ -199,10 +200,10 @@ namespace SentirseBienApp
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(734, 144);
+            this.label13.Font = new System.Drawing.Font("Microsoft Tai Le", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(729, 145);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(64, 16);
+            this.label13.Size = new System.Drawing.Size(59, 16);
             this.label13.TabIndex = 79;
             this.label13.Text = "Apellido:";
             // 
@@ -210,7 +211,7 @@ namespace SentirseBienApp
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(725, 90);
+            this.label14.Location = new System.Drawing.Point(716, 90);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(38, 16);
             this.label14.TabIndex = 80;
@@ -260,7 +261,7 @@ namespace SentirseBienApp
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(731, 118);
+            this.label20.Location = new System.Drawing.Point(716, 113);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(138, 18);
@@ -269,9 +270,9 @@ namespace SentirseBienApp
             // 
             // textBox_cliente_dni
             // 
-            this.textBox_cliente_dni.Location = new System.Drawing.Point(758, 87);
+            this.textBox_cliente_dni.Location = new System.Drawing.Point(752, 87);
             this.textBox_cliente_dni.Name = "textBox_cliente_dni";
-            this.textBox_cliente_dni.Size = new System.Drawing.Size(125, 23);
+            this.textBox_cliente_dni.Size = new System.Drawing.Size(130, 23);
             this.textBox_cliente_dni.TabIndex = 88;
             // 
             // dataGridView_tempApeNom
@@ -311,9 +312,9 @@ namespace SentirseBienApp
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(129)))), ((int)(((byte)(191)))), ((int)(((byte)(186)))));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-4, 16);
+            this.pictureBox1.Location = new System.Drawing.Point(-3, -18);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(905, 436);
+            this.pictureBox1.Size = new System.Drawing.Size(905, 470);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 87;
             this.pictureBox1.TabStop = false;
@@ -327,29 +328,44 @@ namespace SentirseBienApp
             // label_timer_fecha
             // 
             this.label_timer_fecha.AutoSize = true;
-            this.label_timer_fecha.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_timer_fecha.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_timer_fecha.Location = new System.Drawing.Point(751, 16);
             this.label_timer_fecha.Name = "label_timer_fecha";
-            this.label_timer_fecha.Size = new System.Drawing.Size(114, 23);
+            this.label_timer_fecha.Size = new System.Drawing.Size(104, 23);
             this.label_timer_fecha.TabIndex = 92;
             this.label_timer_fecha.Text = "20/06/2021";
             // 
             // label_timer_hora
             // 
             this.label_timer_hora.AutoSize = true;
-            this.label_timer_hora.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_timer_hora.Font = new System.Drawing.Font("Microsoft Tai Le", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label_timer_hora.Location = new System.Drawing.Point(765, 49);
             this.label_timer_hora.Name = "label_timer_hora";
-            this.label_timer_hora.Size = new System.Drawing.Size(86, 23);
+            this.label_timer_hora.Size = new System.Drawing.Size(78, 23);
             this.label_timer_hora.TabIndex = 93;
             this.label_timer_hora.Text = "17:20:56";
+            // 
+            // button1_c_sinAtender
+            // 
+            this.button1_c_sinAtender.BackColor = System.Drawing.Color.White;
+            this.button1_c_sinAtender.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.button1_c_sinAtender.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1_c_sinAtender.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1_c_sinAtender.Location = new System.Drawing.Point(6, 63);
+            this.button1_c_sinAtender.Name = "button1_c_sinAtender";
+            this.button1_c_sinAtender.Size = new System.Drawing.Size(166, 23);
+            this.button1_c_sinAtender.TabIndex = 94;
+            this.button1_c_sinAtender.Text = "Clientes Sin Atender";
+            this.button1_c_sinAtender.UseVisualStyleBackColor = false;
+            this.button1_c_sinAtender.Click += new System.EventHandler(this.button1_c_sinAtender_Click);
             // 
             // VentanaProfesional
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(207)))), ((int)(((byte)(244)))));
-            this.ClientSize = new System.Drawing.Size(895, 445);
+            this.ClientSize = new System.Drawing.Size(892, 442);
+            this.Controls.Add(this.button1_c_sinAtender);
             this.Controls.Add(this.label_timer_hora);
             this.Controls.Add(this.label_timer_fecha);
             this.Controls.Add(this.button1);
@@ -417,5 +433,6 @@ namespace SentirseBienApp
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label_timer_fecha;
         private System.Windows.Forms.Label label_timer_hora;
+        private System.Windows.Forms.Button button1_c_sinAtender;
     }
 }

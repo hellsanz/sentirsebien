@@ -38,10 +38,7 @@ namespace SentirseBienApp
                 cargarLabels();
             }
         }
-        private void button_cobrar_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         //Metodos
         public void buscarTurnosAtendidos(int dni)//sin cobro
@@ -96,6 +93,15 @@ namespace SentirseBienApp
             label_cliente_dni.Text = "-";
             label_cliente_fecha.Text = "-";
             label_cliente_servicio.Text = "-";
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //hacer el llamado de ventana cobros
+
+            Ventana1Cobros ventanaCobro = new Ventana1Cobros();
+            AddOwnedForm(ventanaCobro);
+            ventanaCobro.Show();
         }
     }
 }

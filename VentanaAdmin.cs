@@ -28,6 +28,7 @@ namespace SentirseBienApp
             tiempo.Enabled = true;
         }
 
+        //BOTONES
         private void button1_Agregar_Click(object sender, EventArgs e)
         {
             limpiarCampos();
@@ -67,6 +68,7 @@ namespace SentirseBienApp
                 MessageBox.Show("Debe seleccionar un Cliente para Eliminar!");
             }            
         }
+      
         private void button1_actualizar_Click(object sender, EventArgs e)
         {
             //Traer todos clientes de la  db al datagrid            
@@ -119,6 +121,7 @@ namespace SentirseBienApp
             }            
             registroDeActividad("Buscó un Cliente DNI:" + textBox_dni.Text);
         }
+     
         private void button1_aceptar_Click(object sender, EventArgs e)
         {
             button1_modificar.Enabled = false;
@@ -139,112 +142,22 @@ namespace SentirseBienApp
             limpiarCampos();
             deshabilitarCampos();
         }
+      
         private void btPDF_Click(object sender, EventArgs e)
         {
-            try
-            {
-                //CREAR PDF
-                SaveFileDialog svfd = new SaveFileDialog();
-                svfd.Filter = "PDF document (*.pdf)|*.pdf";
-                svfd.ShowDialog();
-                if (svfd.FileName != "")
-                {
-                    PdfWriter writer = new PdfWriter(svfd.FileName);
-                    PdfDocument pdf = new PdfDocument(writer);
-                    Document document = new Document(pdf);
-
-                    //ENCABEZADO
-                    Paragraph header = new Paragraph("LISTADO DE CLIENTES")
-                       .SetTextAlignment(TextAlignment.CENTER)
-                       .SetFontSize(20);
-
-                    //ESPACIO DE SEPARACION
-                    Paragraph newline = new Paragraph(new Text("\n"));
-
-                    document.Add(newline);
-                    document.Add(header);
-
-                    //SUB ENCABEZADO
-                    Paragraph subheader = new Paragraph("SPA SENTIRSE BIEN")
-                    .SetTextAlignment(TextAlignment.CENTER)
-                    .SetFontSize(15);
-                    document.Add(subheader);
-
-                    //LINEA DE SEPARACION
-                    LineSeparator ls = new LineSeparator(new SolidLine());
-                    document.Add(ls);
-
-                    //PARRAFO 1
-                    Paragraph paragraph1 = new Paragraph("Listado de Clientes del Spa");
-                    document.Add(paragraph1);
-
-                    //IMAGEN DEL SPA
-                    //Image img = new Image(ImageDataFactory
-                    //.Create(@"..\..\image.jpg"))
-                    //.SetTextAlignment(TextAlignment.CENTER);
-                    //document.Add(img);
-                    //NUMERO DE PAGINAS 
-                    int n = pdf.GetNumberOfPages();
-                    for (int i = 1; i <= n; i++)
-                    {
-                        document.ShowTextAligned(new Paragraph(String
-                           .Format("Pag." + i + " of " + n)),
-                            559, 806, i, TextAlignment.RIGHT,
-                            VerticalAlignment.TOP, 0);
-                    }
-                    //TABLA DE DATOS
-                    Table table = new Table(5, false);
-                    Cell cdni = new Cell(1, 1)
-                        .SetBackgroundColor(ColorConstants.GREEN)
-                        .Add(new Paragraph("DNI"));
-                    Cell cnom = new Cell(1, 1)
-                        .SetBackgroundColor(ColorConstants.GREEN)
-                        .Add(new Paragraph("NOMBRE"));
-                    Cell cape = new Cell(1, 1)
-                        .SetBackgroundColor(ColorConstants.GREEN)
-                        .Add(new Paragraph("APELLIDO"));
-                    Cell cema = new Cell(1, 1)
-                        .SetBackgroundColor(ColorConstants.GREEN)
-                        .Add(new Paragraph("EMAIL"));
-                    Cell ctel = new Cell(1, 1)
-                        .SetBackgroundColor(ColorConstants.GREEN)
-                        .Add(new Paragraph("TELEFONO"));
-                    table.AddCell(cdni);
-                    table.AddCell(cnom);
-                    table.AddCell(cape);
-                    table.AddCell(cema);
-                    table.AddCell(ctel);
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
-                    {
-
-                        foreach (DataGridViewCell cell in row.Cells)
-                        {
-                            table.AddCell(cell.Value.ToString());
-                        }
-                    }
-                    document.Add(table);
-                    document.Close();
-                    DialogResult dialogResult = MessageBox.Show("Guardado en " + svfd.FileName + " \nDesea abrirlo?", "PDF Generado Exitosamente!", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        //MessageBox.Show("Metodo abrir pdf!");
-                        Process.Start(svfd.FileName);
-                    }
-                }
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.Message);
-            }            
-            registroDeActividad("Imprimir PDF");
+            imprimir();
         }
-
+        private void button_cerrarVentana_Click(object sender, EventArgs e)
+        {
+            registroDeActividad("Salió");
+            this.Close();
+        }
 
         private void button_seguridad_Click(object sender, EventArgs e)
         {
             Ventana1Seguridad ventanaSeguridad = new Ventana1Seguridad();
             AddOwnedForm(ventanaSeguridad);
-            ventanaSeguridad.ShowDialog();
+            ventanaSeguridad.Show();
         }
         private void button1_turnos_Click(object sender, EventArgs e)
         {
@@ -256,7 +169,7 @@ namespace SentirseBienApp
         {
             Ventana1Cobros ventanaCobro = new Ventana1Cobros();
             AddOwnedForm(ventanaCobro);
-            ventanaCobro.ShowDialog();
+            ventanaCobro.Show();
         }
 
 
@@ -467,6 +380,138 @@ namespace SentirseBienApp
             }            
             registroDeActividad("Elimino Cliente: " + dni);
         }
+        public void registroDeActividad(string actividad)
+        {
+            ConexDB insCli = new ConexDB();
+            string query = "INSERT INTO seguridad (usuario, fecha, hora, tipo, msg) VALUES (@usuario, @fecha, @hora, @tipo, @msg)";
+            using (MySqlCommand cmd = new MySqlCommand(query, insCli.conectarBD))
+            {
+                try
+                {                    //aaaa/mm/dd
+                    cmd.Parameters.AddWithValue("@usuario", Transferencias.globalnombreUsuario);
+                    cmd.Parameters.AddWithValue("@fecha", DateTime.Now.ToShortDateString());
+                    cmd.Parameters.AddWithValue("@hora", DateTime.Now.ToShortTimeString());
+                    cmd.Parameters.AddWithValue("@tipo", "Admin");
+                    cmd.Parameters.AddWithValue("@msg", actividad);
+                    insCli.abrirBD();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Error! Admin\nNo se ha podido concretar la accion\nException: " + e.Message + "\n" + e.StackTrace);
+                }
+                finally
+                {
+                    insCli.cerrarBD();
+                }
+            }
+        }
+        public void imprimir()
+        {
+            try
+            {
+                //CREAR PDF
+                SaveFileDialog svfd = new SaveFileDialog();
+                svfd.Filter = "PDF document (*.pdf)|*.pdf";
+                svfd.ShowDialog();
+                if (svfd.FileName != "")
+                {
+                    PdfWriter writer = new PdfWriter(svfd.FileName);
+                    PdfDocument pdf = new PdfDocument(writer);
+                    Document document = new Document(pdf);
+
+                    //ENCABEZADO
+                    Paragraph header = new Paragraph("LISTADO DE CLIENTES")
+                       .SetTextAlignment(TextAlignment.CENTER)
+                       .SetFontSize(20);
+
+                    //ESPACIO DE SEPARACION
+                    Paragraph newline = new Paragraph(new Text("\n"));
+
+                    document.Add(newline);
+                    document.Add(header);
+
+                    //SUB ENCABEZADO
+                    Paragraph subheader = new Paragraph("SPA SENTIRSE BIEN")
+                    .SetTextAlignment(TextAlignment.CENTER)
+                    .SetFontSize(15);
+                    document.Add(subheader);
+
+                    //LINEA DE SEPARACION
+                    LineSeparator ls = new LineSeparator(new SolidLine());
+                    document.Add(ls);
+
+                    //PARRAFO 1
+                    Paragraph paragraph1 = new Paragraph("Listado de Clientes del Spa");
+                    document.Add(paragraph1);
+
+                    //IMAGEN DEL SPA
+                    //Image img = new Image(ImageDataFactory
+                    //.Create(@"..\..\image.jpg"))
+                    //.SetTextAlignment(TextAlignment.CENTER);
+                    //document.Add(img);
+                    //NUMERO DE PAGINAS 
+                    int n = pdf.GetNumberOfPages();
+                    for (int i = 1; i <= n; i++)
+                    {
+                        document.ShowTextAligned(new Paragraph(String
+                           .Format("Pag." + i + " of " + n)),
+                            559, 806, i, TextAlignment.RIGHT,
+                            VerticalAlignment.TOP, 0);
+                    }
+                    //TABLA DE DATOS
+                    Table table = new Table(5, false);
+                    Cell cdni = new Cell(1, 1)
+                        .SetBackgroundColor(ColorConstants.GREEN)
+                        .Add(new Paragraph("DNI"));
+                    Cell cnom = new Cell(1, 1)
+                        .SetBackgroundColor(ColorConstants.GREEN)
+                        .Add(new Paragraph("NOMBRE"));
+                    Cell cape = new Cell(1, 1)
+                        .SetBackgroundColor(ColorConstants.GREEN)
+                        .Add(new Paragraph("APELLIDO"));
+                    Cell cema = new Cell(1, 1)
+                        .SetBackgroundColor(ColorConstants.GREEN)
+                        .Add(new Paragraph("EMAIL"));
+                    Cell ctel = new Cell(1, 1)
+                        .SetBackgroundColor(ColorConstants.GREEN)
+                        .Add(new Paragraph("TELEFONO"));
+                    table.AddCell(cdni);
+                    table.AddCell(cnom);
+                    table.AddCell(cape);
+                    table.AddCell(cema);
+                    table.AddCell(ctel);
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            table.AddCell(cell.Value.ToString());
+                        }
+                    }
+                    document.Add(table);
+                    document.Close();
+                    DialogResult dialogResult = MessageBox.Show("Guardado en " + svfd.FileName + " \nDesea abrirlo?", "PDF Generado Exitosamente!", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        //MessageBox.Show("Metodo abrir pdf!");
+                        Process.Start(svfd.FileName);
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message);
+            }
+            registroDeActividad("Imprimir Listado de Clientes");
+        }
+
+        //EVENTOS
+        private void timer_fechahora_Tick(object sender, EventArgs e)
+        {
+            DateTime dia = DateTime.Now;
+            label_fecha.Text = dia.ToShortDateString();
+            label_hora.Text = dia.ToLongTimeString();
+        }
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.SelectedCells.Count > 0)
@@ -483,48 +528,15 @@ namespace SentirseBienApp
                 button1_Agregar.Enabled = false;
             }
         }
-
-        private void button_cerrarVentana_Click(object sender, EventArgs e)
-        {            
-            registroDeActividad("Salio");           
-            this.Close();
-        }
-        private void timer_fechahora_Tick(object sender, EventArgs e)
-        {
-            DateTime dia = DateTime.Now;
-            label_fecha.Text = dia.ToShortDateString();
-            label_hora.Text = dia.ToLongTimeString();
-        }
-        public void registroDeActividad(string actividad)
-        {            
-            ConexDB insCli = new ConexDB();
-            string query = "INSERT INTO seguridad (usuario, fecha, hora, tipo, msg) VALUES (@usuario, @fecha, @hora, @tipo, @msg)";
-            using (MySqlCommand cmd = new MySqlCommand(query, insCli.conectarBD))
-            {
-                try
-                {                    //aaaa/mm/dd
-                    cmd.Parameters.AddWithValue("@usuario", Transferencias.globalnombreUsuario);                    
-                    cmd.Parameters.AddWithValue("@fecha", DateTime.Now.ToShortDateString());
-                    cmd.Parameters.AddWithValue("@hora", DateTime.Now.ToShortTimeString());
-                    cmd.Parameters.AddWithValue("@tipo", "Admin");
-                    cmd.Parameters.AddWithValue("@msg", actividad);
-                    insCli.abrirBD();
-                    cmd.ExecuteNonQuery();
-                }
-                catch (Exception e)
-                {
-                    MessageBox.Show("Error! Admin\nNo se ha podido concretar la accion\nException: " + e.Message +"\n"+e.StackTrace);
-                }
-                finally
-                {
-                    insCli.cerrarBD();
-                }
-            }
-        }
-
         private void VentanaAdmin_Load(object sender, EventArgs e)
         {
             dataGridView1.RowHeadersVisible = false;
+        }
+        private void button1_c_sinAtender_Click(object sender, EventArgs e)
+        {
+            Ventana1ListadoCliente ventana = new Ventana1ListadoCliente();
+            AddOwnedForm(ventana);
+            ventana.Show();
         }
     }
 }

@@ -36,7 +36,6 @@ namespace SentirseBienApp
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_monto = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.button_cobrar = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox_busqueda = new System.Windows.Forms.TextBox();
             this.label_nombreProfesional = new System.Windows.Forms.Label();
@@ -63,6 +62,7 @@ namespace SentirseBienApp
             this.textBox_atendidoS = new System.Windows.Forms.TextBox();
             this.textBox_quiencobraS = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_serviciosList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -73,7 +73,7 @@ namespace SentirseBienApp
             this.dataGridView_serviciosList.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dataGridView_serviciosList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dataGridView_serviciosList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_serviciosList.Location = new System.Drawing.Point(15, 114);
+            this.dataGridView_serviciosList.Location = new System.Drawing.Point(15, 75);
             this.dataGridView_serviciosList.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView_serviciosList.Name = "dataGridView_serviciosList";
             this.dataGridView_serviciosList.Size = new System.Drawing.Size(450, 202);
@@ -83,7 +83,7 @@ namespace SentirseBienApp
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(296, 97);
+            this.label6.Location = new System.Drawing.Point(282, 36);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(109, 13);
             this.label6.TabIndex = 68;
@@ -97,7 +97,7 @@ namespace SentirseBienApp
             this.comboBox_formapago.Items.AddRange(new object[] {
             "Credito",
             "Debito"});
-            this.comboBox_formapago.Location = new System.Drawing.Point(15, 341);
+            this.comboBox_formapago.Location = new System.Drawing.Point(15, 297);
             this.comboBox_formapago.Name = "comboBox_formapago";
             this.comboBox_formapago.Size = new System.Drawing.Size(126, 21);
             this.comboBox_formapago.TabIndex = 69;
@@ -106,7 +106,7 @@ namespace SentirseBienApp
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(14, 325);
+            this.label1.Location = new System.Drawing.Point(14, 281);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 70;
@@ -116,7 +116,7 @@ namespace SentirseBienApp
             // 
             this.textBox_monto.Enabled = false;
             this.textBox_monto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_monto.Location = new System.Drawing.Point(147, 341);
+            this.textBox_monto.Location = new System.Drawing.Point(147, 297);
             this.textBox_monto.Name = "textBox_monto";
             this.textBox_monto.Size = new System.Drawing.Size(102, 21);
             this.textBox_monto.TabIndex = 71;
@@ -125,30 +125,17 @@ namespace SentirseBienApp
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(149, 325);
+            this.label2.Location = new System.Drawing.Point(149, 281);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 72;
             this.label2.Text = "Monto";
             // 
-            // button_cobrar
-            // 
-            this.button_cobrar.BackColor = System.Drawing.Color.White;
-            this.button_cobrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_cobrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_cobrar.Location = new System.Drawing.Point(255, 340);
-            this.button_cobrar.Name = "button_cobrar";
-            this.button_cobrar.Size = new System.Drawing.Size(68, 24);
-            this.button_cobrar.TabIndex = 75;
-            this.button_cobrar.Text = "Cobrar";
-            this.button_cobrar.UseVisualStyleBackColor = false;
-            this.button_cobrar.Click += new System.EventHandler(this.button_cobrar_Click);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(14, 71);
+            this.label4.Location = new System.Drawing.Point(14, 36);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 13);
             this.label4.TabIndex = 78;
@@ -157,7 +144,7 @@ namespace SentirseBienApp
             // textBox_busqueda
             // 
             this.textBox_busqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_busqueda.Location = new System.Drawing.Point(15, 90);
+            this.textBox_busqueda.Location = new System.Drawing.Point(15, 51);
             this.textBox_busqueda.Name = "textBox_busqueda";
             this.textBox_busqueda.ShortcutsEnabled = false;
             this.textBox_busqueda.Size = new System.Drawing.Size(121, 20);
@@ -199,7 +186,7 @@ namespace SentirseBienApp
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(489, 114);
+            this.label20.Location = new System.Drawing.Point(489, 75);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(110, 18);
@@ -209,7 +196,7 @@ namespace SentirseBienApp
             // label_cliente_fecha
             // 
             this.label_cliente_fecha.AutoSize = true;
-            this.label_cliente_fecha.Location = new System.Drawing.Point(549, 287);
+            this.label_cliente_fecha.Location = new System.Drawing.Point(549, 248);
             this.label_cliente_fecha.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_cliente_fecha.Name = "label_cliente_fecha";
             this.label_cliente_fecha.Size = new System.Drawing.Size(40, 13);
@@ -219,7 +206,7 @@ namespace SentirseBienApp
             // label_cliente_servicio
             // 
             this.label_cliente_servicio.AutoSize = true;
-            this.label_cliente_servicio.Location = new System.Drawing.Point(549, 253);
+            this.label_cliente_servicio.Location = new System.Drawing.Point(549, 214);
             this.label_cliente_servicio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_cliente_servicio.Name = "label_cliente_servicio";
             this.label_cliente_servicio.Size = new System.Drawing.Size(49, 13);
@@ -229,7 +216,7 @@ namespace SentirseBienApp
             // label_cliente_dni
             // 
             this.label_cliente_dni.AutoSize = true;
-            this.label_cliente_dni.Location = new System.Drawing.Point(549, 145);
+            this.label_cliente_dni.Location = new System.Drawing.Point(549, 106);
             this.label_cliente_dni.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_cliente_dni.Name = "label_cliente_dni";
             this.label_cliente_dni.Size = new System.Drawing.Size(28, 13);
@@ -239,7 +226,7 @@ namespace SentirseBienApp
             // label_cliente_apellido
             // 
             this.label_cliente_apellido.AutoSize = true;
-            this.label_cliente_apellido.Location = new System.Drawing.Point(549, 179);
+            this.label_cliente_apellido.Location = new System.Drawing.Point(549, 140);
             this.label_cliente_apellido.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_cliente_apellido.Name = "label_cliente_apellido";
             this.label_cliente_apellido.Size = new System.Drawing.Size(49, 13);
@@ -249,7 +236,7 @@ namespace SentirseBienApp
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(489, 145);
+            this.label14.Location = new System.Drawing.Point(489, 106);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(29, 13);
             this.label14.TabIndex = 92;
@@ -258,7 +245,7 @@ namespace SentirseBienApp
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(489, 179);
+            this.label13.Location = new System.Drawing.Point(489, 140);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(47, 13);
             this.label13.TabIndex = 91;
@@ -267,7 +254,7 @@ namespace SentirseBienApp
             // label_cliente_nombre
             // 
             this.label_cliente_nombre.AutoSize = true;
-            this.label_cliente_nombre.Location = new System.Drawing.Point(549, 216);
+            this.label_cliente_nombre.Location = new System.Drawing.Point(549, 177);
             this.label_cliente_nombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_cliente_nombre.Name = "label_cliente_nombre";
             this.label_cliente_nombre.Size = new System.Drawing.Size(48, 13);
@@ -277,7 +264,7 @@ namespace SentirseBienApp
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(489, 253);
+            this.label11.Location = new System.Drawing.Point(489, 214);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(48, 13);
@@ -287,7 +274,7 @@ namespace SentirseBienApp
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(489, 216);
+            this.label10.Location = new System.Drawing.Point(489, 177);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(47, 13);
@@ -297,7 +284,7 @@ namespace SentirseBienApp
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(489, 287);
+            this.label3.Location = new System.Drawing.Point(489, 248);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(40, 13);
@@ -309,9 +296,9 @@ namespace SentirseBienApp
             this.button_buscar.BackColor = System.Drawing.Color.White;
             this.button_buscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_buscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_buscar.Location = new System.Drawing.Point(142, 89);
+            this.button_buscar.Location = new System.Drawing.Point(142, 51);
             this.button_buscar.Name = "button_buscar";
-            this.button_buscar.Size = new System.Drawing.Size(56, 21);
+            this.button_buscar.Size = new System.Drawing.Size(56, 22);
             this.button_buscar.TabIndex = 98;
             this.button_buscar.Text = "Buscar";
             this.button_buscar.UseVisualStyleBackColor = false;
@@ -386,19 +373,33 @@ namespace SentirseBienApp
             this.button1.BackColor = System.Drawing.Color.White;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(363, 340);
+            this.button1.Location = new System.Drawing.Point(363, 296);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(102, 24);
             this.button1.TabIndex = 107;
-            this.button1.Text = "Imprimir Ticket";
+            this.button1.Text = "Imprimir";
             this.button1.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(409, 51);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(56, 22);
+            this.button2.TabIndex = 108;
+            this.button2.Text = "Cobros";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // VentanaSecretario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(212)))), ((int)(((byte)(231)))));
-            this.ClientSize = new System.Drawing.Size(621, 406);
+            this.ClientSize = new System.Drawing.Size(621, 335);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox_quiencobraS);
             this.Controls.Add(this.textBox_atendidoS);
@@ -424,7 +425,6 @@ namespace SentirseBienApp
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox_busqueda);
-            this.Controls.Add(this.button_cobrar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.textBox_monto);
             this.Controls.Add(this.label1);
@@ -432,7 +432,7 @@ namespace SentirseBienApp
             this.Controls.Add(this.label6);
             this.Controls.Add(this.dataGridView_serviciosList);
             this.Controls.Add(this.pictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "VentanaSecretario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pagos";
@@ -451,7 +451,6 @@ namespace SentirseBienApp
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox_monto;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button_cobrar;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox_busqueda;
         private System.Windows.Forms.Label label_nombreProfesional;
@@ -478,5 +477,6 @@ namespace SentirseBienApp
         private System.Windows.Forms.TextBox textBox_atendidoS;
         private System.Windows.Forms.TextBox textBox_quiencobraS;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

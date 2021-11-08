@@ -15,11 +15,14 @@ namespace SentirseBienApp
     {
         private Timer tiempo;
         public Ventana1Seguridad()
-        {            
+        {
+            Icon ic = global::SentirseBienApp.Properties.Resources.este;
+            this.Icon = ic;
             tiempo = new Timer();
             tiempo.Tick += new EventHandler(timer_fechahora_Tick);
             InitializeComponent();
             tiempo.Enabled = true;
+            dataGridView1.RowHeadersVisible = false;
             actualizarLista();
         }
 
@@ -37,28 +40,15 @@ namespace SentirseBienApp
 
         private void timer_actualizar_lista_Tick(object sender, EventArgs e)
         {
-            ConexDB buscarClientes = new ConexDB();
-            string query = "SELECT * from seguridad";
-            using (MySqlCommand cmd = new MySqlCommand(query, buscarClientes.conectarBD))
-            {                
-                buscarClientes.abrirBD();                
-                MySqlDataAdapter mysqlDataAdap = new MySqlDataAdapter(cmd);
-                DataTable dtRecord = new DataTable();
-                mysqlDataAdap.Fill(dtRecord);
-                dataGridView1.DataSource = dtRecord;
-                dataGridView1.AllowUserToAddRows = false;                
-                if (dataGridView1.RowCount == 0)
-                {
-                    MessageBox.Show("Sin datos para mostrar");
-                }
-            }            
+            dataGridView1.RowHeadersVisible = false;
+            actualizarLista();           
         }
         public void actualizarLista()
         {
             ConexDB buscarClientes = new ConexDB();
-            string query = "SELECT * from seguridad";
+            string query = "SELECT * from seguridad ORDER BY idSeguridad DESC";
             using (MySqlCommand cmd = new MySqlCommand(query, buscarClientes.conectarBD))
-            {
+            {                
                 buscarClientes.abrirBD();
                 MySqlDataAdapter mysqlDataAdap = new MySqlDataAdapter(cmd);
                 DataTable dtRecord = new DataTable();
@@ -70,6 +60,11 @@ namespace SentirseBienApp
                     MessageBox.Show("Sin datos para mostrar");
                 }
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dataGridView1.RowHeadersVisible = false;
         }
     }
 }
