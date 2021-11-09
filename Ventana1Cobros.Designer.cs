@@ -52,7 +52,7 @@ namespace SentirseBienApp
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(1, 26);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(469, 215);
+            this.dataGridView1.Size = new System.Drawing.Size(514, 215);
             this.dataGridView1.TabIndex = 23;
             // 
             // button_actualizar
@@ -71,7 +71,7 @@ namespace SentirseBienApp
             // 
             this.button_cerrar.BackColor = System.Drawing.Color.White;
             this.button_cerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_cerrar.Location = new System.Drawing.Point(395, 247);
+            this.button_cerrar.Location = new System.Drawing.Point(440, 247);
             this.button_cerrar.Name = "button_cerrar";
             this.button_cerrar.Size = new System.Drawing.Size(75, 23);
             this.button_cerrar.TabIndex = 44;
@@ -102,7 +102,7 @@ namespace SentirseBienApp
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(90, 7);
+            this.label2.Location = new System.Drawing.Point(90, 6);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 16);
             this.label2.TabIndex = 49;
@@ -125,14 +125,14 @@ namespace SentirseBienApp
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(-3, -1);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(503, 299);
+            this.pictureBox1.Size = new System.Drawing.Size(525, 299);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 51;
             this.pictureBox1.TabStop = false;
             // 
             // textBox1_dniCliente
             // 
-            this.textBox1_dniCliente.Location = new System.Drawing.Point(296, 5);
+            this.textBox1_dniCliente.Location = new System.Drawing.Point(341, 4);
             this.textBox1_dniCliente.Name = "textBox1_dniCliente";
             this.textBox1_dniCliente.Size = new System.Drawing.Size(100, 20);
             this.textBox1_dniCliente.TabIndex = 52;
@@ -142,7 +142,7 @@ namespace SentirseBienApp
             this.button_buscar_dni.BackColor = System.Drawing.Color.White;
             this.button_buscar_dni.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_buscar_dni.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_buscar_dni.Location = new System.Drawing.Point(402, 4);
+            this.button_buscar_dni.Location = new System.Drawing.Point(447, 3);
             this.button_buscar_dni.Name = "button_buscar_dni";
             this.button_buscar_dni.Size = new System.Drawing.Size(68, 21);
             this.button_buscar_dni.TabIndex = 76;
@@ -152,10 +152,12 @@ namespace SentirseBienApp
             // 
             // Ventana1Cobros
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(207)))), ((int)(((byte)(244)))));
-            this.ClientSize = new System.Drawing.Size(472, 273);
+            this.ClientSize = new System.Drawing.Size(517, 273);
             this.Controls.Add(this.button_buscar_dni);
             this.Controls.Add(this.textBox1_dniCliente);
             this.Controls.Add(this.button_imprimir);
@@ -170,6 +172,7 @@ namespace SentirseBienApp
             this.Name = "Ventana1Cobros";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Historial de Cobros";
+            this.Load += new System.EventHandler(this.Ventana1Cobros_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

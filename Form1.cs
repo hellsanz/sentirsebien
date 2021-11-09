@@ -24,20 +24,20 @@ using System.IO;
 namespace SentirseBienApp
 {
     public partial class Form1 : Form
-    {        
+    {
         public Form1()
         {
             Icon ic = global::SentirseBienApp.Properties.Resources.este;
             this.Icon = ic;
             InitializeComponent();
-            textBox_contador.Text = "2";            
+            textBox_contador.Text = "2";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            loggeo(int.Parse(textBox_contador.Text));      
+            loggeo(int.Parse(textBox_contador.Text));
         }
-        
+
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -58,27 +58,30 @@ namespace SentirseBienApp
             control = controlDatos();
             if (control == true)
             {
-                String usuario = textBox1_usuario.Text;  
+                String usuario = textBox1_usuario.Text;
                 if (existeUsuario() == true)
-                {    
+                {
                     if (consultaAcceso() == 0)
                     {
                         textBox1_usuario.Text = "";
                         textBox1_password.Text = "";
-                        MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Administrador");                        
+                        MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Administrador");
                         Transferencias.globalnombreUsuario = usuario;
-                        usuario = "";                        
-                        registroDeIngreso("Admin", "Ingresó");   
+                        Transferencias.globalfechaHora = DateTime.Now;
+                        usuario = "";
+                        registroDeIngreso("Admin", "Ingresó");
                         this.Visible = false;
                         llamarVentanaAdmin();
                         this.Visible = true;
+
                     }
                     if (consultaAcceso() == 1)
                     {
                         textBox1_usuario.Text = "";
                         textBox1_password.Text = "";
-                        MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Profesional");                        
+                        MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Profesional");
                         Transferencias.globalnombreUsuario = usuario;
+                        Transferencias.globalfechaHora = DateTime.Now;
                         usuario = "";
                         registroDeIngreso("Profesional", "Ingresó");
                         this.Visible = false;
@@ -89,27 +92,28 @@ namespace SentirseBienApp
                     {
                         textBox1_usuario.Text = "";
                         textBox1_password.Text = "";
-                        MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Secretaría");                        
+                        MessageBox.Show("¡Sistema Abierto!\nUsuario: " + usuario + "\nAcceso: Secretaría");
                         Transferencias.globalnombreUsuario = usuario;
+                        Transferencias.globalfechaHora = DateTime.Now;
                         usuario = "";
                         registroDeIngreso("Secretario", "Ingresó");
                         this.Visible = false;
                         llamarVentanaSecretario();
-                        this.Visible = true;                        
+                        this.Visible = true;
                     }
                     if ((consultaAcceso() > 2) || (consultaAcceso() < 0))
                     {
                         textBox1_usuario.Text = "";
                         textBox1_password.Text = "";
                         MessageBox.Show("¡ERROR DE ACCESO!\n Consulte con el Administrador");
-                        usuario = "";                        
-                    }                    
+                        usuario = "";
+                    }
                 }
                 else
                 {
                     textBox1_usuario.Text = "";
-                    textBox1_password.Text = "";                    
-                    usuario = "";                    
+                    textBox1_password.Text = "";
+                    usuario = "";
                 }
             }
         }
@@ -135,7 +139,7 @@ namespace SentirseBienApp
             ventanaSecretario.MdiParent = this.MdiParent;
             ventanaSecretario.ShowDialog(this);
         }
-        
+
         //METODOS de Control y de registro       
         public Boolean controlDatos()
         {
@@ -155,7 +159,7 @@ namespace SentirseBienApp
         public Boolean existeUsuario()
         {
             int intentos = 0;
-            intentos = int.Parse(textBox_contador.Text);            
+            intentos = int.Parse(textBox_contador.Text);
             string acc = "";
             //Conectando Azure MySql
             ConexDB log = new ConexDB();
@@ -170,22 +174,22 @@ namespace SentirseBienApp
                 {
                     r = Convert.ToInt32(cmd.ExecuteScalar());
                     if (r == 1)
-                    {                        
+                    {
                         textBox_accesoS.Text = acc;
-                        return true;                        
+                        return true;
                     }
                     else
-                    {                        
+                    {
                         MessageBox.Show("¡Datos incorrectos!\nIntentos Restantes: " + intentos);
                         intentos--;
                         textBox_contador.Text = Convert.ToString(intentos);
-                        return false;                        
-                    }                    
+                        return false;
+                    }
                 }
                 catch (Exception e)
-                {                    
-                    MessageBox.Show("Error de Coneccion con la BBDD");                    
-                    throw;                    
+                {
+                    MessageBox.Show("Error de Coneccion con la BBDD");
+                    throw;
                 }
                 finally
                 {
@@ -217,8 +221,8 @@ namespace SentirseBienApp
                 {
                     MessageBox.Show("Error de Conexion con la BBDD");
                     log.cerrarBD();
-                    return -1;  
-                }                
+                    return -1;
+                }
             }
         }
         public void registroDeIngreso(string tipo, string actividad)
@@ -235,7 +239,7 @@ namespace SentirseBienApp
                     cmd.Parameters.AddWithValue("@tipo", tipo);
                     cmd.Parameters.AddWithValue("@msg", actividad);
                     insCli.abrirBD();
-                    cmd.ExecuteNonQuery();                    
+                    cmd.ExecuteNonQuery();
                 }
                 catch (Exception e)
                 {
@@ -259,7 +263,7 @@ namespace SentirseBienApp
             string query1 = "select * from (select pagos.dni, count(*) as fac from pagos where nroFactura is null group by dni) as fac limit 1";
             using (MySqlCommand cmd = new MySqlCommand(query1, genFac.conectarBD))
             {
-                //cmd.Parameters.AddWithValue();
+
                 genFac.abrirBD();
                 try
                 {
@@ -272,7 +276,7 @@ namespace SentirseBienApp
 
                     }
 
-                    MessageBox.Show("Funcion 1 OK: " + dniCliente.ToString() + " " + cantFacturas.ToString());
+                    //MessageBox.Show("Funcion 1 OK: " + dniCliente.ToString() + " " + cantFacturas.ToString());
                     genFac.cerrarBD();
 
                 }
@@ -293,7 +297,7 @@ namespace SentirseBienApp
             {
 
                 ConexDB detallesFac = new ConexDB();
-                string query2 = "select cliente.nombre, cliente.apellido, pagos.dni , turno.servicio, servicio.costo, turno.fecha from pagos inner join turno inner join servicio inner join cliente where (nroFactura is null) and (idPagos = turno.idTurno) and (servicio.nombre = turno.servicio) and (pagos.dni = cliente.dni) and (pagos.dni = @dniCliente)";
+                string query2 = "select cliente.nombre, cliente.apellido, cliente.email, pagos.dni , turno.servicio, servicio.costo, turno.fecha from pagos inner join turno inner join servicio inner join cliente where (nroFactura is null) and (idPagos = turno.idTurno) and (servicio.nombre = turno.servicio) and (pagos.dni = cliente.dni) and (pagos.dni = @dniCliente)";
 
                 using (MySqlCommand cmd = new MySqlCommand(query2, detallesFac.conectarBD))
                 {
@@ -312,7 +316,7 @@ namespace SentirseBienApp
                     catch (Exception)
                     {
 
-                        MessageBox.Show("Error de Conexion con la BBDD // Generar Factura Error!");
+                        //MessageBox.Show("Error de Conexion con la BBDD // Generar Factura Error!");
 
                     }
                     finally
@@ -321,234 +325,261 @@ namespace SentirseBienApp
 
                     }
                 }
-            }
 
 
-            //TRAIGO EL MONTO TOTAL DE LA FACTURA
-            if ((dtgw.RowCount != 0) && (dniCliente != 0))
-            {
-                int totalFac = 0;
-                ConexDB montoFac = new ConexDB();
-                string query2 = "select sum(pagos.monto) as Total from pagos where dni = @dniCliente and nroFactura is null";
-                using (MySqlCommand cmd = new MySqlCommand(query2, montoFac.conectarBD))
+
+                //TRAIGO EL MONTO TOTAL DE LA FACTURA
+                int rc = Convert.ToInt32(dtgw.RowCount.ToString());
+                if ((rc != 0) && (dniCliente != 0))
                 {
-
-                    montoFac.abrirBD();
-                    try
-                    {
-                        cmd.Parameters.AddWithValue("@dniCliente", dniCliente);
-
-                        totalFac = Convert.ToInt32(cmd.ExecuteScalar());
-                        MessageBox.Show("Funcion 3 OK! " + totalFac.ToString());
-                        montoFac.cerrarBD();
-                    }
-                    catch (Exception)
+                    int totalFac = 0;
+                    ConexDB montoFac = new ConexDB();
+                    string query3 = "select sum(pagos.monto) as Total from pagos where dni = @dniCliente and nroFactura is null";
+                    using (MySqlCommand cmd = new MySqlCommand(query3, montoFac.conectarBD))
                     {
 
-                        MessageBox.Show("Error de Conexion con la BBDD // Generar Factura Error!");
-
-                    }
-                    finally
-                    {
-                        montoFac.cerrarBD();
-
-                    }
-                }
-
-                //GENERO LA FACTURA
-                string numeroFactura = "";
-                string nombFactura = "FAC";
-                if ((dtgw.RowCount != 0) && (dniCliente != 0) && (totalFac != 0))
-                {
-                    Random r = new Random();
-                    int nro = r.Next(000001, 999999);
-                    numeroFactura = "0000" + nro.ToString();
-
-
-                    try
-                    {
-                        //CREAR PDF
-
-                        //SaveFileDialog svfd = new SaveFileDialog();
-                        //svfd.Filter = "PDF document (*.pdf)|*.pdf";
-                        //svfd.ShowDialog();
-
-                        PdfWriter writer = new PdfWriter(@"E:\Carpetas\Documentos\" + nombFactura + numeroFactura + ".pdf");
-                        PdfDocument pdf = new PdfDocument(writer);
-                        Document document = new Document(pdf);
-
-                        //ENCABEZADO
-                        Paragraph header = new Paragraph("SPA SENTIRSE BIEN")
-                           .SetTextAlignment(TextAlignment.CENTER)
-                           .SetFontSize(18);
-
-                        //ESPACIO DE SEPARACION
-                        Paragraph newline = new Paragraph(new Text("\n"));
-
-                        document.Add(newline);
-                        document.Add(header);
-
-                        //SUB ENCABEZADO
-                        int rw = 0;
-                        int cs = 0;
-                        Paragraph subheader = new Paragraph("FACTURA B NRO: " + numeroFactura + "\n"
-                                + "DNI: " + dniCliente.ToString() + "\n"
-                                + "NOMBRE CLIENTE: " + dtgw.Rows[rw].Cells[cs].Value.ToString() + " " + dtgw.Rows[rw].Cells[cs + 1].Value.ToString())
-                        .SetTextAlignment(TextAlignment.LEFT)
-                        .SetFontSize(12);
-                        document.Add(subheader);
-
-                        //LINEA DE SEPARACION
-                        LineSeparator ls = new LineSeparator(new SolidLine());
-                        document.Add(ls);
-
-                        //PARRAFO 1
-                        Paragraph paragraph1 = new Paragraph("Detalle de los servicios facturados");
-                        document.Add(paragraph1);
-
-                        //IMAGEN DEL SPA
-                        //Image img = new Image(ImageDataFactory
-                        //.Create(@"..\..\image.jpg"))
-                        //.SetTextAlignment(TextAlignment.CENTER);
-                        //document.Add(img);
-                        //NUMERO DE PAGINAS
-                        //
-
-                        int n = pdf.GetNumberOfPages();
-                        for (int i = 1; i <= n; i++)
+                        montoFac.abrirBD();
+                        try
                         {
-                            document.ShowTextAligned(new Paragraph(String
-                               .Format("Pag." + i + " of " + n)),
-                                559, 806, i, TextAlignment.RIGHT,
-                                VerticalAlignment.TOP, 0);
+                            cmd.Parameters.AddWithValue("@dniCliente", dniCliente);
+
+                            totalFac = Convert.ToInt32(cmd.ExecuteScalar());
+                            //MessageBox.Show("Funcion 3 OK! " + totalFac.ToString());
+                            montoFac.cerrarBD();
                         }
-
-                        //TABLA DE DATOS
-                        Table table = new Table(6, false);
-                        Cell cnom = new Cell(1, 1)
-                            .SetBackgroundColor(ColorConstants.GREEN)
-                            .Add(new Paragraph("NOMBRE"));
-                        Cell cape = new Cell(1, 1)
-                            .SetBackgroundColor(ColorConstants.GREEN)
-                            .Add(new Paragraph("APELLIDO"));
-                        Cell cdni = new Cell(1, 1)
-                            .SetBackgroundColor(ColorConstants.GREEN)
-                            .Add(new Paragraph("DNI"));
-                        Cell cser = new Cell(1, 1)
-                            .SetBackgroundColor(ColorConstants.GREEN)
-                            .Add(new Paragraph("SERVICIO"));
-                        Cell cpre = new Cell(1, 1)
-                            .SetBackgroundColor(ColorConstants.GREEN)
-                            .Add(new Paragraph("PRECIO"));
-                        Cell cfec = new Cell(1, 1)
-                            .SetBackgroundColor(ColorConstants.GREEN)
-                            .Add(new Paragraph("FECHA DE REALIZACION"));
-
-                        table.AddCell(cnom);
-                        table.AddCell(cape);
-                        table.AddCell(cdni);
-                        table.AddCell(cser);
-                        table.AddCell(cpre);
-                        table.AddCell(cfec);
-
-                        foreach (DataGridViewRow row in dtgw.Rows)
+                        catch (Exception)
                         {
 
-                            foreach (DataGridViewCell cell in row.Cells)
+                            //MessageBox.Show("Error de Conexion con la BBDD // Generar Factura Error!");
+
+                        }
+                        finally
+                        {
+                            montoFac.cerrarBD();
+
+                        }
+                    }
+
+
+                    //GENERO LA FACTURA
+                    string numeroFactura = "";
+                    string nombFactura = "FAC";
+                    string correoCliente = "";
+                    string filePath = "";
+                    if ((rc != 0) && (dniCliente != 0) && (totalFac != 0))
+                    {
+                        Random r = new Random();
+                        int nro = r.Next(000001, 999999);
+                        numeroFactura = "0000" + nro.ToString();
+
+
+                        try
+                        {
+                            //CREAR PDF
+                            filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop));
+                            PdfWriter writer = new PdfWriter(filePath + @"\" + nombFactura + numeroFactura + ".pdf");
+                            PdfDocument pdf = new PdfDocument(writer);
+                            Document document = new Document(pdf);
+
+                            //ENCABEZADO
+                            Paragraph header = new Paragraph("SPA SENTIRSE BIEN")
+                               .SetTextAlignment(TextAlignment.CENTER)
+                               .SetFontSize(18);
+
+                            //ESPACIO DE SEPARACION
+                            Paragraph newline = new Paragraph(new Text("\n"));
+
+                            document.Add(newline);
+                            document.Add(header);
+
+                            //SUB ENCABEZADO
+                            int rw = 0;
+                            int cs = 0;
+                            correoCliente = dtgw.Rows[rw].Cells[cs + 2].Value.ToString();
+                            Paragraph subheader = new Paragraph("FACTURA B NRO: " + numeroFactura + "\n"
+                                    + "DNI: " + dniCliente.ToString() + "\n"
+                                    + "NOMBRE CLIENTE: " + dtgw.Rows[rw].Cells[cs].Value.ToString() + " " + dtgw.Rows[rw].Cells[cs + 1].Value.ToString() + "\n"
+                                    + "Fecha de Factura: " + DateTime.Now.ToString("yyyy-MM-dd") + "\n"
+                                    + "Correo Electronico: " + correoCliente)
+                            .SetTextAlignment(TextAlignment.LEFT)
+                            .SetFontSize(12);
+                            document.Add(subheader);
+
+                            //LINEA DE SEPARACION
+                            LineSeparator ls = new LineSeparator(new SolidLine());
+                            document.Add(ls);
+
+                            //PARRAFO 1
+                            Paragraph paragraph1 = new Paragraph("Detalle de los servicios facturados");
+                            document.Add(paragraph1);
+
+                            //IMAGEN DEL SPA
+                            //Image img = new Image(ImageDataFactory
+                            //.Create(@"..\..\image.jpg"))
+                            //.SetTextAlignment(TextAlignment.CENTER);
+                            //document.Add(img);
+                            //NUMERO DE PAGINAS
+                            //
+
+                            int n = pdf.GetNumberOfPages();
+                            for (int i = 1; i <= n; i++)
                             {
-                                table.AddCell(cell.Value.ToString());
+                                document.ShowTextAligned(new Paragraph(String
+                                   .Format("Pag." + i + " of " + n)),
+                                    559, 806, i, TextAlignment.RIGHT,
+                                    VerticalAlignment.TOP, 0);
                             }
-                        }
 
-                        document.Add(table);
+                            //RFEMUEVO COLUMNA EMAIL DEL DATAGRID PORQUE NO SE NECESITA A TAL FIN
+                            dtgw.Columns.RemoveAt(2);
 
-                        //ESPACIO DE SEPARACION
-                        Paragraph space = new Paragraph(new Text("\n"));
+                            //TABLA DE DATOS
+                            Table table = new Table(6, false);
+                            Cell cnom = new Cell(1, 1)
+                                .SetBackgroundColor(ColorConstants.GREEN)
+                                .Add(new Paragraph("NOMBRE"));
+                            Cell cape = new Cell(1, 1)
+                                .SetBackgroundColor(ColorConstants.GREEN)
+                                .Add(new Paragraph("APELLIDO"));
+                            Cell cdni = new Cell(1, 1)
+                                .SetBackgroundColor(ColorConstants.GREEN)
+                                .Add(new Paragraph("DNI"));
+                            Cell cser = new Cell(1, 1)
+                                .SetBackgroundColor(ColorConstants.GREEN)
+                                .Add(new Paragraph("SERVICIO"));
+                            Cell cpre = new Cell(1, 1)
+                                .SetBackgroundColor(ColorConstants.GREEN)
+                                .Add(new Paragraph("PRECIO"));
+                            Cell cfec = new Cell(1, 1)
+                                .SetBackgroundColor(ColorConstants.GREEN)
+                                .Add(new Paragraph("FECHA DE REALIZACION"));
 
-                        document.Add(space);
+                            table.AddCell(cnom);
+                            table.AddCell(cape);
+                            table.AddCell(cdni);
+                            table.AddCell(cser);
+                            table.AddCell(cpre);
+                            table.AddCell(cfec);
+
+                            foreach (DataGridViewRow row in dtgw.Rows)
+                            {
+
+                                foreach (DataGridViewCell cell in row.Cells)
+                                {
+                                    table.AddCell(cell.Value.ToString());
+                                }
+                            }
+
+                            document.Add(table);
+
+                            //ESPACIO DE SEPARACION
+                            Paragraph space = new Paragraph(new Text("\n"));
+
+                            document.Add(space);
 
 
-                        //LINEA DE SEPARACION
-                        LineSeparator ls1 = new LineSeparator(new SolidLine());
-                        document.Add(ls);
+                            //LINEA DE SEPARACION
+                            LineSeparator ls1 = new LineSeparator(new SolidLine());
+                            document.Add(ls);
 
-                        //PARRAFO 1
-                        Paragraph lineaMonto = new Paragraph("TOTAL ARS $:" + totalFac.ToString());
-                        lineaMonto.SetFontSize(14);
-                        document.Add(lineaMonto);
-                        document.Close();
+                            //PARRAFO 1
+                            Paragraph lineaMonto = new Paragraph("TOTAL ARS $:" + totalFac.ToString() + "\nESTADO: ");
+                            lineaMonto.SetFontSize(14);
+                            Paragraph lineaEstado = new Paragraph("PAGADO");
+                            lineaEstado.SetBackgroundColor(ColorConstants.GREEN);
+                            document.Add(lineaMonto);
+                            document.Add(lineaEstado);
+                            document.Close();
 
-                        DialogResult dialogResult = MessageBox.Show("Guardado en " + @"E:\Carpetas\Documentos\" + nombFactura + numeroFactura + " \nDesea abrirlo?", "PDF Generado Exitosamente!", MessageBoxButtons.YesNo);
-                        if (dialogResult == DialogResult.Yes)
-                        {
+                            //DialogResult dialogResult = MessageBox.Show("Guardado en " + filePath + @"\" + nombFactura + numeroFactura+" \nDesea abrirlo?", "PDF Generado Exitosamente!", MessageBoxButtons.YesNo);
+                            //if (dialogResult == DialogResult.Yes)
+                            //{
                             //MessageBox.Show("Metodo abrir pdf!");
-                            Process.Start(@"E:\Carpetas\Documentos\" + nombFactura + numeroFactura + ".pdf");
-                        }
+                            // Process.Start(filePath + @"\" + nombFactura + numeroFactura + ".pdf");
+                            //}
 
+                        }
+                        catch (Exception err)
+                        {
+                            MessageBox.Show(err.Message);
+                        }
+                    }
+
+
+
+                    //ENVIO POR EMAIL LA FACTURA
+                    try
+                    {
+                        correoCliente = "galileomanuel@gmail.com";
+                        MailMessage correo = new MailMessage();
+                        correo.From = new MailAddress("spasentirsebiensa@gmail.com", "SPA SENTIRSE BIEN S.A", System.Text.Encoding.UTF8);
+                        //Correo de salida
+                        //
+                        //Correo de Prueba
+                        //correo.To.Add("manu92.boca@gmail.com"); //Correo destino
+                        //
+                        //Correo de cliente
+                        correo.To.Add(correoCliente);
+                        //
+                        correo.Subject = "SPA SENTIRSE BIEN - Factura Servicio Nro " + numeroFactura.ToString(); ; //Asunto
+                        correo.Body = "Estimado Cliente:  Le acercamos su factura de servicios." + "\n" +
+                            "Muchas gracias por confiar en nosotros." + "\n" +
+                            "Atte. Spa Sentirse Bien S.A" + DateTime.Now.ToString(); ; //Mensaje del correo
+                        correo.IsBodyHtml = false;
+                        correo.Priority = MailPriority.Normal;
+                        correo.Attachments.Add(new Attachment(GetStreamFile(filePath + @"\" + nombFactura + numeroFactura + ".pdf"), "fac", "application/pdf"));
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Host = "smtp.gmail.com"; //Host del servidor de correo
+                        smtp.Port = 25; //Puerto de salida
+                        smtp.Credentials = new System.Net.NetworkCredential("spasentirsebiensa@gmail.com", "manu:2112");//Cuenta de correo
+                        ServicePointManager.ServerCertificateValidationCallback = delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
+                        smtp.EnableSsl = true;//True si el servidor de correo permite ssl
+                        smtp.Send(correo);
+                        //MessageBox.Show("Correo Enviado Con Exito!");
                     }
                     catch (Exception err)
                     {
-                        MessageBox.Show(err.Message);
+                        //MessageBox.Show("Correo No Enviado: " + err.Message);
                     }
-                }
 
-
-                //ENVIO POR EMAIL LA FACTURA
-                try
-                {
-                    MailMessage correo = new MailMessage();
-                    correo.From = new MailAddress("galileomanuel@gmail.com", "SPA SENTIRSE BIEN S.A", System.Text.Encoding.UTF8);//Correo de salida
-                    correo.To.Add("manu92.boca@gmail.com"); //Correo destino?
-                    correo.Subject = "Factura Nro " + numeroFactura.ToString(); ; //Asunto
-                    correo.Body = "Le acercamos su factura de servicios. \nAtte. Spa Sentirse Bien S.A"; //Mensaje del correo
-                    correo.IsBodyHtml = true;
-                    correo.Priority = MailPriority.Normal;
-                    correo.Attachments.Add(new Attachment(GetStreamFile(@"E:\Carpetas\Documentos\" + nombFactura + numeroFactura + ".pdf"), "fac", "application/pdf"));
-                    SmtpClient smtp = new SmtpClient();
-                    smtp.UseDefaultCredentials = false;
-                    smtp.Host = "smtp.gmail.com"; //Host del servidor de correo
-                    smtp.Port = 25; //Puerto de salida
-                    smtp.Credentials = new System.Net.NetworkCredential("galileomanuel@gmail.com", "manu:2112");//Cuenta de correo
-                    ServicePointManager.ServerCertificateValidationCallback = delegate (object s, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors) { return true; };
-                    smtp.EnableSsl = true;//True si el servidor de correo permite ssl
-                    smtp.Send(correo);
-                    MessageBox.Show("Correo Enviado Con Exito!");
-                }
-                catch (Exception err)
-                {
-                    MessageBox.Show("Correo No Enviado: " + err.Message);
-                }
-
-                //INSERTO EL NUMERO DE FACTURA A LOS SERVICIOS CUYO NUM FAC IS NULL
-                ConexDB iNroFac = new ConexDB();
-                string qIns = "update pagos set nroFactura = @nroFac where nroFactura is null and dni = @dni";
-                using (MySqlCommand cmd = new MySqlCommand(qIns, iNroFac.conectarBD))
-                {
-                    try
+                    //INSERTO EL NUMERO DE FACTURA A LOS SERVICIOS CUYO NUM FAC IS NULL EN PAGOS
+                    ConexDB iNroFac = new ConexDB();
+                    string qIns = "update pagos set nroFactura = @nroFac, fechaPago = @fecPag where nroFactura is null and dni = @dni";
+                    using (MySqlCommand cmd = new MySqlCommand(qIns, iNroFac.conectarBD))
                     {
-                        cmd.Parameters.AddWithValue("@nroFac", Convert.ToInt32(numeroFactura));
-                        cmd.Parameters.AddWithValue("@dni", dniCliente);
-                        iNroFac.abrirBD();
-                        cmd.ExecuteNonQuery();
+                        try
+                        {
+                            cmd.Parameters.AddWithValue("@nroFac", Convert.ToInt32(numeroFactura));
+                            cmd.Parameters.AddWithValue("@dni", dniCliente);
+                            cmd.Parameters.AddWithValue("@fecPag", DateTime.Now.ToString("yyyy-MM-dd"));
+                            iNroFac.abrirBD();
+                            cmd.ExecuteNonQuery();
 
-                        MessageBox.Show("Pagos Actualizado con Exito!");
+                            //MessageBox.Show("Pagos Actualizado con Exito!");
+                        }
+                        catch (Exception e)
+                        {
+                            MessageBox.Show(e.Message);
+                        }
+                        finally
+                        {
+                            iNroFac.cerrarBD();
+                        }
                     }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show(e.Message);
-                    }
-                    finally
-                    {
-                        iNroFac.cerrarBD();
-                    }
+
+
                 }
             }
+            else
+            { //MessageBox.Show("Todas las Facturas Generadas! :)"); }
 
-
+            }
         }
 
         public System.IO.Stream GetStreamFile(string filePath)
         {
+
             using (System.IO.FileStream fileStream = File.OpenRead(filePath))
             {
                 System.IO.MemoryStream memStream = new MemoryStream();
@@ -557,9 +588,11 @@ namespace SentirseBienApp
                 return memStream;
             }
         }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //generarFactura();
+            generarFactura();
         }
     }
 }
+

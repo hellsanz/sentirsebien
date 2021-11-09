@@ -147,6 +147,7 @@ namespace SentirseBienApp
                     label_nombre.Text = "Anonimo";
                     MessageBox.Show("Cliente No Registrado");
                 }
+
                 buscarClientes.cerrarBD();
             }
         }
@@ -218,13 +219,7 @@ namespace SentirseBienApp
                     insCli.cerrarBD();
                 }
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-            this.Close();
-        }
+        }                
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -239,6 +234,41 @@ namespace SentirseBienApp
         }
 
         private void button1_c_sinAtender_Click(object sender, EventArgs e)
+        {
+            Ventana1ListadoCliente ventana = new Ventana1ListadoCliente();
+            AddOwnedForm(ventana);
+            ventana.Show();
+        }
+
+        private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            registroDeActividad("Cerro Sesión");
+            this.Close();
+        }
+
+        private void sALIRToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            registroDeActividad("Salió de la Aplicación");            
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
+        }
+
+        private void sESIONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Usuario: " + Transferencias.globalnombreUsuario + "\nAbierta a las: " + Transferencias.globalfechaHora + "\nNivel de Acceso: Admin");
+        }
+
+        private void iNFORMACIONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Windows Forms\nAplicacion de Escritorio\nVersion Alpha 0.1\nPrograma Desarrollado por TLC");
+        }
+
+        private void cONTACTOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Desarrolladores: Alonso Manuel G - Sanchez Pablo S.N.\n - 2021 -" +
+                "\nthelazycompany@gmail.com");
+        }
+
+        private void clientesSinAtenderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Ventana1ListadoCliente ventana = new Ventana1ListadoCliente();
             AddOwnedForm(ventana);

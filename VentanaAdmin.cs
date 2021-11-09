@@ -73,7 +73,7 @@ namespace SentirseBienApp
         {
             //Traer todos clientes de la  db al datagrid            
             ConexDB buscarClientes = new ConexDB();
-            string query = "SELECT * from cliente";
+            string query = "SELECT * from cliente order by apellido, nombre";
             using (MySqlCommand cmd = new MySqlCommand(query, buscarClientes.conectarBD))
             {
                 buscarClientes.abrirBD();
@@ -96,29 +96,14 @@ namespace SentirseBienApp
         }
         private void button1_buscar_Click(object sender, EventArgs e)
         {
-            //Traer todos clientes por DNI al datagrid
-            dataGridView1.DataSource = null;
-            ConexDB buscarClientes = new ConexDB();
-            string query = "SELECT * from cliente WHERE dni = @dni";
-            using (MySqlCommand cmd = new MySqlCommand(query, buscarClientes.conectarBD))
+            if (controlCargaDNI() == true)
             {
-                cmd.Parameters.AddWithValue("@dni",Convert.ToInt32(textBox_buscar.Text));
-                buscarClientes.abrirBD();
-                MySqlDataAdapter mysqlDataAdap = new MySqlDataAdapter(cmd);
-                DataTable dtRecord = new DataTable();
-                mysqlDataAdap.Fill(dtRecord);
-                dataGridView1.DataSource = dtRecord;
-                dataGridView1.AllowUserToAddRows = false;
-                dataGridView1.Columns[0].HeaderText = "DNI";
-                dataGridView1.Columns[1].HeaderText = "APELLIDO";
-                dataGridView1.Columns[2].HeaderText = "NOMBRE";
-                dataGridView1.Columns[3].HeaderText = "EMAIL";
-                dataGridView1.Columns[4].HeaderText = "TELEFONO";
-                if (dataGridView1.RowCount == 0)
-                {
-                    MessageBox.Show("Sin datos para mostrar");
-                }
-            }            
+                buscarTurnoPorDNI(Convert.ToInt32(textBox_buscar.Text));
+            }
+            else
+            {
+                MessageBox.Show("Ingrese DNI");
+            }    
             registroDeActividad("Buscó un Cliente DNI:" + textBox_dni.Text);
         }
      
@@ -145,7 +130,14 @@ namespace SentirseBienApp
       
         private void btPDF_Click(object sender, EventArgs e)
         {
-            imprimir();
+            if (dataGridView1.RowCount == 0)
+            {
+                MessageBox.Show("No Se puede Imprimir\nNo hay Datos que mostrar");//no encuentra turnos de ese DNI
+            }
+            else
+            {
+                imprimir();
+            }            
         }
         private void button_cerrarVentana_Click(object sender, EventArgs e)
         {
@@ -163,7 +155,7 @@ namespace SentirseBienApp
         {
             Ventana1Turnos ventanaTurno = new Ventana1Turnos();
             AddOwnedForm(ventanaTurno);
-            ventanaTurno.ShowDialog();
+            ventanaTurno.Show();
         }
         private void button_cobros_Click(object sender, EventArgs e)
         {
@@ -202,6 +194,26 @@ namespace SentirseBienApp
             {
                 MessageBox.Show("¡Error en Email! - Campo Vacio");
                 control = false;
+            }
+            return control;
+        }
+        public Boolean controlCargaDNI()
+        {
+            Boolean control = true;
+            int temp = 0;
+            if (string.IsNullOrEmpty(textBox_buscar.Text))
+            {
+                MessageBox.Show("¡Error! - Campo Vacio\nFalta DNI para Buscar");
+                control = false;
+            }
+            else
+            {
+                if (!int.TryParse(textBox_buscar.Text, out temp))
+                {
+                    MessageBox.Show("¡Error Tipo de dato! - Debe cargar un Numero");
+                    textBox_buscar.Text = "";
+                    control = false;
+                }
             }
             return control;
         }
@@ -504,7 +516,32 @@ namespace SentirseBienApp
             }
             registroDeActividad("Imprimir Listado de Clientes");
         }
-
+        public void buscarTurnoPorDNI(int dni)
+        {
+            //Traer todos clientes por DNI al datagrid
+            dataGridView1.DataSource = null;
+            ConexDB buscarClientes = new ConexDB();
+            string query = "SELECT * from cliente WHERE dni = @dni";
+            using (MySqlCommand cmd = new MySqlCommand(query, buscarClientes.conectarBD))
+            {
+                cmd.Parameters.AddWithValue("@dni", dni);
+                buscarClientes.abrirBD();
+                MySqlDataAdapter mysqlDataAdap = new MySqlDataAdapter(cmd);
+                DataTable dtRecord = new DataTable();
+                mysqlDataAdap.Fill(dtRecord);
+                dataGridView1.DataSource = dtRecord;
+                dataGridView1.AllowUserToAddRows = false;
+                dataGridView1.Columns[0].HeaderText = "DNI";
+                dataGridView1.Columns[1].HeaderText = "APELLIDO";
+                dataGridView1.Columns[2].HeaderText = "NOMBRE";
+                dataGridView1.Columns[3].HeaderText = "EMAIL";
+                dataGridView1.Columns[4].HeaderText = "TELEFONO";
+                if (dataGridView1.RowCount == 0)
+                {
+                    MessageBox.Show("Sin datos para mostrar");
+                }
+            }
+        }
         //EVENTOS
         private void timer_fechahora_Tick(object sender, EventArgs e)
         {
@@ -537,6 +574,127 @@ namespace SentirseBienApp
             Ventana1ListadoCliente ventana = new Ventana1ListadoCliente();
             AddOwnedForm(ventana);
             ventana.Show();
+        }
+
+        private void aGREGARCLIENTEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            limpiarCampos();
+            habilitarCampos();
+            textBox_dni.Enabled = true;
+            button1_modificar.Enabled = false;
+            textBox_insert_update.Text = "0";
+        }
+
+        private void mODIFICARToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button_cancelar.Enabled = true;
+            if (dataGridView1.SelectedCells.Count > 0)
+            {
+                textBox_insert_update.Text = "1";
+                habilitarCampos();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un Cliente para Modificar!");
+            }
+        }
+
+        private void eliminarClienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            button1_modificar.Enabled = false;
+            button_cancelar.Enabled = true;
+            if (dataGridView1.SelectedCells.Count > 0)
+            {
+                textBox_dni.Text = dataGridView1.SelectedCells[0].Value.ToString();
+                textBox_apellido.Text = dataGridView1.SelectedCells[1].Value.ToString();
+                textBox_nombre.Text = dataGridView1.SelectedCells[2].Value.ToString();
+                textBox_email.Text = dataGridView1.SelectedCells[3].Value.ToString();
+                textBox_telefono.Text = dataGridView1.SelectedCells[4].Value.ToString();
+                eliminarCliente(int.Parse(textBox_dni.Text));
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un Cliente para Eliminar!");
+            }
+        }
+
+        private void sALIRToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Ventana1Seguridad ventanaSeguridad = new Ventana1Seguridad();
+            AddOwnedForm(ventanaSeguridad);
+            ventanaSeguridad.Show();
+        }
+
+        private void sALIRToolStripMenuItem2_Click(object sender, EventArgs e)
+        {            
+            registroDeActividad("Salió de la Aplicación");
+            //Application.Exit();
+            System.Diagnostics.Process.GetCurrentProcess().Kill();
+        }
+
+        private void iNFORMACIONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Windows Forms\nAplicacion de Escritorio\nVersion Alpha 0.1\nPrograma Desarrollado por TLC");
+        }
+
+        private void imprimirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.RowCount == 0)
+            {
+                MessageBox.Show("No Se puede Imprimir\nNo hay Datos que mostrar");//no encuentra turnos de ese DNI
+            }
+            else
+            {
+                imprimir();
+            }
+        }
+
+        private void sESIONToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Usuario: "+Transferencias.globalnombreUsuario+"\nAbierta a las: "+Transferencias.globalfechaHora+"\nNivel de Acceso: Admin");
+        }
+
+        private void cobrosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Ventana1Cobros ventanaCobro = new Ventana1Cobros();
+            AddOwnedForm(ventanaCobro);
+            ventanaCobro.Show();
+        }
+
+        private void turnosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Ventana1Turnos ventanaTurno = new Ventana1Turnos();
+            AddOwnedForm(ventanaTurno);
+            ventanaTurno.Show();
+        }
+
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Ventana1ListadoCliente ventana = new Ventana1ListadoCliente();
+            AddOwnedForm(ventana);
+            ventana.Show();
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_buscar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cerrarSesionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            registroDeActividad("Cerro Sesión");
+            this.Close();
+        }
+
+        private void cONTACTOToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Desarrolladores: Alonso Manuel G - Sanchez Pablo S.N.\n - 2021 -" +
+                "\nthelazycompany@gmail.com");
         }
     }
 }

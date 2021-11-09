@@ -12,33 +12,40 @@ namespace SentirseBienApp
         private static int dni;
         private static string apellido;
         private static string nombre;
-        private static string email;
-        private static int telefono;
+        //private static string email;
+        //private static int telefono;
         public static string globalNombre
         {
             get { return nombre; }
             set { nombre = value; }
         }
-
+        public static string globalApellido
+        {
+            get { return apellido; }
+            set { apellido = value; }
+        }
         public static int globalDNI
         {
             get { return dni; }
             set { dni = value; }
         }
 
-        //USUARIOS
+        //MONTOS
+        private static int montoServicio;
+        public static int globalmontoServicio
+        {
+            get { return montoServicio; }
+            set { montoServicio = value; }
+        }
 
-        //TURNOS
+        //ADMIN
+        private static DateTime fechaHora;
+        public static DateTime globalfechaHora
+        {
+            get { return fechaHora; }
+            set { fechaHora = value; }
+        }
 
-        //SECRETARIO - PAGOS - COBROS
-        private static int SecretarioClienteDNI;
-        private static string SecretarioClienteNombre;
-        private static string SecretarioClienteApellido;
-        private static string SecretarioClienteServicio;
-        private static double SecretarioClienteCosto;
-        private static DateTime SecretarioClienteFecha;
-        private static string SecretarioClienteAtendio;
-        private static double SecretarioClienteCobro;
 
         //PROFESIONAL
         private static string nombreUsuario;

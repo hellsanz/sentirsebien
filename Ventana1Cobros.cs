@@ -58,7 +58,7 @@ namespace SentirseBienApp
                     Document document = new Document(pdf);
 
                     //ENCABEZADO
-                    Paragraph header = new Paragraph("LISTADO DE PAGOS")
+                    Paragraph header = new Paragraph("LISTADO DE COBROS")
                        .SetTextAlignment(TextAlignment.CENTER)
                        .SetFontSize(20);
 
@@ -96,11 +96,10 @@ namespace SentirseBienApp
                             559, 806, i, TextAlignment.RIGHT,
                             VerticalAlignment.TOP, 0);
                     }
+                    //REMOVE ID
+                    dataGridView1.Columns.RemoveAt(0);
                     //TABLA DE DATOS
-                    Table table = new Table(6, false);
-                    Cell cID = new Cell(1, 1)
-                        .SetBackgroundColor(ColorConstants.GREEN)
-                        .Add(new Paragraph("ID"));
+                    Table table = new Table(6, false);                    
                     Cell cDNI = new Cell(1, 1)
                         .SetBackgroundColor(ColorConstants.GREEN)
                         .Add(new Paragraph("DNI"));
@@ -116,12 +115,15 @@ namespace SentirseBienApp
                     Cell cNroFactura = new Cell(1, 1)
                         .SetBackgroundColor(ColorConstants.GREEN)
                         .Add(new Paragraph("NRO DE FACTURA"));
-                    table.AddCell(cID);
+                    Cell cfecha = new Cell(1, 1)
+                        .SetBackgroundColor(ColorConstants.GREEN)
+                        .Add(new Paragraph("Fecha"));                   
                     table.AddCell(cDNI);
                     table.AddCell(cMONTO);
                     table.AddCell(cNROCOM);
                     table.AddCell(cTipoPago);
                     table.AddCell(cNroFactura);
+                    table.AddCell(cfecha);
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
                         foreach (DataGridViewCell cell in row.Cells)
@@ -176,12 +178,11 @@ namespace SentirseBienApp
             //traer todos los turnos cargados en la BD
             dataGridView1.DataSource = null;
             ConexDB buscarClientes = new ConexDB();
-            string query = "SELECT * from pagos";//; WHERE fecha between @desde and @hasta";
-            //Agregar Fecha de Emision de Factura en BBDD
+            string query = "SELECT * from pagos WHERE fechaPago between @desde and @hasta";            
             using (MySqlCommand cmd = new MySqlCommand(query, buscarClientes.conectarBD))
             {
-                //cmd.Parameters.AddWithValue("@desde", desde);
-                //cmd.Parameters.AddWithValue("@hasta", hasta);
+                cmd.Parameters.AddWithValue("@desde", desde);
+                cmd.Parameters.AddWithValue("@hasta", hasta);
                 buscarClientes.abrirBD();
                 MySqlDataAdapter mysqlDataAdap = new MySqlDataAdapter(cmd);
                 DataTable dtRecord = new DataTable();
@@ -194,6 +195,7 @@ namespace SentirseBienApp
                 dataGridView1.Columns[3].HeaderText = "Comprobante";
                 dataGridView1.Columns[4].HeaderText = "Forma de Pago";
                 dataGridView1.Columns[5].HeaderText = "Nro. Factura";
+                dataGridView1.Columns[6].HeaderText = "Fecha Factura";    
                 //dataGridView1.Columns[5].Visible = false;
                 if (dataGridView1.RowCount == 0)
                 {
@@ -260,6 +262,11 @@ namespace SentirseBienApp
                 }
             }
             return control;
+        }
+
+        private void Ventana1Cobros_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
